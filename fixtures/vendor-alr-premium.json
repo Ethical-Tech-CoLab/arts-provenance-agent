@@ -1,0 +1,31 @@
+{
+  "_comment": "Canned 'Art Loss Register Premium Search' results. The DATA is mocked; the x402 payment to reach it is real. Keyed by a loose artwork match; 'default' is the fallback.",
+  "euphronios-krater": {
+    "vendor": "Art Loss Register — Premium Search (simulated)",
+    "query": "Euphronios Krater, attributed to Euphronios",
+    "searchedDatabases": ["ALR stolen-art registry", "Interpol Works of Art", "Italian Carabinieri TPC"],
+    "match": {
+      "status": "RESOLVED_REPATRIATED",
+      "summary": "Object corresponds to a vase repatriated to Italy in 2008 after a documented illicit-excavation case; no longer an open claim, but provenance prior to 1971 is contested.",
+      "openClaim": false,
+      "historicalClaim": true,
+      "confidenceDelta": 14
+    },
+    "registrationRecommended": true,
+    "issuedAt": "2008-01-18"
+  },
+  "default": {
+    "vendor": "Art Loss Register — Premium Search (simulated)",
+    "query": "(generic)",
+    "searchedDatabases": ["ALR stolen-art registry", "Interpol Works of Art"],
+    "match": {
+      "status": "NO_MATCH",
+      "summary": "No matching record found in the premium stolen-art databases for the supplied artwork.",
+      "openClaim": false,
+      "historicalClaim": false,
+      "confidenceDelta": 8
+    },
+    "registrationRecommended": false,
+    "issuedAt": null
+  }
+}

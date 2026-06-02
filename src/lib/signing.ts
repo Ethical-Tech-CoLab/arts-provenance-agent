@@ -1,78 +1,30 @@
 /**
- * Real Ed25519 / did:key signing for the Provenance Passport.
+ * Passport signing with the agent's secp256k1 WALLET key (viem).
  *
- * "Wallets are PKI" — applied to an artwork's identity instead of a payment.
- * The agent (the verifying authority) holds an Ed25519 keypair, gets a
- * did:key, and signs the passport as a W3C Verifiable Credential. Anyone can
- * re-canonicalize the doc and check the signature against the issuer's public
- * key in the DID — tamper-evident and interoperable.
+ * The SAME key that pays the x402 micropayment also signs the Passport.
+ * "A wallet is PKI" — applied to an artwork's identity instead of a payment.
+ * The issuer is a did:pkh (an Ethereum address as a DID); anyone can recover
+ * the signer address from the signature with ecrecover and confirm it matches
+ * the issuer — no key distribution needed, fully tamper-evident.
  */
-import * as ed from "@noble/ed25519";
-import { sha512 } from "@noble/hashes/sha512";
-import { base58 } from "@scure/base";
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
-import { dirname } from "node:path";
+import { privateKeyToAccount } from "viem/accounts";
+import { recoverMessageAddress, type Hex, getAddress } from "viem";
 
-// Enable @noble/ed25519 sync hashing (also used by the async paths).
-ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
+export const BASE_SEPOLIA_CHAIN_ID = 84532;
 
-const MULTICODEC_ED25519_PUB = new Uint8Array([0xed, 0x01]);
-const KEY_PATH = process.env.ISSUER_KEY_PATH ?? "keys/issuer.json";
-
-export interface Keypair {
-  privateKeyHex: string;
-  publicKeyHex: string;
-  did: string; // did:key:z...
-  verificationMethod: string; // did#fragment
+/** did:pkh for an Ethereum address on a given chain. */
+export function addressToDid(address: string, chainId = BASE_SEPOLIA_CHAIN_ID): string {
+  return `did:pkh:eip155:${chainId}:${getAddress(address)}`;
 }
 
-function toHex(b: Uint8Array): string {
-  return Buffer.from(b).toString("hex");
-}
-function fromHex(h: string): Uint8Array {
-  return new Uint8Array(Buffer.from(h, "hex"));
-}
-
-/** Encode a raw Ed25519 public key as a did:key. */
-export function publicKeyToDid(pub: Uint8Array): { did: string; verificationMethod: string } {
-  const prefixed = new Uint8Array(MULTICODEC_ED25519_PUB.length + pub.length);
-  prefixed.set(MULTICODEC_ED25519_PUB, 0);
-  prefixed.set(pub, MULTICODEC_ED25519_PUB.length);
-  const mb = "z" + base58.encode(prefixed); // multibase base58btc
-  const did = `did:key:${mb}`;
-  return { did, verificationMethod: `${did}#${mb}` };
+/** Extract the checksummed address from a did:pkh. */
+export function didToAddress(did: string): string {
+  const parts = did.split(":");
+  const addr = parts[parts.length - 1];
+  return getAddress(addr);
 }
 
-/** Recover the raw public key from a did:key. */
-export function didToPublicKey(did: string): Uint8Array {
-  const mb = did.replace("did:key:", "");
-  if (!mb.startsWith("z")) throw new Error("Unsupported DID (expected base58btc 'z').");
-  const decoded = base58.decode(mb.slice(1));
-  if (decoded[0] !== 0xed || decoded[1] !== 0x01) {
-    throw new Error("DID is not an Ed25519 key.");
-  }
-  return decoded.slice(2);
-}
-
-/** Load the persisted issuer keypair, generating one on first run. */
-export function loadOrCreateIssuer(): Keypair {
-  if (existsSync(KEY_PATH)) {
-    const saved = JSON.parse(readFileSync(KEY_PATH, "utf8")) as { privateKeyHex: string };
-    const priv = fromHex(saved.privateKeyHex);
-    const pub = ed.getPublicKey(priv);
-    const { did, verificationMethod } = publicKeyToDid(pub);
-    return { privateKeyHex: saved.privateKeyHex, publicKeyHex: toHex(pub), did, verificationMethod };
-  }
-  const priv = ed.utils.randomPrivateKey();
-  const pub = ed.getPublicKey(priv);
-  const { did, verificationMethod } = publicKeyToDid(pub);
-  const kp: Keypair = { privateKeyHex: toHex(priv), publicKeyHex: toHex(pub), did, verificationMethod };
-  mkdirSync(dirname(KEY_PATH), { recursive: true });
-  writeFileSync(KEY_PATH, JSON.stringify({ privateKeyHex: kp.privateKeyHex }, null, 2));
-  return kp;
-}
-
-/** Deterministic canonicalization: recursively sort object keys, then JSON. */
+/** Deterministic canonicalization: recursively sort keys, then JSON. */
 export function canonicalize(value: unknown): string {
   return JSON.stringify(sortKeys(value));
 }
@@ -92,34 +44,38 @@ function sortKeys(v: unknown): unknown {
 export interface VerifiableCredential {
   "@context": string[];
   type: string[];
-  issuer: string;
+  issuer: string; // did:pkh:eip155:84532:0x...
   validFrom: string;
   credentialSubject: Record<string, unknown>;
   proof?: {
-    type: string;
+    type: string; // EcdsaSecp256k1RecoverySignature2020
     created: string;
-    verificationMethod: string;
+    verificationMethod: string; // did#blockchainAccountId
     proofPurpose: string;
-    proofValue: string; // multibase base58btc signature
+    proofValue: Hex; // 0x… EIP-191 personal_sign signature
   };
 }
 
-/** Sign a credential body (everything except `proof`) and attach the proof. */
-export function signCredential(
+/**
+ * Sign the credential body (everything except `proof`) with the wallet key and
+ * attach the proof. Returns the complete Verifiable Credential.
+ */
+export async function signCredential(
   body: Omit<VerifiableCredential, "proof">,
-  issuer: Keypair,
+  privateKey: Hex,
   createdAt: string
-): VerifiableCredential {
-  const bytes = new TextEncoder().encode(canonicalize(body));
-  const sig = ed.sign(bytes, fromHex(issuer.privateKeyHex));
+): Promise<VerifiableCredential> {
+  const account = privateKeyToAccount(privateKey);
+  const message = canonicalize(body);
+  const proofValue = await account.signMessage({ message });
   return {
     ...body,
     proof: {
-      type: "Ed25519Signature2020",
+      type: "EcdsaSecp256k1RecoverySignature2020",
       created: createdAt,
-      verificationMethod: issuer.verificationMethod,
+      verificationMethod: `${body.issuer}#blockchainAccountId`,
       proofPurpose: "assertionMethod",
-      proofValue: "z" + base58.encode(sig),
+      proofValue,
     },
   };
 }
@@ -127,22 +83,25 @@ export function signCredential(
 export interface VerifyResult {
   valid: boolean;
   issuer: string;
+  recoveredAddress?: string;
   reason?: string;
 }
 
-/** Re-canonicalize the body and verify the signature against the DID. */
-export function verifyCredential(vc: VerifiableCredential): VerifyResult {
+/** Recover the signer from the signature and confirm it equals the issuer. */
+export async function verifyCredential(vc: VerifiableCredential): Promise<VerifyResult> {
   try {
     if (!vc.proof) return { valid: false, issuer: vc.issuer, reason: "No proof present." };
     const { proof, ...body } = vc;
-    const pub = didToPublicKey(vc.issuer);
-    if (!proof.proofValue.startsWith("z")) {
-      return { valid: false, issuer: vc.issuer, reason: "Unsupported proofValue encoding." };
-    }
-    const sig = base58.decode(proof.proofValue.slice(1));
-    const bytes = new TextEncoder().encode(canonicalize(body));
-    const valid = ed.verify(sig, bytes, pub);
-    return { valid, issuer: vc.issuer, reason: valid ? undefined : "Signature does not match." };
+    const message = canonicalize(body);
+    const recovered = await recoverMessageAddress({ message, signature: proof.proofValue });
+    const expected = didToAddress(vc.issuer);
+    const valid = recovered.toLowerCase() === expected.toLowerCase();
+    return {
+      valid,
+      issuer: vc.issuer,
+      recoveredAddress: recovered,
+      reason: valid ? undefined : `Recovered ${recovered} ≠ issuer ${expected}.`,
+    };
   } catch (e) {
     return { valid: false, issuer: vc.issuer, reason: (e as Error).message };
   }

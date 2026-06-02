@@ -8,7 +8,9 @@ import "dotenv/config";
  * network. Default "live" tries real calls and each tool falls back to its
  * fixture on error — the stage demo can never hard-fail on a flaky network.
  */
-export const DEMO_MODE = (process.env.DEMO_MODE ?? "live").toLowerCase();
+// Defaults to "mock" so the demo never moves funds on-chain unless someone
+// explicitly opts into live settlement with DEMO_MODE=live.
+export const DEMO_MODE = (process.env.DEMO_MODE ?? "mock").toLowerCase();
 export const IS_MOCK = DEMO_MODE === "mock";
 
 /** Tavily mock: forced on by DEMO_MODE=mock, or the legacy MOCK_TAVILY=1. */
