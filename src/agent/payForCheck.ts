@@ -51,6 +51,14 @@ function fixtureFor(title: string) {
   return FIXTURE[key] ?? FIXTURE.default;
 }
 
+/** Deterministic, clearly-labeled SIMULATED tx hash for mock mode (no chain). */
+function simulatedTx(title: string): string {
+  let h = 0;
+  for (const c of title) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const hex = h.toString(16).padStart(8, "0");
+  return ("0x" + ("51" /*"SI"mulated*/ + hex).repeat(8)).slice(0, 66);
+}
+
 /**
  * Decide whether the premium check is worth paying for, then (if yes) pay it
  * over x402 and return the unlocked data + the on-chain receipt.
@@ -97,9 +105,9 @@ export async function payForCheck(opts: PayOptions): Promise<PremiumCheckResult>
       mode: "mock",
       paid: false,
       result: { ...fixtureFor(opts.title), _mock: true },
-      paymentTx: null,
-      facilitator: "mock (no settlement)",
-      reasoning: worthIt + " [DEMO_MODE=mock — settlement skipped, canned data returned]",
+      paymentTx: simulatedTx(opts.title),
+      facilitator: "mock (simulated settlement)",
+      reasoning: worthIt + " [DEMO_MODE=mock — settlement simulated, canned data returned]",
     };
   }
 
@@ -138,7 +146,7 @@ export async function payForCheck(opts: PayOptions): Promise<PremiumCheckResult>
       mode: "mock",
       paid: false,
       result: { ...fixtureFor(opts.title), _mock: true },
-      paymentTx: null,
+      paymentTx: simulatedTx(opts.title),
       facilitator: "mock (fallback after error)",
       reasoning:
         worthIt +

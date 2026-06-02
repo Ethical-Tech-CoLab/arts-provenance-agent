@@ -1,0 +1,35 @@
+{
+  "_comment": "Cached Tavily-style grounded facts for the Euphronios Krater, used when DEMO_MODE=mock or live search fails. Every fact carries a source URL.",
+  "results": [
+    {
+      "title": "Euphronios Krater — The Met (formerly), repatriated to Italy 2008",
+      "url": "https://www.metmuseum.org/press/news/2006/statement-by-the-metropolitan-museum-of-art",
+      "content": "The Metropolitan Museum of Art acquired the Euphronios (Sarpedon) krater in 1972 for $1 million. Following Italy's evidence of illicit excavation, the Met agreed in 2006 to transfer title; the krater was returned to Italy in January 2008.",
+      "sourceType": "museum record",
+      "verifiedBy": "The Metropolitan Museum of Art",
+      "tier": "verifiedByAuthority",
+      "date": "2008-01-15",
+      "location": "New York, USA -> Rome, Italy"
+    },
+    {
+      "title": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+      "url": "https://whc.unesco.org/en/list/",
+      "content": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns.",
+      "sourceType": "intergovernmental record",
+      "verifiedBy": "UNESCO",
+      "tier": "verifiedByAuthority",
+      "date": "1970-11-14",
+      "location": "Cerveteri, Italy"
+    },
+    {
+      "title": "Acquisition controversy and the Medici conviction",
+      "url": "https://www.artloss.com/news/",
+      "content": "Press and registry coverage tied the krater's surfacing in the early 1970s to dealer networks later subject to looting investigations; provenance before 1971 is undocumented.",
+      "sourceType": "registry / press",
+      "verifiedBy": "Art Loss Register (public page)",
+      "tier": "reportedInPress",
+      "date": "1971-01-01",
+      "location": "Italy"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { config, DEMO_MODE, facilitatorLabel } from "../config.js";
 import { runProvenance } from "./pipeline.js";
+import { getCatalog, getObject, issueObjectPassport } from "./catalog.js";
 import { verifyCredential, type VerifiableCredential } from "../lib/signing.js";
 import type { Emit, RunEvent, Intent } from "../lib/schema.js";
 
@@ -46,6 +47,40 @@ app.get("/api/config", (_req, res) => {
     facilitator: facilitatorLabel(),
     maxSpendUSD: config.maxSpendUsd,
   });
+});
+
+/** Catalog grid — the objects we already track. */
+app.get("/api/catalog", (_req, res) => {
+  res.json(
+    getCatalog().map((o) => ({
+      id: o.id,
+      title: o.title,
+      artist: o.artist,
+      culture: o.culture,
+      period: o.period,
+      icon: o.icon,
+      accent: o.accent,
+      riskScore: o.riskScore,
+      riskLevel: o.riskLevel,
+      repatriation: o.repatriation,
+      currentLocation: o.currentLocation,
+      stops: o.journey.length,
+    }))
+  );
+});
+
+/** Full dashboard data for one tracked object. */
+app.get("/api/object/:id", (req, res) => {
+  const obj = getObject(req.params.id);
+  if (!obj) return res.status(404).json({ error: "not found" });
+  res.json(obj);
+});
+
+/** Issue (sign) a Passport for a catalog object. */
+app.post("/api/object/:id/passport", async (req, res) => {
+  const obj = getObject(req.params.id);
+  if (!obj) return res.status(404).json({ error: "not found" });
+  res.json(await issueObjectPassport(obj));
 });
 
 /** Start a run. Returns a runId the client subscribes to over SSE. */

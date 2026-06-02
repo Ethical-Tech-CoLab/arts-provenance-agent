@@ -3,58 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Provenance Passport</title>
+  <title>Provenance Tracer</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-  <header>
-    <h1>🏛️ Digital Provenance Passport</h1>
-    <p class="tagline">Search an artwork. The agent grounds its provenance, pays for due-diligence over x402, and issues a signed, tamper-evident passport.</p>
+  <header class="topbar">
+    <div class="brand" id="home">🏛️ <span>Provenance Tracer</span></div>
+    <form id="searchForm" class="search">
+      <input id="searchInput" placeholder="Search an artwork or artifact to trace…" autocomplete="off" />
+      <button type="submit">Trace →</button>
+    </form>
     <div id="mode" class="mode"></div>
   </header>
 
   <main>
-    <section class="panel search">
-      <h2>1 · Intent <span class="hint">“intent is the interface”</span></h2>
-      <form id="form">
-        <div class="row">
-          <label>Title / object *<input name="title" placeholder="e.g. Euphronios Krater" required /></label>
-          <label>Artist / culture<input name="artist" placeholder="e.g. Euphronios (potter Euxitheos)" /></label>
-        </div>
-        <div class="row">
-          <label>Origin<input name="origin" placeholder="e.g. Italy (Etruscan)" /></label>
-          <label>Known history<input name="knownHistory" placeholder="e.g. surfaced on the market in 1971" /></label>
-        </div>
-        <div class="row">
-          <label>Asking price (USD)<input name="askingPriceUSD" type="number" placeholder="e.g. 1000000" /></label>
-          <label>Market estimate (USD)<input name="estimatedMarketValueUSD" type="number" placeholder="e.g. 250000" /></label>
-        </div>
-        <div class="examples">
-          <span>Try:</span>
-          <button type="button" class="chip" data-ex="krater">Euphronios Krater</button>
-          <button type="button" class="chip" data-ex="clean">A well-documented piece</button>
-          <button type="button" class="chip" data-ex="laundering">Suspicious valuation</button>
-        </div>
-        <button type="submit" id="go">Assess provenance →</button>
-      </form>
-    </section>
-
-    <section class="panel flow">
-      <h2>2 · Live flow</h2>
-      <ol id="steps" class="steps">
-        <li class="placeholder">Submit an artwork to watch grounding → risk → x402 payment → passport.</li>
-      </ol>
-    </section>
-
-    <section class="panel passport hidden" id="passportPanel">
-      <h2>3 · The Passport <span class="hint">signed Verifiable Credential</span></h2>
-      <div class="passport-actions">
-        <button id="verifyBtn">🔐 Verify signature</button>
-        <span id="verifyResult"></span>
-        <button id="copyBtn" class="secondary">Copy JSON</button>
+    <section id="galleryView">
+      <div class="section-head">
+        <h2>Tracked objects</h2>
+        <span class="hint">click a card to open its tracing dashboard</span>
       </div>
-      <pre id="passportJson"></pre>
+      <div id="grid" class="grid"></div>
     </section>
+
+    <section id="detailView" class="hidden"></section>
   </main>
 
   <script src="/app.js"></script>

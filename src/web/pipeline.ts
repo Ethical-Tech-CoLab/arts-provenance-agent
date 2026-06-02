@@ -30,7 +30,7 @@ const UNESCO_SOURCE_COUNTRIES = [
 ];
 
 /** Get the key used to sign the passport. Falls back to an ephemeral key in mock. */
-function signingKey(): Hex {
+export function signingKey(): Hex {
   if (config.walletPrivateKey && /^0x[0-9a-fA-F]{64}$/.test(config.walletPrivateKey)) {
     return config.walletPrivateKey;
   }
@@ -244,7 +244,20 @@ export async function runProvenance(runId: string, intent: Intent, emit: Emit): 
   // 2. Grounding research
   emit("reasoning", { message: "Searching authoritative sources (Met, UNESCO, Art Loss Register)…" });
   const q = `${intent.title} ${intent.artist ?? ""} provenance ownership history repatriation`;
-  ctx.facts = await searchProvenance(q, { restrictToAuthoritative: true });
+  try {
+    const raw = await searchProvenance(q, { restrictToAuthoritative: true });
+    // Normalize across tavily-tool shapes (issuer vs verifiedBy).
+    ctx.facts = raw.map((f) => ({
+      claim: f.claim,
+      sourceUrl: f.sourceUrl,
+      sourceTitle: f.sourceTitle,
+      sourceQuote: f.sourceQuote,
+      issuer: (f as any).issuer ?? (f as any).verifiedBy ?? "web source",
+    }));
+  } catch (e) {
+    emit("reasoning", { message: `Grounding fell back (${(e as Error).message}).` });
+    ctx.facts = [];
+  }
   emit("grounding", { message: `Grounded ${ctx.facts.length} cited fact(s).`, data: ctx.facts });
 
   // 3. Risk flagging
