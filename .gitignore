@@ -1,6 +1,10 @@
 node_modules/
 .env
+.mcp.json
 *.log
 dist/
 passports/
 keys/
+
+.env
+venv/

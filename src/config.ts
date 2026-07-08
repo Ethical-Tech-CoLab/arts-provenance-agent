@@ -19,6 +19,8 @@ export const MOCK_TAVILY = IS_MOCK || process.env.MOCK_TAVILY === "1";
 export const config = {
   isMock: IS_MOCK,
   tavilyApiKey: process.env.TAVILY_API_KEY,
+  acledApiKey: process.env.ACLED_API_KEY,
+  acledApiUrl: process.env.ACLED_API_URL || "https://api.acleddata.com/acled/read",
   walletPrivateKey: process.env.WALLET_PRIVATE_KEY as `0x${string}` | undefined,
   baseSepoliaRpc: process.env.BASE_SEPOLIA_RPC_URL || "https://sepolia.base.org",
   vendorUrl: process.env.VENDOR_URL || "http://localhost:4021",
