@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Provenance Tracer</title>
+  <meta name="description" content="Digital Provenance Passport — trace an artwork's history, flag looting and repatriation risk, and issue a signed, tamper-evident passport. Static demo (mock data) of the Ethical Tech CoLab arts-provenance-agent." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" id="home">🏛️ <span>Provenance Tracer</span></div>
+    <form id="searchForm" class="search">
+      <input id="searchInput" placeholder="Search an artwork or artifact to trace…" autocomplete="off" />
+      <button type="submit">Trace →</button>
+    </form>
+    <div id="mode" class="mode"></div>
+  </header>
+
+  <main>
+    <section id="galleryView">
+      <div class="section-head">
+        <h2>Tracked objects</h2>
+        <span class="hint">click a card to open its tracing dashboard</span>
+      </div>
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <section id="detailView" class="hidden"></section>
+  </main>
+
+  <!-- Static shim must load before app.js so it can intercept /api calls. -->
+  <script src="static-api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
