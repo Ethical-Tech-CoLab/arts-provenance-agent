@@ -1,0 +1,15 @@
+# One-click deploy for the Arts Provenance Agent demo.
+# Runs in DEMO_MODE=mock: every external call (Tavily, x402/Base Sepolia,
+# Coinbase) uses cached fixtures, so NO secrets and NO on-chain funds are needed.
+# To enable live settlement later, set DEMO_MODE=live and add the secret keys
+# from .env.example in the Render dashboard.
+services:
+  - type: web
+    name: arts-provenance-agent
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DEMO_MODE
+        value: mock

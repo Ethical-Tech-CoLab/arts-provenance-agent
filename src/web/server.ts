@@ -17,7 +17,7 @@ import { verifyCredential, type VerifiableCredential } from "../lib/signing.js";
 import type { Emit, RunEvent, Intent } from "../lib/schema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PORT = Number(process.env.WEB_PORT ?? 3000);
+const PORT = Number(process.env.PORT ?? process.env.WEB_PORT ?? 3000);
 
 interface Run {
   events: RunEvent[];
