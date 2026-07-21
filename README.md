@@ -1,5 +1,8 @@
 # 🏛️ Digital Provenance Passport
 
+**[Live site](https://ethical-tech-colab.github.io/arts-provenance-agent/)** ·
+**[Research report](DPP-Paper.md)** (plain-language, non-technical)
+
 An **x402-native agent** that traces the provenance of artworks and artifacts, flags
 looting / repatriation / valuation risk, and issues a **cryptographically signed,
 tamper-evident Passport** for each object.
