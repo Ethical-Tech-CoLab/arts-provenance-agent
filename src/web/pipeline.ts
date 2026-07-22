@@ -25,17 +25,55 @@ import {
   type RunContext,
 } from "../lib/schema.js";
 
-const UNESCO_SOURCE_COUNTRIES = [
-  "italy", "greece", "egypt", "turkey", "cambodia", "china", "iraq",
-  "peru", "mexico", "nigeria", "india", "syria", "cyprus", "thailand",
+/**
+ * UNESCO 1970 source countries, each with the surface forms that actually
+ * appear in provenance prose (country name + demonym). Matching is
+ * whole-word-only: a bare `corpus.includes("china")` also fires on
+ * "Chinatown"/"machina" and "india" on "Indiana", which produced bogus
+ * repatriation flags.
+ */
+const UNESCO_SOURCE_COUNTRIES: { name: string; aliases: string[] }[] = [
+  { name: "italy", aliases: ["italy", "italian"] },
+  { name: "greece", aliases: ["greece", "greek"] },
+  { name: "egypt", aliases: ["egypt", "egyptian"] },
+  { name: "turkey", aliases: ["turkey", "turkish", "anatolian"] },
+  { name: "cambodia", aliases: ["cambodia", "cambodian", "khmer"] },
+  { name: "china", aliases: ["china", "chinese"] },
+  { name: "iraq", aliases: ["iraq", "iraqi", "mesopotamian"] },
+  { name: "peru", aliases: ["peru", "peruvian"] },
+  { name: "mexico", aliases: ["mexico", "mexican"] },
+  { name: "nigeria", aliases: ["nigeria", "nigerian"] },
+  { name: "india", aliases: ["india", "indian"] },
+  { name: "syria", aliases: ["syria", "syrian"] },
+  { name: "cyprus", aliases: ["cyprus", "cypriot"] },
+  { name: "thailand", aliases: ["thailand", "thai"] },
 ];
+
+/** Whole-word (plural-tolerant) matcher for a country's surface forms. */
+const COUNTRY_MATCHERS: { name: string; re: RegExp }[] = UNESCO_SOURCE_COUNTRIES.map((c) => ({
+  name: c.name,
+  re: new RegExp(`\\b(?:${c.aliases.join("|")})s?\\b`, "i"),
+}));
+
+/** First UNESCO source country named in `texts`, or null. Whole-word matching only. */
+export function matchSourceCountry(...texts: string[]): string | null {
+  return COUNTRY_MATCHERS.find((c) => texts.some((t) => c.re.test(t)))?.name ?? null;
+}
+
+/**
+ * Mock-mode demo identity. Generated at most once per process and reused, so
+ * every Passport issued by this process shares one issuer DID. Generating a
+ * fresh key per call made each catalog Passport come from a different throwaway
+ * issuer, which renders the issuer identity meaningless.
+ */
+let ephemeralKey: Hex | undefined;
 
 /** Get the key used to sign the passport. Falls back to an ephemeral key in mock. */
 export function signingKey(): Hex {
   if (config.walletPrivateKey && /^0x[0-9a-fA-F]{64}$/.test(config.walletPrivateKey)) {
     return config.walletPrivateKey;
   }
-  if (IS_MOCK) return generatePrivateKey(); // ephemeral demo identity
+  if (IS_MOCK) return (ephemeralKey ??= generatePrivateKey()); // stable per-process demo identity
   throw new Error("WALLET_PRIVATE_KEY missing. Run `npm run wallet -- --new` or set DEMO_MODE=mock.");
 }
 
@@ -61,7 +99,7 @@ function assessRisk(ctx: RunContext): RiskAssessment {
 
   // 2. Origin in a UNESCO 1970 source country → repatriation exposure.
   const origin = (intent.origin ?? "").toLowerCase();
-  const matchedCountry = UNESCO_SOURCE_COUNTRIES.find((c) => origin.includes(c) || corpus.includes(c));
+  const matchedCountry = matchSourceCountry(origin, corpus);
   if (matchedCountry) {
     score -= 15;
     flags.push({
