@@ -80,3 +80,19 @@ fixture on any error, so the stage demo can't hard-fail.
 Claude Code · Tavily · Coinbase x402 (`x402-express`, `x402-fetch`) · Base Sepolia ·
 viem · TypeScript / Express. Provenance scoring is a transparent, editable heuristic
 rubric (see `src/web/pipeline.ts`) — not a black box.
+
+---
+
+## Peer Review
+
+An independent academic peer review of this report is available in [`peer-review/`](peer-review/) ([Word](peer-review/digital-provenance-passport-Peer-Review.docx) &middot; [Markdown](peer-review/digital-provenance-passport-Peer-Review.md)).
+
+**Recommendation:** Minor revisions
+
+**What the review found:**
+
+- An overclaim the paper itself retracts: hallucinated history is called "structurally impossible" (S04 Objective 2) but S13 concedes the sourcing rule blocks unsourced, not false, claims.
+- Two disagreeing scoring systems (deduction vs accumulation) return different numbers for the same object (S06/S13); no canonical scorer is designated.
+- The six permitted sources exclude source-country archives, Getty, and Interpol (S08), biasing coverage away from the motivating cases.
+
+**Noted strength:** An exceptionally candid limitations section (S13) paired with a genuinely correct core argument: sourcing should be enforced structurally, not merely requested of a language model (S12).
