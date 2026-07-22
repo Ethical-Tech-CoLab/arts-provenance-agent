@@ -420,8 +420,9 @@ language found in general sources.
 
 The command-line implementation adds two further categories: a repatriation
 precedent flag when the timeline itself cites a return or restitution event,
-and a transaction flag recording the result of screening the system's own
-payment for exposure to sanctioned addresses.
+and a transaction flag recording the system's own payment for audit. That flag
+states explicitly that the payment has not been AML-screened: no sanctions,
+mixer or counterparty analysis is implemented in the prototype.
 
 ### 6.5 The spending variables
 

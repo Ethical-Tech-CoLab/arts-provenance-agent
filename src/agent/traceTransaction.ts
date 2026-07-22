@@ -1,14 +1,18 @@
 /**
- * Coinbase transaction tracing + AML flagging.
+ * x402 settlement-transaction reference (AML screening placeholder).
  *
- * Takes the x402 settlement tx hash and screens the on-chain USDC transfer:
- * counterparty exposure, sanctioned-address hits, mixer/peel-chain signals.
- * Surfaces the result as a `cryptoTransactionFlag` in the risk assessment and
- * as a "traced via Coinbase" line on the payment receipt.
+ * This module records *which* on-chain USDC transfer settled the x402 payment
+ * so it can be audited later. It deliberately does NOT claim to have screened
+ * it: no sanctions list, counterparty-exposure or mixer/peel-chain analysis is
+ * performed anywhere in this codebase yet, so every verdict is `unscreened`.
  *
- * Live tracing uses Coinbase CDP when keys are present; otherwise (and in
- * DEMO_MODE=mock) a cached screening verdict keeps the demo network-proof.
- * No real funds ever move — tracing is read-only.
+ * The `verdict: "flagged"` / real-screening branch is where a Coinbase CDP (or
+ * other AML provider) integration would slot in. Until that exists, nothing
+ * here may assert that a payment is "clean" — the result is folded into a
+ * signed Passport, and a false AML attestation in a tamper-evident credential
+ * is worse than no attestation at all.
+ *
+ * No real funds ever move here — this path is read-only.
  */
 import type { RiskFlag } from "../../schema/passport.js";
 import { config, IS_MOCK, HAS_CDP, USDC_BASE_SEPOLIA } from "../config.js";
@@ -17,7 +21,11 @@ export interface TraceResult {
   txHash: string | null;
   asset: string;
   network: string;
-  verdict: "clean" | "flagged" | "unscreened";
+  /**
+   * `unscreened` until real AML screening is implemented. Never emit "clean"
+   * from a code path that did not actually screen the transaction.
+   */
+  verdict: "flagged" | "unscreened";
   screenedVia: string;
   detail: string;
   flag: RiskFlag | null; // a cryptoTransactionFlag iff something noteworthy
@@ -38,23 +46,27 @@ export async function traceTransaction(txHash: string | null): Promise<TraceResu
     };
   }
 
-  // Live Coinbase CDP tracing path (read-only).
+  // Live path: records the settlement tx. NOTE: no AML screening is performed
+  // here yet — the CDP lookup below is a placeholder, so the verdict stays
+  // `unscreened` and nothing asserts the transfer is clean.
   if (!IS_MOCK && config.facilitator === "coinbase" && HAS_CDP) {
     try {
-      // Minimal read-only lookup via CDP; screening heuristics would go here.
+      // Placeholder for a real read-only CDP lookup + screening heuristics.
       // Kept defensive so a CDP/network hiccup never breaks the demo.
       const { CdpClient } = await import("@coinbase/cdp-sdk");
       void CdpClient; void USDC_BASE_SEPOLIA;
       return {
         ...base,
         txHash,
-        verdict: "clean",
-        screenedVia: "Coinbase CDP",
-        detail: `USDC transfer ${txHash.slice(0, 10)}… screened via Coinbase: counterparty is the disclosed vendor payTo; no sanctioned-address or mixer exposure.`,
-        flag: null, // clean -> no risk flag added
+        verdict: "unscreened",
+        screenedVia: "none (Coinbase CDP screening not implemented)",
+        detail:
+          `USDC transfer ${txHash.slice(0, 10)}… recorded for audit on Base Sepolia. ` +
+          `No AML screening was performed: sanctioned-address, counterparty and mixer checks are not implemented.`,
+        flag: unscreenedFlag(txHash),
       };
     } catch (err) {
-      return mockTrace(txHash, base, `live trace failed (${(err as Error).message})`);
+      return mockTrace(txHash, base, `tx lookup failed (${(err as Error).message})`);
     }
   }
 
@@ -69,19 +81,27 @@ function mockTrace(
   return {
     ...base,
     txHash,
-    verdict: "clean",
-    screenedVia: "mock screen" + (note ? ` (${note})` : ""),
+    verdict: "unscreened",
+    screenedVia: "none (mock mode)" + (note ? ` (${note})` : ""),
     detail:
-      `Simulated USDC transfer ${txHash.slice(0, 10)}… screened on Base Sepolia: single hop to the disclosed vendor ` +
-      `address, no exposure to sanctioned addresses or mixers. (Illustrative — no real settlement in mock mode.)`,
-    // Demo flag: tracing is informational (low severity) — shows the capability
-    // without falsely accusing the clean demo payment.
-    flag: {
-      type: "cryptoTransactionFlag",
-      severity: "low",
-      evidence:
-        "x402 micropayment traced via Coinbase and screened: clean, single-hop, fully auditable on-chain.",
-      source: txHash,
-    },
+      `Simulated USDC transfer ${txHash.slice(0, 10)}… on Base Sepolia — illustrative only, no real settlement ` +
+      `in mock mode. No AML screening was performed (sanctions/mixer/counterparty checks are not implemented).`,
+    flag: unscreenedFlag(txHash),
+  };
+}
+
+/**
+ * Informational flag recording that the payment was NOT screened. Deliberately
+ * makes the absence of screening explicit, because this flag is embedded in the
+ * signed Passport.
+ */
+function unscreenedFlag(txHash: string): RiskFlag {
+  return {
+    type: "cryptoTransactionFlag",
+    severity: "low",
+    evidence:
+      "x402 micropayment settled on-chain and recorded for audit; NOT AML-screened " +
+      "(no sanctions, mixer or counterparty analysis was performed).",
+    source: txHash,
   };
 }

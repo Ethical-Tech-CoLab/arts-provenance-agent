@@ -36,7 +36,7 @@ export const RiskFlagType = z.enum([
   "repatriationPrecedent",
   "valuationAnomaly",
   "provenanceGap",
-  "cryptoTransactionFlag", // AML screening of the x402 payment itself (Coinbase trace)
+  "cryptoTransactionFlag", // the x402 settlement tx itself (recorded for audit; AML screening not implemented)
 ]);
 export type RiskFlagType = z.infer<typeof RiskFlagType>;
 
