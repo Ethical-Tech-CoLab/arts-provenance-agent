@@ -85,7 +85,7 @@ rubric (see `src/web/pipeline.ts`) — not a black box.
 
 ## Peer Review
 
-An independent academic peer review of this report is available in [`peer-review/`](peer-review/) ([Word](peer-review/digital-provenance-passport-Peer-Review.docx) &middot; [Markdown](peer-review/digital-provenance-passport-Peer-Review.md)).
+The full independent academic peer review of this report is in [PEER-REVIEW.md](PEER-REVIEW.md) (also available as [Word](peer-review/digital-provenance-passport-Peer-Review.docx) under [`peer-review/`](peer-review/)).
 
 **Recommendation:** Minor revisions
 
