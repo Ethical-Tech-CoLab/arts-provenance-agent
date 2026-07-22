@@ -12,6 +12,7 @@ import type { Hex } from "viem";
 import { createSigner, wrapFetchWithPayment } from "x402-fetch";
 import { config, IS_MOCK, facilitatorLabel } from "../config.js";
 import { searchProvenance } from "../tools/tavily.js";
+import { usdToAtomic, preflight402, recordSpendUsd, spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import { signCredential, addressToDid, type VerifiableCredential } from "../lib/signing.js";
 import {
   newRunContext,
@@ -112,6 +113,15 @@ function shouldPayForPremium(risk: RiskAssessment): { pay: boolean; reasoning: s
   if (price > config.maxSpendUsd) {
     return { pay: false, reasoning: `Check costs $${price} but my per-run cap is $${config.maxSpendUsd}. Skipping.` };
   }
+  // MAX_SPEND_USD is a lifetime cap, not a per-request one: a loop of runs must
+  // not be able to drain the wallet one micropayment at a time.
+  const remaining = remainingBudgetUsd();
+  if (price > remaining + 1e-9) {
+    return {
+      pay: false,
+      reasoning: `Lifetime budget exhausted: $${spentUsd().toFixed(2)} of the $${config.maxSpendUsd.toFixed(2)} cap already spent, so a $${price} check is refused.`,
+    };
+  }
   if (risk.confidenceScore >= 85 && risk.redFlags.length === 0) {
     return { pay: false, reasoning: `Confidence is already ${risk.confidenceScore}/100 with no red flags — a $${price} premium check isn't worth it.` };
   }
@@ -156,21 +166,34 @@ async function runPremiumCheck(ctx: RunContext): Promise<PremiumCheckResult> {
 
   // LIVE: pay the vendor's x402 invoice with the agent wallet, then read the data.
   const signer = await createSigner("base-sepolia", signingKey());
-  const maxAtomic = BigInt(Math.floor(config.maxSpendUsd * 1_000_000)); // USDC 6 decimals
+  // Ceiling = what's left of the lifetime cap, in atomic USDC (6 decimals).
+  const maxAtomic = usdToAtomic(remainingBudgetUsd());
   const fetchWithPay = wrapFetchWithPayment(fetch, signer, maxAtomic);
   const url = new URL("/alr/premium-search", config.vendorUrl);
   url.searchParams.set("title", intent.title);
   if (intent.artist) url.searchParams.set("artist", intent.artist);
+
+  // Refuse an over-budget 402 before anything is signed.
+  const quote = await preflight402(url.toString(), maxAtomic);
+  if (!quote.withinBudget) {
+    throw new Error(
+      `vendor demanded $${(quote.requiredUsd ?? 0).toFixed(6)} but only $${remainingBudgetUsd().toFixed(2)} of the $${config.maxSpendUsd.toFixed(2)} budget remains — refusing to sign`
+    );
+  }
+
   const res = await fetchWithPay(url.toString());
   if (!res.ok) throw new Error(`Vendor returned ${res.status}`);
   const data = (await res.json()) as { match?: boolean; outcome?: string; settlementHeader?: string };
+
+  const paidUsd = quote.requiredUsd ?? price;
+  recordSpendUsd(paidUsd); // count it against the lifetime MAX_SPEND_USD cap
 
   const account = privateKeyToAccount(signingKey());
   const receipt: PaymentReceipt = {
     mode: "real",
     network: "base-sepolia",
     asset: "USDC",
-    amount: price.toFixed(2),
+    amount: paidUsd.toFixed(2),
     payer: account.address,
     payee: config.vendorPayTo ?? "vendor",
     settledAt: new Date().toISOString(),
@@ -179,7 +202,7 @@ async function runPremiumCheck(ctx: RunContext): Promise<PremiumCheckResult> {
   return {
     database: "Art Loss Register",
     issuer: "The Art Loss Register (commercial due-diligence registry)",
-    priceUSD: price,
+    priceUSD: paidUsd,
     paid: true,
     settlement: receipt,
     match: Boolean(data.match),
