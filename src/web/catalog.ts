@@ -9,6 +9,7 @@ import type { RedFlag } from "../lib/schema.js";
 import { signCredential, addressToDid, type VerifiableCredential } from "../lib/signing.js";
 import { signingKey } from "./pipeline.js";
 import { checkRegistries, type RegistrySummary } from "../tools/registries.js";
+import { assessCoverage, type AcquisitionMode, type CoverageResult } from "../lib/coverage.js";
 
 export type JourneyType =
   | "origin"
@@ -651,6 +652,50 @@ export const CATALOG: CatalogObject[] = [
   },
 ];
 
+/**
+ * Red-flag vocabulary → acquisition mode, most specific first.
+ *
+ * Order is load-bearing. Several objects carry more than one flag — the
+ * Parthenon Marbles are both a colonial acquisition and archaeological
+ * material — and the mode that governs coverage is the one that determines
+ * which registers could hold the object. Colonial and Nazi-era losses are
+ * checked before archaeological because they have dedicated registers (or
+ * dedicated absences) that archaeological looting does not.
+ */
+const FLAG_TO_MODE: [RegExp, AcquisitionMode][] = [
+  [/nazi/i, "nazi-era"],
+  [/colonial|wartime-seizure|contested-export/i, "colonial"],
+  [/looting-signal|illicit-export|trafficking-network/i, "archaeological"],
+  [/theft|register-listed/i, "market-theft"],
+];
+
+function modeFor(obj: CatalogObject): AcquisitionMode {
+  for (const [re, mode] of FLAG_TO_MODE) {
+    if (obj.redFlags.some((f) => re.test(f.type))) return mode;
+  }
+  return obj.redFlags.length ? "unknown" : "market";
+}
+
+/**
+ * Coverage for a catalog object.
+ *
+ * The region is the jurisdiction of the LOSS, not of manufacture and not the
+ * current address. National registers are organised around where a thing went
+ * missing, and the three places routinely differ: the Euphronios Krater was
+ * made in Athens, looted from an Etruscan tomb in Italy, and spent decades in
+ * New York. Only the Italian answer reaches the Carabinieri archive, which is
+ * the register that actually recovered it — scoring it against Greece put the
+ * best-covered object in the catalog in the wrong class.
+ */
+export function coverageFor(obj: CatalogObject): CoverageResult {
+  const loss = obj.journey.find((s) => s.type === "looting" || s.type === "excavation");
+  return assessCoverage({
+    region: loss?.country ?? obj.journey[0]?.country ?? null,
+    mode: modeFor(obj),
+    corpus: `${obj.culture ?? ""} ${obj.redFlags.map((f) => `${f.type} ${f.evidence}`).join(" ")}`,
+  });
+}
+
 export function getCatalog(): CatalogObject[] {
   return CATALOG;
 }
@@ -698,6 +743,18 @@ export async function issueObjectPassport(
       currentLocation: obj.currentLocation,
       provenanceJourney: obj.journey,
       confidenceScore: obj.riskScore,
+      // The score never travels alone. A bare number in a signed credential
+      // invites the comparison the coverage model exists to forbid.
+      evidenceCoverage: (() => {
+        const c = coverageFor(obj);
+        return {
+          coverageClass: c.coverageClass,
+          acquisitionMode: c.acquisitionMode,
+          registersAbleToIdentify: c.identifyingRegisters.map((r) => r.name),
+          note: c.note,
+          comparability: c.comparability,
+        };
+      })(),
       redFlags: obj.redFlags,
       repatriation: obj.repatriation,
       sources: obj.sources,

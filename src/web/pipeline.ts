@@ -13,6 +13,7 @@ import { createSigner, wrapFetchWithPayment } from "x402-fetch";
 import { config, IS_MOCK, facilitatorLabel } from "../config.js";
 import { searchProvenance } from "../tools/tavily.js";
 import { checkRegistries } from "../tools/registries.js";
+import { assessCoverage, scoreIsUninformative } from "../lib/coverage.js";
 import { usdToAtomic, preflight402, recordSpendUsd, spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import { signCredential, addressToDid, type VerifiableCredential } from "../lib/signing.js";
 import {
@@ -185,11 +186,25 @@ function assessRisk(ctx: RunContext): RiskAssessment {
   }
 
   score = Math.max(0, Math.min(100, score));
+
+  // Coverage is computed but NEVER folded into the score. Adjusting the number
+  // by how much we could reach would produce one figure meaning two things,
+  // which is the defect this model exists to fix. It rides alongside instead,
+  // and the rationale refuses to call a quiet result well-documented when
+  // nothing could have been found in the first place.
+  const coverage = assessCoverage({
+    region: intent.origin ?? null,
+    corpus: `${corpus} ${flags.map((f) => `${f.type} ${f.evidence}`).join(" ")}`,
+  });
+
   const rationale =
     flags.length === 0
-      ? "No red flags surfaced from grounded sources; provenance appears well-documented."
+      ? scoreIsUninformative(coverage)
+        ? "No red flags surfaced — but no register in this set could systematically name an object of this kind, so this is an absence of coverage, not a clean record."
+        : "No red flags surfaced from grounded sources; provenance appears well-documented."
       : `${flags.length} red flag(s) detected from authoritative sources; confidence reduced accordingly.`;
-  return { confidenceScore: score, redFlags: flags, rationale };
+
+  return { confidenceScore: score, redFlags: flags, rationale, coverage };
 }
 
 /** Decide whether the premium (paid) check is economically worth running. */
