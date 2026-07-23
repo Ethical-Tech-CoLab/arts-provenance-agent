@@ -5,6 +5,7 @@
  * (not re-derived from the LLM) so the signed record is always faithful.
  */
 import type { RegistrySummary } from "../tools/registries.js";
+import type { CoverageResult } from "./coverage.js";
 
 export type { RegistryCheck, RegistrySummary, RegistryVerdict, RegistryAccess } from "../tools/registries.js";
 
@@ -41,6 +42,13 @@ export interface RiskAssessment {
   confidenceScore: number; // 0–100, higher = cleaner provenance
   redFlags: RedFlag[];
   rationale: string;
+  /**
+   * What could have been found, for the score to be read against. A confidence
+   * number is not interpretable on its own — the same low value means "a
+   * documented gap was found" for a well-covered object and "nothing was
+   * reachable" for one no register can hold. See src/lib/coverage.ts.
+   */
+  coverage?: CoverageResult;
 }
 
 /** Result of a (possibly paid) premium due-diligence check. */

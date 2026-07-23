@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { config, DEMO_MODE, facilitatorLabel } from "../config.js";
 import { runProvenance } from "./pipeline.js";
-import { getCatalog, getObject, issueObjectPassport } from "./catalog.js";
+import { getCatalog, getObject, issueObjectPassport, coverageFor } from "./catalog.js";
 import { checkRegistries, getRegistries } from "../tools/registries.js";
 import { queryWatchlist } from "./watchlist.js";
 import { verifyCredential, type VerifiableCredential } from "../lib/signing.js";
@@ -152,6 +152,8 @@ app.get("/api/catalog", (_req, res) => {
       repatriation: o.repatriation,
       currentLocation: o.currentLocation,
       stops: o.journey.length,
+      // Shipped with the card so the grid can never show a bare score.
+      coverageClass: coverageFor(o).coverageClass,
     }))
   );
 });
@@ -160,7 +162,7 @@ app.get("/api/catalog", (_req, res) => {
 app.get("/api/object/:id", (req, res) => {
   const obj = getObject(req.params.id);
   if (!obj) return res.status(404).json({ error: "not found" });
-  res.json(obj);
+  res.json({ ...obj, coverage: coverageFor(obj) });
 });
 
 /**

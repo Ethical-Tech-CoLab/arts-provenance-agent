@@ -468,6 +468,65 @@ changed and real credentials supplied, an impressive-looking run is a replay of
 a stored example rather than live research. Both the fallback behaviour and the
 mode in use are disclosed on screen and in the output.
 
+### 6.7 The coverage class, and why the score is never shown alone
+
+6.7.1 The confidence score described at 6.3 is, mechanically, a measure of how
+much published evidence the system managed to find. That is a defensible proxy
+for provenance confidence where the documentary record is dense, and close to
+meaningless where it is not. The density is not evenly distributed, and it is
+least dense in exactly the places this project exists to worry about. The score
+alone therefore cannot distinguish two situations that call for opposite
+responses.
+
+6.7.2 The first is absence within coverage. A Dutch painting sits inside a thick
+apparatus of auction catalogues, dealer stock books, the Getty Provenance Index
+and decades of Nazi-era provenance research. When the system finds a hole in
+such a record, the hole is itself evidence, because records would be expected to
+exist. A gap between 1933 and 1945 in a Dutch chain is a red flag precisely
+because everything around it is documented.
+
+6.7.3 The second is absence of coverage. A Cambodian temple sculpture removed
+during a civil war was never accessioned, never catalogued and never reported
+stolen, because no institution was in a position to report it. It cannot appear
+in a stolen-property register at all. Finding nothing about it establishes
+nothing. The strongest evidence that such an object was looted is usually
+physical — in the case of the Koh Ker warrior, the feet left behind on the
+pedestal — and a system that reads documents cannot see it.
+
+6.7.4 Both situations produce a low number. The prototype therefore computes,
+separately from the score, which registers could in principle have named the
+object at all. Each register is described by the kinds of loss it can record,
+the regions it covers, whether it can identify an individual object rather than
+a category, and whether it admits material by rule or by attention. An object is
+then classified as well covered, partly covered, or structurally uncovered, and
+the score is displayed with that classification attached and declared comparable
+only within it.
+
+6.7.5 Two decisions in the construction are worth stating. The region used is
+the jurisdiction of the loss, not of manufacture and not the current location;
+these routinely differ, and only the first determines which national register
+could hold the object. And the coverage figure is never folded into the score.
+Adjusting the number by how much could be reached would produce a single figure
+meaning two things again, which is the defect being corrected. Coverage is
+reported beside the score, not inside it.
+
+6.7.6 The effect can be read directly off the catalogue. The Getty Bronze scores
+26 and is well covered: it was lost in Italian waters, Italian registers reach
+it, and an enforceable confiscation order stands against it. The Rosetta Stone
+scores 34 and is structurally uncovered: no register in the set can hold a
+colonial-era seizure from Egypt, so its number reflects the reach of the
+registers rather than anything about the object. The two figures are close
+together and mean almost opposite things, and before this classification existed
+the interface presented them identically.
+
+6.7.7 The limitation should be stated plainly. Classifying an object as
+structurally uncovered is an assertion about the register landscape, not a
+finding about the object, and it must not be read as exoneration or as
+accusation. Where the acquisition route cannot be determined from the available
+text, the model treats every register as potentially applicable, which makes
+coverage look better than it is; the resulting bias is towards understating the
+problem rather than raising alarms that cannot be justified.
+
 ---
 
 ## 7. Reading the Results

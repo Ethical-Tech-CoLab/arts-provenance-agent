@@ -155,10 +155,48 @@ function cardHTML(o) {
       <div class="meta">
         <span class="badge risk-${o.riskLevel}">risk ${o.riskScore}/100</span>
         <span class="chip ${o.repatriation.status}">${o.repatriation.status}</span>
+        ${coverageChip(o.coverageClass)}
       </div>
       <div class="route">${flag(o.currentLocation.country)} ${esc(o.currentLocation.institution)} · ${o.stops} stops</div>
       <div class="open-hint">open dashboard →</div>
     </div>
+  </div>`;
+}
+
+// ---- evidence coverage ------------------------------------------------------
+// The score is a count of what was found. How much COULD have been found varies
+// enormously by where an object came from, so the number is shown with its
+// coverage class attached and is never rendered alone.
+const COVERAGE_LABEL = {
+  "well-covered": "well covered",
+  "partially-covered": "partly covered",
+  "structurally-uncovered": "no register covers this",
+};
+
+function coverageChip(cls) {
+  if (!cls) return "";
+  return `<span class="chip cov cov-${cls}" title="How much of the evidence space could have covered this object">${COVERAGE_LABEL[cls] || cls}</span>`;
+}
+
+function coveragePanelHTML(c) {
+  if (!c) return "";
+  const able = c.identifyingRegisters.length;
+  const blind = c.blindRegisters.length;
+  return `<div class="panel cov-panel cov-${c.coverageClass}">
+    <h3>What the score is worth <span class="sub">evidence coverage</span></h3>
+    <div class="cov-bar"><span style="width:${Math.round(c.coverageRatio * 100)}%"></span></div>
+    <div class="cov-counts">
+      <b>${able}</b> register${able === 1 ? "" : "s"} could systematically name this object ·
+      <b>${blind}</b> structurally cannot ·
+      alleged route: <b>${esc(c.acquisitionMode)}</b>
+    </div>
+    <div class="cov-note">${esc(c.note)}</div>
+    <div class="cov-note cov-compare">${esc(c.comparability)}</div>
+    ${able ? `<ul class="cov-list">${c.identifyingRegisters.map((r) =>
+        `<li><b>${esc(r.name)}</b> — requires ${esc(r.requires)}</li>`).join("")}</ul>` : ""}
+    ${blind ? `<details class="cov-blind"><summary>${blind} register${blind === 1 ? "" : "s"} that cannot hold this object</summary>
+        <ul class="cov-list">${c.blindRegisters.map((r) =>
+          `<li><b>${esc(r.name)}</b> — ${esc(r.why)}</li>`).join("")}</ul></details>` : ""}
   </div>`;
 }
 
@@ -264,7 +302,9 @@ function renderDashboard(o) {
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="k">Provenance confidence</div><div class="v risk-${o.riskLevel}">${o.riskScore}/100</div></div>
+      <div class="stat"><div class="k">Provenance confidence</div>
+        <div class="v risk-${o.riskLevel}">${o.riskScore}/100</div>
+        <div class="stat-qual">${o.coverage ? COVERAGE_LABEL[o.coverage.coverageClass] : ""}</div></div>
       <div class="stat"><div class="k">Repatriation</div><div class="v" style="font-size:16px;text-transform:capitalize">${o.repatriation.status}${o.repatriation.claimant ? " · " + esc(o.repatriation.claimant) : ""}</div></div>
       <div class="stat"><div class="k">Locations traced</div><div class="v">${o.journey.length}</div></div>
       <div class="stat"><div class="k">Red flags</div><div class="v">${o.redFlags.length}</div></div>
@@ -288,8 +328,15 @@ function renderDashboard(o) {
         </div>
         <div class="panel">
           <h3>Risk & red flags</h3>
-          ${o.redFlags.length ? o.redFlags.map(flagHTML).join("") : '<div class="repat-note">No red flags — well-documented provenance.</div>'}
+          ${o.redFlags.length
+            ? o.redFlags.map(flagHTML).join("")
+            : o.coverage && o.coverage.coverageClass === "structurally-uncovered"
+              // "No red flags" is a claim about the record. Where no register
+              // could hold the object, there is no record to be clean.
+              ? '<div class="repat-note">No red flags surfaced — but see coverage below: no register in this set could have named this object, so this is an absence of coverage rather than a clean record.</div>'
+              : '<div class="repat-note">No red flags — well-documented provenance.</div>'}
         </div>
+        ${coveragePanelHTML(o.coverage)}
         <div class="panel" id="regPanel">
           <h3>Stolen-art registers</h3>
           <div class="repat-note">checking…</div>
@@ -428,6 +475,7 @@ function runSearch(title, artist) {
       <div class="panel"><h3>Live trace</h3><ol class="steps" id="steps"></ol></div>
       <div>
         <div class="panel" id="riskPanel"><h3>Risk & red flags</h3><div class="repat-note">running…</div></div>
+        <div class="panel" id="covPanel"><h3>What the score is worth</h3><div class="repat-note">waiting…</div></div>
         <div class="panel" id="regPanel"><h3>Stolen-art registers</h3><div class="repat-note">waiting…</div></div>
         <div class="panel"><h3>Sources</h3><ul class="sources" id="srcList"></ul></div>
         <div class="panel"><h3>Passport</h3><div class="actions"><span class="verify" id="verify"></span></div><pre id="passportJson" class="hidden"></pre></div>
@@ -453,7 +501,17 @@ function runSearch(title, artist) {
         }
         if (e.phase === "risk" && e.data) {
           const lvl = e.data.confidenceScore >= 75 ? "low" : e.data.confidenceScore >= 50 ? "medium" : "high";
-          $("#riskPanel").innerHTML = `<h3>Risk & red flags</h3><div class="stat" style="margin-bottom:10px"><div class="k">confidence</div><div class="v risk-${lvl}">${e.data.confidenceScore}/100</div></div>` + (e.data.redFlags || []).map(flagHTML).join("");
+          const cov = e.data.coverage;
+          $("#riskPanel").innerHTML =
+            `<h3>Risk & red flags</h3>
+             <div class="stat" style="margin-bottom:10px"><div class="k">confidence</div>
+               <div class="v risk-${lvl}">${e.data.confidenceScore}/100</div>
+               <div class="stat-qual">${cov ? COVERAGE_LABEL[cov.coverageClass] : ""}</div></div>` +
+            (e.data.redFlags || []).map(flagHTML).join("");
+          // Coverage lands in its own panel next to the score, on the live path
+          // as well as the catalog one — a number shown without it is the bug.
+          const cp = $("#covPanel");
+          if (cp && cov) cp.outerHTML = coveragePanelHTML(cov);
         }
         if (e.phase === "passport") {
           const pre = $("#passportJson"); pre.textContent = JSON.stringify(e.data, null, 2); pre.classList.remove("hidden");

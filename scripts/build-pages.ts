@@ -30,7 +30,7 @@ import "dotenv/config";
 import { mkdirSync, writeFileSync, copyFileSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { getCatalog, getObject, issueObjectPassport } from "../src/web/catalog.js";
+import { getCatalog, getObject, issueObjectPassport, coverageFor } from "../src/web/catalog.js";
 import { runProvenance } from "../src/web/pipeline.js";
 import { checkRegistries, getRegistries } from "../src/tools/registries.js";
 import { getWatchlist } from "../src/web/watchlist.js";
@@ -132,13 +132,18 @@ write(
     repatriation: o.repatriation,
     currentLocation: o.currentLocation,
     stops: o.journey.length,
+    // Must match the /api/catalog route in src/web/server.ts. This file
+    // duplicates the server's response shapes, so a field added there and not
+    // here ships a published site quietly missing it — which is exactly how
+    // the coverage class went absent from the first build after it was added.
+    coverageClass: coverageFor(o).coverageClass,
   }))
 );
 
 console.log(`Building ${catalog.length} objects (registers: ${LIVE ? "live" : "offline"})…`);
 
 for (const obj of catalog) {
-  write(`api/object/${obj.id}.json`, getObject(obj.id));
+  write(`api/object/${obj.id}.json`, { ...getObject(obj.id)!, coverage: coverageFor(obj) });
 
   const summary = await checkRegistries(obj.title, obj.artist, { live: LIVE });
   write(`api/registries/${obj.id}.json`, summary);

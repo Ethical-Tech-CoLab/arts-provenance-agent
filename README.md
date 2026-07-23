@@ -100,6 +100,42 @@ Full methodology: [DPP-Paper.md §8.5–8.14](DPP-Paper.md) (the register layer 
 watchlist) and [§12.6–12.8](DPP-Paper.md) (why access is tiered, why there is no "clear",
 why silence earns nothing).
 
+### The score never travels alone
+
+A confidence score is a count of what was **found**. How much *could* have been found
+varies enormously by where an object came from — so [coverage.ts](src/lib/coverage.ts)
+computes, separately, which registers could have named this object at all, and the score
+is always displayed with that class attached.
+
+Each register declares what losses it holds, which regions, whether it can identify an
+individual object or only a *category*, and whether it admits material by rule or by
+attention. The region used is the **jurisdiction of the loss** — not manufacture, not
+current location. Those differ constantly: the Euphronios Krater was made in Athens,
+looted in Italy and held in New York, and only the Italian answer reaches the Carabinieri
+archive that actually recovered it.
+
+Read straight off the catalog:
+
+| Object | Score | Coverage | What the number means |
+|---|---|---|---|
+| Getty Bronze | 26/100 | well covered (3) | Italian registers reach it; an ECHR-upheld confiscation order stands |
+| Rosetta Stone | 34/100 | **structurally uncovered (0)** | No register can hold a colonial-era seizure from Egypt |
+| Koh Ker Duryodhana | 20/100 | partly covered (2) | Only INTERPOL, and only if the theft was ever reported |
+| Benin Bronze Plaque | 18/100 | **structurally uncovered (0)** | Nothing in the set records colonial military seizure |
+
+Similar numbers, opposite meanings. Before this existed the interface showed them
+identically.
+
+**Coverage is never folded into the score.** Adjusting the number by how much was
+reachable would produce one figure meaning two things again — the exact defect being
+fixed. It rides alongside, and a score is declared comparable only within its own class.
+
+A structurally-uncovered badge is a claim about the register landscape, **not** about the
+object — neither exoneration nor accusation. Where the acquisition route can't be
+determined, every register counts as applicable, which biases toward *understating* the
+problem rather than raising alarms that can't be justified. Full reasoning:
+[DPP-Paper.md §6.7](DPP-Paper.md).
+
 ### The watchlist
 
 Below the curated catalog sits a generated list of ~400 works Wikidata records as stolen
