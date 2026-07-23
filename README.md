@@ -100,9 +100,9 @@ The full independent academic peer review of this report is in [PEER-REVIEW.md](
 
 **What the review found:**
 
-- An overclaim the paper itself retracts: hallucinated history is called "structurally impossible" (S04 Objective 2) but S13 concedes the sourcing rule blocks unsourced, not false, claims. — **Fixed in this repo; the paper text lives elsewhere and still needs the same edit.**
+- An overclaim the paper itself retracts: hallucinated history is called "structurally impossible" (S04 Objective 2) but S13 concedes the sourcing rule blocks unsourced, not false, claims. — **Fixed, in this repo and in the report text.**
 - Two disagreeing scoring systems (deduction vs accumulation) return different numbers for the same object (S06/S13); no canonical scorer is designated. — **Canonical model designated.**
-- The six permitted sources exclude source-country archives, Getty, and Interpol (S08), biasing coverage away from the motivating cases. — *Open.*
+- The six permitted sources exclude source-country archives, Getty, and Interpol (S08), biasing coverage away from the motivating cases. — **Stated plainly, and named as the first extension.**
 
 **Noted strength:** An exceptionally candid limitations section (S13) paired with a genuinely correct core argument: sourcing should be enforced structurally, not merely requested of a language model (S12).
 
@@ -117,4 +117,8 @@ The reason accumulation wins: an object with no published history should not sco
 
 The two models still return different numbers for the same object. **Reconciling the web pipeline onto the canonical model is committed future work** — scoring behaviour was deliberately not changed in this revision, so no previously reported number silently moves. The divergence is no longer presented as an interesting property of the system.
 
-> **Note:** the report text itself (S01–S13) is not in this repository, so the Objective 2 wording in S04 and the S01 framing still need the same correction applied wherever that document is maintained. The recommended wording is: *"make **unsourced** history structurally impossible to record, so that every claim can be traced to and checked against its origin"*, cross-referenced to S13 at the point of first claim.
+**The coverage bias of the permitted-source list is stated where it bites.** `AUTHORITATIVE_DOMAINS` in `src/tools/tavily.ts` now carries the finding at the point of definition: the list is five Western institutions and one commercial theft register, so the tool searches best where objects are already well documented and worst exactly where the motivating harm lives — source-country archives, colonial-era and archaeological material. A low score for a Cambodian sculpture and a low score for a Dutch painting do not mean the same thing. S13's observation that the tool cannot distinguish thin evidence from absent evidence is the symptom; this is the cause, and the report now connects them.
+
+**Extending the list is named as the first substantive piece of future work**, not an optional one, since every other improvement operates on evidence the tool was able to find. The named gaps are the Getty Provenance Index, the German Lost Art Foundation, Interpol's stolen works of art database, and the national heritage authorities of the fourteen source countries. The list itself is deliberately unchanged in this revision: adding domains changes what every future run returns, and that belongs in a change that can be validated against known cases rather than bundled into a documentation pass.
+
+> **Note:** the report text (S01–S13) is maintained outside this repository, on the Ethical Tech CoLab site at `/publications/digital-provenance-passport`. The Objective 2 wording, the canonical-scorer designation, and the coverage-bias paragraph have all been applied there.

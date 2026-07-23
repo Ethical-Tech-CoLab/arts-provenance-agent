@@ -15,7 +15,26 @@ import { config, MOCK_TAVILY } from "../config.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-/** Authoritative-source allowlist ("Susan's list") — grounding is scoped here. */
+/**
+ * Authoritative-source allowlist ("Susan's list") — grounding is scoped here.
+ *
+ * KNOWN COVERAGE BIAS. These are five Western institutions and one commercial
+ * theft register, and the bias runs against this tool's own motivation. The
+ * case for building it rests on objects that stolen-art registers cannot catch:
+ * material taken from an archaeological site or under colonial rule, never
+ * inventoried and never reported stolen. This list searches best where objects
+ * are already well documented (major Western museum holdings) and worst exactly
+ * where the motivating harm lives (source-country archives, colonial-era and
+ * archaeological material). A low confidence score for a Cambodian sculpture
+ * and a low score for a Dutch painting therefore do not mean the same thing.
+ *
+ * Extending this list is the first substantive piece of future work, not an
+ * optional one — every other improvement operates on evidence the tool was able
+ * to find, and this list decides what it can find at all. The named gaps are
+ * the Getty Provenance Index, the German Lost Art Foundation, Interpol's stolen
+ * works of art database, and the national heritage authorities of the fourteen
+ * source countries the scorer already recognises.
+ */
 export const AUTHORITATIVE_DOMAINS = [
   "metmuseum.org",
   "unesco.org",
