@@ -1,5 +1,5 @@
 {
   "valid": true,
-  "issuer": "did:pkh:eip155:84532:0x23aBAE294eA91d5da76c5089a0B4651B01C9515f",
-  "recoveredAddress": "0x23aBAE294eA91d5da76c5089a0B4651B01C9515f"
+  "issuer": "did:pkh:eip155:84532:0xb61B55c2d99C36aE223C6aACe2C3c7af711Be23c",
+  "recoveredAddress": "0xb61B55c2d99C36aE223C6aACe2C3c7af711Be23c"
 }

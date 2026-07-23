@@ -19,12 +19,16 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<
 // `javascript:` / `data:` value coming from an external search result would
 // otherwise become a clickable XSS sink. Only http(s) survives; anything else
 // (including unparseable input) collapses to "#".
+// Relative values resolve against document.baseURI, NOT the origin. Pages
+// serves this app from /arts-provenance-agent/, so resolving "objects/x.jpg"
+// against the origin produced /objects/x.jpg and every photograph 404'd — a
+// bug invisible on any test server that happens to serve from the root.
 const ALLOWED_SCHEMES = new Set(["http:", "https:"]);
 function safeUrl(u) {
   const raw = String(u ?? "").trim();
   if (!raw) return "#";
   try {
-    const parsed = new URL(raw, window.location.origin);
+    const parsed = new URL(raw, document.baseURI);
     if (!ALLOWED_SCHEMES.has(parsed.protocol)) return "#";
     return esc(parsed.href);
   } catch {
