@@ -8,8 +8,11 @@
     "vendor": "tsx src/vendor/server.ts",
     "pay": "tsx scripts/pay-smoke.ts",
     "smoke-tavily": "tsx src/smoke-tavily.ts",
+    "smoke-registries": "tsx src/smoke-registries.ts",
     "web": "tsx src/web/server.ts",
-    "demo": "tsx scripts/demo.ts"
+    "demo": "tsx scripts/demo.ts",
+    "build:pages": "DEMO_MODE=mock tsx scripts/build-pages.ts",
+    "deploy:pages": "bash scripts/deploy-pages.sh"
   },
   "dependencies": {
     "@coinbase/cdp-sdk": "^1.51.0",

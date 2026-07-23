@@ -12,6 +12,7 @@ import type { Hex } from "viem";
 import { createSigner, wrapFetchWithPayment } from "x402-fetch";
 import { config, IS_MOCK, facilitatorLabel } from "../config.js";
 import { searchProvenance } from "../tools/tavily.js";
+import { checkRegistries } from "../tools/registries.js";
 import { usdToAtomic, preflight402, recordSpendUsd, spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import { signCredential, addressToDid, type VerifiableCredential } from "../lib/signing.js";
 import {
@@ -133,6 +134,36 @@ function assessRisk(ctx: RunContext): RiskAssessment {
       severity: "high",
       evidence: "Sources contain looting / repatriation language associated with this object or its type.",
     });
+  }
+
+  // 3b. Stolen-art register checks.
+  //
+  // Only POSITIVE evidence moves the score. A register that returned nothing,
+  // or that could not be searched at all, must not add confidence: the whole
+  // point of the registry layer's `no-evidence-found` verdict is that it is not
+  // a clean bill of health. Rewarding a silent register would reintroduce
+  // exactly the "absence of evidence is evidence of clean provenance" error the
+  // canonical scorer was written to avoid.
+  const reg = ctx.registry;
+  if (reg) {
+    for (const hit of reg.riskRelevantHits.slice(0, 3)) {
+      score -= 20;
+      flags.push({
+        type: "registry-signal",
+        severity: "high",
+        evidence: `Register source names this object in theft/looting/restitution terms: “${hit.claim}” (${hit.sourceUrl}). Lead requiring verification against the register itself.`,
+      });
+    }
+    // Record — visibly, and without touching the score — how much of the
+    // authoritative register space we could not reach. A reader deserves to
+    // know the check was thin, and this is the only place that says so.
+    if (reg.notQueryable > 0) {
+      flags.push({
+        type: "registry-coverage-gap",
+        severity: "low",
+        evidence: `${reg.notQueryable} of ${reg.checks.length} registers could not be searched programmatically (no public API — INTERPOL, FBI NSAF and Carabinieri TPC among them). Their absence from these results carries no information; run the official searches by hand.`,
+      });
+    }
   }
 
   // 4. Valuation sanity — an extreme markup can signal laundering/wash trades.
@@ -273,6 +304,7 @@ async function issuePassport(ctx: RunContext): Promise<VerifiableCredential> {
   const risk = ctx.risk!;
 
   const checksRun = ["tavily-authoritative-grounding"];
+  for (const c of ctx.registry?.checks ?? []) checksRun.push(`registry:${c.registryId}#${c.access}`);
   if (ctx.premiumChecks.length) checksRun.push("art-loss-register#x402");
 
   const body = {
@@ -293,6 +325,21 @@ async function issuePassport(ctx: RunContext): Promise<VerifiableCredential> {
       })),
       confidenceScore: risk.confidenceScore,
       redFlags: risk.redFlags,
+      // Every register check is signed into the credential — including the ones
+      // that failed and the ones that could not run. A Passport that recorded
+      // only the successful checks would let a reader mistake a thin check for
+      // a thorough one, which is the failure mode this whole layer guards.
+      registryChecks: (ctx.registry?.checks ?? []).map((c) => ({
+        registry: c.registry,
+        assertedBy: c.issuer,
+        access: c.access,
+        verdict: c.verdict,
+        method: c.method,
+        caveat: c.caveat,
+        hits: c.hits.map((h) => ({ claim: h.claim, source: h.sourceUrl, riskRelevant: h.riskRelevant })),
+        officialSearch: c.referralUrl,
+        checkedAt: c.checkedAt,
+      })),
       premiumChecks: ctx.premiumChecks.map((c) => ({
         database: c.database,
         assertedBy: c.issuer,
@@ -313,7 +360,17 @@ function slug(s: string): string {
 }
 
 /** Run the full pipeline for one artwork, streaming events to the website. */
-export async function runProvenance(runId: string, intent: Intent, emit: Emit): Promise<VerifiableCredential> {
+export async function runProvenance(
+  runId: string,
+  intent: Intent,
+  emit: Emit,
+  /**
+   * `liveRegistries` lets the static Pages snapshot bake in real register
+   * results while the wallet stays on a mock key. Request paths leave it unset
+   * and inherit DEMO_MODE.
+   */
+  opts: { liveRegistries?: boolean } = {}
+): Promise<VerifiableCredential> {
   const ctx = newRunContext(runId, intent, emit);
 
   emit("intent", { message: `Assessing “${intent.title}”${intent.artist ? ` by ${intent.artist}` : ""}.`, data: intent });
@@ -336,6 +393,23 @@ export async function runProvenance(runId: string, intent: Intent, emit: Emit): 
     ctx.facts = [];
   }
   emit("grounding", { message: `Grounded ${ctx.facts.length} cited fact(s).`, data: ctx.facts });
+
+  // 2b. Stolen-art register checks (INTERPOL, FBI NSAF, Carabinieri TPC,
+  // Lost Art, Getty, ICOM, Wikidata). See src/tools/registries.ts for why most
+  // of these are referrals rather than lookups.
+  emit("reasoning", { message: "Checking stolen-art and cultural-property registers…" });
+  try {
+    ctx.registry = await checkRegistries(intent.title, intent.artist, { live: opts.liveRegistries });
+    const r = ctx.registry;
+    emit("registry", {
+      message:
+        `${r.checks.length} register(s) checked — ${r.possibleMatches} possible match(es), ` +
+        `${r.notQueryable} not machine-queryable. No register can return "clear".`,
+      data: r,
+    });
+  } catch (e) {
+    emit("reasoning", { message: `Register checks unavailable (${(e as Error).message}).` });
+  }
 
   // 3. Risk flagging
   ctx.risk = assessRisk(ctx);
