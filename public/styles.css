@@ -40,6 +40,47 @@ main { max-width: 1180px; margin: 0 auto; padding: 22px; }
 .card .sub { color: var(--muted); font-size: 12px; margin-bottom: 10px; min-height: 16px; }
 .card .meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .route { font-size: 14px; letter-spacing: 1px; margin-top: 9px; color: var(--muted); }
+.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.open-hint { font-size: 11px; color: var(--accent); margin-top: 8px; opacity: 0; transition: opacity .12s; }
+.card:hover .open-hint, .card:focus-visible .open-hint { opacity: 1; }
+
+/* Stolen-art watchlist.
+   Plainer than the cards above by design — these are generated leads, and if
+   they looked like the researched case files the distinction would be lost. */
+.wl-head { margin-top: 34px; }
+.wl-note { background: #191512; border: 1px solid #3a2f22; border-radius: 12px;
+  padding: 12px 15px; font-size: 12.5px; color: var(--muted); line-height: 1.55; margin-bottom: 14px; }
+.wl-note b { color: var(--ink); }
+.wl-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 9px; font-size: 12px; }
+.wl-controls { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+.wl-controls input { flex: 1; min-width: 240px; background: #11141a; border: 1px solid var(--line);
+  color: var(--ink); border-radius: 9px; padding: 9px 13px; font-size: 13px; }
+.wl-controls input:focus { outline: none; border-color: var(--blue); }
+.wl-filters { display: flex; gap: 6px; }
+.wl-tab { background: var(--panel2); color: var(--muted); border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 13px; font-size: 12px; cursor: pointer; }
+.wl-tab.active { color: var(--ink); border-color: var(--accent); }
+.wl-list { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.wl-row { display: grid; grid-template-columns: 88px 2fr 1.3fr 92px 1.4fr 28px; gap: 10px;
+  align-items: center; padding: 9px 13px; border-bottom: 1px solid var(--line);
+  cursor: pointer; font-size: 13px; background: var(--panel); }
+.wl-row:last-child { border-bottom: none; }
+.wl-row:hover { background: var(--panel2); }
+.wl-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.wl-status { font-size: 10px; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px;
+  border-radius: 999px; text-align: center; border: 1px solid var(--line); color: var(--muted); }
+.wl-status.s-outstanding { background: #422; color: #ffb3a6; border-color: #a55; }
+.wl-title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wl-artist, .wl-where { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wl-when { color: var(--muted); font-size: 12px; font-family: ui-monospace, monospace; }
+.wl-wd { font-size: 11px; color: var(--muted); }
+.wl-wd:hover { color: var(--blue); }
+.wl-empty { padding: 18px; color: var(--muted); font-size: 13px; background: var(--panel); }
+.wl-more { font-size: 12px; color: var(--muted); margin-top: 9px; }
+@media (max-width: 780px) {
+  .wl-row { grid-template-columns: 80px 1fr 70px; }
+  .wl-artist, .wl-where, .wl-wd { display: none; }
+}
 
 /* Badges */
 .badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }

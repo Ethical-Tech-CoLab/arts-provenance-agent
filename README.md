@@ -96,6 +96,34 @@ into the Passport alongside its caveat text, so the caveat cannot be stripped do
 npm run smoke-registries -- "The Concert" "Johannes Vermeer"
 ```
 
+Full methodology: [DPP-Paper.md §8.5–8.14](DPP-Paper.md) (the register layer and the
+watchlist) and [§12.6–12.8](DPP-Paper.md) (why access is tiered, why there is no "clear",
+why silence earns nothing).
+
+### The watchlist
+
+Below the curated catalog sits a generated list of ~400 works Wikidata records as stolen
+or plundered — filterable, and clicking any row runs the live agent on it.
+
+**It is not an extract from INTERPOL or the FBI.** Neither is machine-queryable, as above.
+It is community-maintained data: an entry is a lead to verify against the official
+registers, not a register hit, and absence from it means nothing. Dates need care —
+Wikidata often attaches the *restitution* date to the theft statement, so a recent year on
+a Nazi-plunder record is usually a return, not a taking.
+
+```bash
+npm run build:watchlist              # regenerate from Wikidata
+npm run build:watchlist -- --limit 800
+```
+
+Two constraints in that query were bugs first, and both are worth knowing if you edit it.
+It is restricted to works of art because the unrestricted form also returns **people and
+companies** — spoliation records attach theft events to the dispossessed as well as to
+their property. And it walks `P31?/P279*` rather than `P279*` because named incidents like
+the *Isabella Stewart Gardner Museum theft* are **instances** of art theft, not subclasses;
+the original query silently dropped every object taken in a named heist, Vermeer's *The
+Concert* included.
+
 ---
 
 ## Quick start
