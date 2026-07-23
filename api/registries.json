@@ -1,0 +1,84 @@
+[
+  {
+    "id": "interpol-swoa",
+    "name": "INTERPOL Stolen Works of Art Database",
+    "issuer": "INTERPOL — Cultural Heritage Crime Unit",
+    "jurisdiction": "International (196 member countries)",
+    "access": "grounded-search",
+    "coverage": "The only global database of certified police information on stolen and missing cultural objects (~52,000 items). Entries come from member-country police forces, so an object only appears if a theft was reported to and recorded by a national force. Unreported and never-inventoried material — most looted archaeological and colonial-era objects — is structurally absent.",
+    "referralUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+    "applyUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database/Application-form-to-access-INTERPOL-s-Works-of-Art-Database"
+  },
+  {
+    "id": "interpol-id-art",
+    "name": "INTERPOL ID-Art (mobile lookup)",
+    "issuer": "INTERPOL — Cultural Heritage Crime Unit",
+    "jurisdiction": "International",
+    "access": "referral-only",
+    "coverage": "The same Stolen Works of Art database, searchable by image or description from a phone with no login required. This is the fastest authoritative check a human can run on an object in front of them — and it cannot be automated, which is why it appears here as a referral rather than a result.",
+    "referralUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app"
+  },
+  {
+    "id": "fbi-nsaf",
+    "name": "FBI National Stolen Art File",
+    "issuer": "US Federal Bureau of Investigation — Art Crime Team",
+    "jurisdiction": "United States (accepts foreign law-enforcement submissions)",
+    "access": "grounded-search",
+    "coverage": "Stolen art and cultural property submitted by US and foreign law-enforcement agencies. Entry requires a police report and a value threshold, so it is a record of reported thefts from documented collections, not of looting at source.",
+    "referralUrl": "https://artcrimes.fbi.gov/"
+  },
+  {
+    "id": "carabinieri-tpc",
+    "name": "Carabinieri TPC — Leonardo database",
+    "issuer": "Comando Carabinieri Tutela Patrimonio Culturale (Italy)",
+    "jurisdiction": "Italy (largest national stolen-cultural-property archive)",
+    "access": "grounded-search",
+    "coverage": "Over 1.1 million stolen or illicitly exported cultural objects — the largest such archive in the world, and the most important single source for Italian antiquities. Public search is a web form; the full archive is law-enforcement access.",
+    "referralUrl": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca"
+  },
+  {
+    "id": "lostart-de",
+    "name": "Lost Art Database",
+    "issuer": "German Lost Art Foundation (Deutsches Zentrum Kulturgutverluste)",
+    "jurisdiction": "Germany / Nazi-era spoliation, international scope",
+    "access": "grounded-search",
+    "coverage": "Cultural property lost, moved or seized as a result of Nazi persecution 1933–1945, plus wartime relocations. Carries both 'found' and 'search' reports. The reference register for Nazi-era provenance gaps — and irrelevant to colonial-era and archaeological looting.",
+    "referralUrl": "https://www.lostart.de/en/search"
+  },
+  {
+    "id": "getty-provenance-index",
+    "name": "Getty Provenance Index",
+    "issuer": "Getty Research Institute",
+    "jurisdiction": "International (archival, 16th c. – present)",
+    "access": "grounded-search",
+    "coverage": "Transcribed auction catalogues, dealer stock books and collection inventories — the primary evidence base for reconstructing an ownership chain rather than for flagging a theft. Strongest on the European and American art market; thin outside it.",
+    "referralUrl": "https://www.getty.edu/research/tools/provenance/search.html"
+  },
+  {
+    "id": "icom-red-lists",
+    "name": "ICOM Red Lists of Cultural Objects at Risk",
+    "issuer": "International Council of Museums",
+    "jurisdiction": "International (region-specific lists)",
+    "access": "grounded-search",
+    "coverage": "Object CATEGORIES at risk of illicit trafficking by region — not individual objects. A Red List hit never identifies a specific piece; it says an object of this type from this region should not move without documentation. That is a due-diligence trigger, not an identification.",
+    "referralUrl": "https://icom.museum/en/resources/red-lists/"
+  },
+  {
+    "id": "wikidata",
+    "name": "Wikidata (structured provenance events)",
+    "issuer": "Wikidata contributors — community-maintained, not an authority",
+    "jurisdiction": "International, open data",
+    "access": "structured-api",
+    "coverage": "The only openly machine-queryable source here. Its 'significant event' statements carry dated values such as archaeological looting, art theft, restitution and claim for restitution, usually with a reference URL. Coverage is uneven and edits are unreviewed, so this generates leads to verify — never findings.",
+    "referralUrl": "https://www.wikidata.org/"
+  },
+  {
+    "id": "art-loss-register",
+    "name": "Art Loss Register",
+    "issuer": "The Art Loss Register (commercial due-diligence registry)",
+    "jurisdiction": "International, commercial",
+    "access": "paid-x402",
+    "coverage": "The largest private database of stolen and looted art. Registration and search are commercial services — which is exactly why this one is the agent's paid x402 check rather than a free lookup.",
+    "referralUrl": "https://www.artloss.com/"
+  }
+]

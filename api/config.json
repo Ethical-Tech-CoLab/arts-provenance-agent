@@ -1,1 +1,8 @@
-{"demoMode":"mock","vendorPriceUSD":0.05,"facilitator":"mock (no settlement)","maxSpendUSD":0.25}
+{
+  "demoMode": "mock",
+  "vendorPriceUSD": 0.05,
+  "facilitator": "mock (no settlement)",
+  "maxSpendUSD": 0.25,
+  "spentUSD": 0,
+  "authRequired": false
+}

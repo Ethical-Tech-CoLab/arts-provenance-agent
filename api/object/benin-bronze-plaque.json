@@ -1,1 +1,74 @@
-{"id":"benin-bronze-plaque","title":"Benin Bronze Plaque","culture":"Edo (Kingdom of Benin)","period":"16th–17th c.","icon":"🛡️","accent":"#9a7b3f","currentLocation":{"institution":"British Museum","city":"London","country":"United Kingdom"},"riskScore":18,"riskLevel":"high","redFlags":[{"type":"looting-signal","severity":"high","evidence":"Seized during the 1897 British punitive expedition that sacked Benin City."},{"type":"colonial-acquisition","severity":"high","evidence":"Taken as spoils of war; no consent of origin community."}],"repatriation":{"status":"contested","claimant":"Nigeria","note":"Active restitution claims; some institutions have begun returns, the British Museum has not."},"journey":[{"year":"16th c.","place":"Benin City","country":"Nigeria","event":"Cast for the royal palace","type":"origin"},{"year":"1897","place":"Benin City","country":"Nigeria","event":"Looted in the punitive expedition","type":"looting"},{"year":"1898","place":"London","country":"United Kingdom","event":"Entered the British Museum","type":"museum"},{"year":"Present","place":"London","country":"United Kingdom","event":"Contested by Nigeria","type":"contested"}],"sources":[{"title":"Digital Benin — provenance project","url":"https://digitalbenin.org","issuer":"Digital Benin"},{"title":"ICOM red list — Africa","url":"https://icom.museum","issuer":"ICOM"}]}
+{
+  "id": "benin-bronze-plaque",
+  "title": "Benin Bronze Plaque",
+  "culture": "Edo (Kingdom of Benin)",
+  "period": "16th–17th c.",
+  "icon": "🛡️",
+  "accent": "#9a7b3f",
+  "currentLocation": {
+    "institution": "British Museum",
+    "city": "London",
+    "country": "United Kingdom"
+  },
+  "riskScore": 18,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "looting-signal",
+      "severity": "high",
+      "evidence": "Seized during the 1897 British punitive expedition that sacked Benin City."
+    },
+    {
+      "type": "colonial-acquisition",
+      "severity": "high",
+      "evidence": "Taken as spoils of war; no consent of origin community."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Nigeria",
+    "note": "Active restitution claims; some institutions have begun returns, the British Museum has not."
+  },
+  "journey": [
+    {
+      "year": "16th c.",
+      "place": "Benin City",
+      "country": "Nigeria",
+      "event": "Cast for the royal palace",
+      "type": "origin"
+    },
+    {
+      "year": "1897",
+      "place": "Benin City",
+      "country": "Nigeria",
+      "event": "Looted in the punitive expedition",
+      "type": "looting"
+    },
+    {
+      "year": "1898",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Entered the British Museum",
+      "type": "museum"
+    },
+    {
+      "year": "Present",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Contested by Nigeria",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Digital Benin — provenance project",
+      "url": "https://digitalbenin.org",
+      "issuer": "Digital Benin"
+    },
+    {
+      "title": "ICOM red list — Africa",
+      "url": "https://icom.museum",
+      "issuer": "ICOM"
+    }
+  ]
+}

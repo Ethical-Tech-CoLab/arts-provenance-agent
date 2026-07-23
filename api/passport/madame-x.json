@@ -1,1 +1,206 @@
-{"@context":["https://www.w3.org/ns/credentials/v2"],"type":["VerifiableCredential","DigitalProvenancePassport"],"issuer":"did:pkh:eip155:84532:0xbf35b94332CF01A32899b8fC3B538AD89b55E1bD","validFrom":"2026-07-09T17:49:17.988Z","credentialSubject":{"id":"urn:artwork:madame-x","title":"Madame X (Madame Pierre Gautreau)","artist":"John Singer Sargent","culture":"American / French","currentLocation":{"institution":"The Metropolitan Museum of Art","city":"New York","country":"United States"},"provenanceJourney":[{"year":"1884","place":"Paris","country":"France","event":"Exhibited at the Paris Salon","type":"origin"},{"year":"1884–1916","place":"Paris","country":"France","event":"Retained in the artist's studio","type":"sale"},{"year":"1916","place":"New York","country":"United States","event":"Purchased by the Met from Sargent","type":"museum"}],"confidenceScore":93,"redFlags":[],"repatriation":{"status":"clear","note":"Continuous, documented ownership; acquired from the artist. No outstanding claims."},"sources":[{"title":"The Met — collection record","url":"https://www.metmuseum.org/art/collection","issuer":"The Metropolitan Museum of Art"}],"checksRun":["catalog-grounding","repatriation-registry"],"assessedAt":"2026-07-09T17:49:17.988Z"},"proof":{"type":"EcdsaSecp256k1RecoverySignature2020","created":"2026-07-09T17:49:17.988Z","verificationMethod":"did:pkh:eip155:84532:0xbf35b94332CF01A32899b8fC3B538AD89b55E1bD#blockchainAccountId","proofPurpose":"assertionMethod","proofValue":"0x42e9c3f4405820c87138d3fabd25576f445d1cb3ea2006f62f703c22e9a1835d6c03f630ba97f48c8865c36772bbcf0ffe0d72895e181d4417734cd4b19c27fa1b"}}
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "DigitalProvenancePassport"
+  ],
+  "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
+  "validFrom": "2026-07-23T14:59:33.702Z",
+  "credentialSubject": {
+    "id": "urn:artwork:madame-x",
+    "title": "Madame X (Madame Pierre Gautreau)",
+    "artist": "John Singer Sargent",
+    "culture": "American / French",
+    "currentLocation": {
+      "institution": "The Metropolitan Museum of Art",
+      "city": "New York",
+      "country": "United States"
+    },
+    "provenanceJourney": [
+      {
+        "year": "1884",
+        "place": "Paris",
+        "country": "France",
+        "event": "Exhibited at the Paris Salon",
+        "type": "origin"
+      },
+      {
+        "year": "1884–1916",
+        "place": "Paris",
+        "country": "France",
+        "event": "Retained in the artist's studio",
+        "type": "sale"
+      },
+      {
+        "year": "1916",
+        "place": "New York",
+        "country": "United States",
+        "event": "Purchased by the Met from Sargent",
+        "type": "museum"
+      }
+    ],
+    "confidenceScore": 93,
+    "redFlags": [],
+    "repatriation": {
+      "status": "clear",
+      "note": "Continuous, documented ownership; acquired from the artist. No outstanding claims."
+    },
+    "sources": [
+      {
+        "title": "The Met — collection record",
+        "url": "https://www.metmuseum.org/art/collection",
+        "issuer": "The Metropolitan Museum of Art"
+      }
+    ],
+    "registryChecks": [
+      {
+        "registry": "INTERPOL Stolen Works of Art Database",
+        "assertedBy": "INTERPOL — Cultural Heritage Crime Unit",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of interpol.int. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+        "checkedAt": "2026-07-23T14:59:31.092Z"
+      },
+      {
+        "registry": "INTERPOL ID-Art (mobile lookup)",
+        "assertedBy": "INTERPOL — Cultural Heritage Crime Unit",
+        "access": "referral-only",
+        "verdict": "not-queryable",
+        "method": "No programmatic interface exists. Deep link emitted for a human to run the authoritative search.",
+        "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+        "hits": [],
+        "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
+        "checkedAt": "2026-07-23T14:59:31.045Z"
+      },
+      {
+        "registry": "FBI National Stolen Art File",
+        "assertedBy": "US Federal Bureau of Investigation — Art Crime Team",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of fbi.gov. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://artcrimes.fbi.gov/",
+        "checkedAt": "2026-07-23T14:59:31.110Z"
+      },
+      {
+        "registry": "Carabinieri TPC — Leonardo database",
+        "assertedBy": "Comando Carabinieri Tutela Patrimonio Culturale (Italy)",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of carabinieri.it, beniculturali.it. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
+        "checkedAt": "2026-07-23T14:59:31.110Z"
+      },
+      {
+        "registry": "Lost Art Database",
+        "assertedBy": "German Lost Art Foundation (Deutsches Zentrum Kulturgutverluste)",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of lostart.de, kulturgutverluste.de, proveana.de. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://www.lostart.de/en/search",
+        "checkedAt": "2026-07-23T14:59:31.093Z"
+      },
+      {
+        "registry": "Getty Provenance Index",
+        "assertedBy": "Getty Research Institute",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of getty.edu. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
+        "checkedAt": "2026-07-23T14:59:31.092Z"
+      },
+      {
+        "registry": "ICOM Red Lists of Cultural Objects at Risk",
+        "assertedBy": "International Council of Museums",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of icom.museum, unesco.org. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://icom.museum/en/resources/red-lists/",
+        "checkedAt": "2026-07-23T14:59:31.085Z"
+      },
+      {
+        "registry": "Wikidata (structured provenance events)",
+        "assertedBy": "Wikidata contributors — community-maintained, not an authority",
+        "access": "structured-api",
+        "verdict": "no-evidence-found",
+        "method": "SPARQL over Q2664039 (Madame X (Virginie Amélie Avegno Gautreau)) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 2 label-search candidate(s): Q2664039 Madame X (Virginie Amélie Avegno Gautreau); Q20178019 Study for Madame X. Entity resolution is shown so the choice can be audited rather than trusted.",
+        "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
+        "hits": [
+          {
+            "claim": "country of origin: United States",
+            "source": "https://www.wikidata.org/wiki/Q2664039",
+            "riskRelevant": false
+          },
+          {
+            "claim": "location: Metropolitan Museum of Art",
+            "source": "https://www.wikidata.org/wiki/Q2664039",
+            "riskRelevant": false
+          },
+          {
+            "claim": "creator: Q155626",
+            "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-iv-1800-present/",
+            "riskRelevant": false
+          },
+          {
+            "claim": "collection: Metropolitan Museum of Art",
+            "source": "http://www.metmuseum.org/art/collection/search#!/search?showOnly=highlights",
+            "riskRelevant": false
+          },
+          {
+            "claim": "inception: 1884-01-01T00:00:00Z",
+            "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-iv-1800-present/",
+            "riskRelevant": false
+          }
+        ],
+        "officialSearch": "https://www.wikidata.org/wiki/Q2664039",
+        "checkedAt": "2026-07-23T14:59:33.701Z"
+      },
+      {
+        "registry": "Art Loss Register",
+        "assertedBy": "The Art Loss Register (commercial due-diligence registry)",
+        "access": "paid-x402",
+        "verdict": "not-queryable",
+        "method": "Commercial register — reached through the agent's paid x402 check, not this free layer.",
+        "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+        "hits": [],
+        "officialSearch": "https://www.artloss.com/",
+        "checkedAt": "2026-07-23T14:59:31.047Z"
+      }
+    ],
+    "checksRun": [
+      "catalog-grounding",
+      "repatriation-registry",
+      "registry:interpol-swoa#grounded-search",
+      "registry:interpol-id-art#referral-only",
+      "registry:fbi-nsaf#grounded-search",
+      "registry:carabinieri-tpc#grounded-search",
+      "registry:lostart-de#grounded-search",
+      "registry:getty-provenance-index#grounded-search",
+      "registry:icom-red-lists#grounded-search",
+      "registry:wikidata#structured-api",
+      "registry:art-loss-register#paid-x402"
+    ],
+    "assessedAt": "2026-07-23T14:59:33.702Z"
+  },
+  "proof": {
+    "type": "EcdsaSecp256k1RecoverySignature2020",
+    "created": "2026-07-23T14:59:33.702Z",
+    "verificationMethod": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c#blockchainAccountId",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "0x521ed3d0a1ce0e6c337af3e2b2e14fabe5d5cd8776ce19ed32bfcec50a1b5c272fdffc15a44418666876437596b360a56afb873c0dd19b6dd34bd32d2871e61a1c"
+  }
+}

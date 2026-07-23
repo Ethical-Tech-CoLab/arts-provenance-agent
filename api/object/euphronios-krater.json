@@ -1,1 +1,96 @@
-{"id":"euphronios-krater","title":"Euphronios Krater","artist":"Painted by Euphronios; potted by Euxitheos","culture":"Ancient Greek (Attic red-figure)","period":"c. 515 BCE","icon":"🏺","accent":"#c0563e","currentLocation":{"institution":"Museo Nazionale Etrusco","city":"Rome","country":"Italy"},"riskScore":12,"riskLevel":"high","redFlags":[{"type":"looting-signal","severity":"high","evidence":"Illegally excavated by tombaroli from an Etruscan tomb near Cerveteri in 1971."},{"type":"provenance-gap","severity":"high","evidence":"No documented ownership before its 1971 market appearance."},{"type":"source-country-origin","severity":"medium","evidence":"Italy — a UNESCO 1970 source country with active restitution claims."}],"repatriation":{"status":"repatriated","claimant":"Italy","year":"2008","note":"Returned by the Met to Italy in 2008 after a long legal dispute."},"journey":[{"year":"c. 515 BCE","place":"Athens","country":"Greece","event":"Created in an Athenian workshop","type":"origin"},{"year":"Antiquity","place":"Cerveteri","country":"Italy","event":"Buried in an Etruscan tomb","type":"origin"},{"year":"1971","place":"Cerveteri","country":"Italy","event":"Looted by tombaroli","type":"looting"},{"year":"1971–72","place":"Zurich","country":"Switzerland","event":"Passed through dealer Robert Hecht","type":"sale"},{"year":"1972","place":"New York","country":"United States","event":"Acquired by the Met for $1M","type":"museum"},{"year":"2008","place":"Rome","country":"Italy","event":"Repatriated to Italy","type":"repatriation"}],"sources":[{"title":"The Met — deaccession & return history","url":"https://www.metmuseum.org","issuer":"The Metropolitan Museum of Art"},{"title":"UNESCO 1970 Convention","url":"https://www.unesco.org/en/fight-illicit-trafficking","issuer":"UNESCO"}],"estimatedMarketValueUSD":250000}
+{
+  "id": "euphronios-krater",
+  "title": "Euphronios Krater",
+  "artist": "Painted by Euphronios; potted by Euxitheos",
+  "culture": "Ancient Greek (Attic red-figure)",
+  "period": "c. 515 BCE",
+  "icon": "🏺",
+  "accent": "#c0563e",
+  "currentLocation": {
+    "institution": "Museo Nazionale Etrusco",
+    "city": "Rome",
+    "country": "Italy"
+  },
+  "riskScore": 12,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "looting-signal",
+      "severity": "high",
+      "evidence": "Illegally excavated by tombaroli from an Etruscan tomb near Cerveteri in 1971."
+    },
+    {
+      "type": "provenance-gap",
+      "severity": "high",
+      "evidence": "No documented ownership before its 1971 market appearance."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Italy — a UNESCO 1970 source country with active restitution claims."
+    }
+  ],
+  "repatriation": {
+    "status": "repatriated",
+    "claimant": "Italy",
+    "year": "2008",
+    "note": "Returned by the Met to Italy in 2008 after a long legal dispute."
+  },
+  "journey": [
+    {
+      "year": "c. 515 BCE",
+      "place": "Athens",
+      "country": "Greece",
+      "event": "Created in an Athenian workshop",
+      "type": "origin"
+    },
+    {
+      "year": "Antiquity",
+      "place": "Cerveteri",
+      "country": "Italy",
+      "event": "Buried in an Etruscan tomb",
+      "type": "origin"
+    },
+    {
+      "year": "1971",
+      "place": "Cerveteri",
+      "country": "Italy",
+      "event": "Looted by tombaroli",
+      "type": "looting"
+    },
+    {
+      "year": "1971–72",
+      "place": "Zurich",
+      "country": "Switzerland",
+      "event": "Passed through dealer Robert Hecht",
+      "type": "sale"
+    },
+    {
+      "year": "1972",
+      "place": "New York",
+      "country": "United States",
+      "event": "Acquired by the Met for $1M",
+      "type": "museum"
+    },
+    {
+      "year": "2008",
+      "place": "Rome",
+      "country": "Italy",
+      "event": "Repatriated to Italy",
+      "type": "repatriation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Met — deaccession & return history",
+      "url": "https://www.metmuseum.org",
+      "issuer": "The Metropolitan Museum of Art"
+    },
+    {
+      "title": "UNESCO 1970 Convention",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    }
+  ],
+  "estimatedMarketValueUSD": 250000
+}

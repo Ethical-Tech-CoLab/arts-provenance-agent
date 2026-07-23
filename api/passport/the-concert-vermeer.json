@@ -7,82 +7,87 @@
     "DigitalProvenancePassport"
   ],
   "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
-  "validFrom": "2026-07-23T14:59:30.705Z",
+  "validFrom": "2026-07-23T14:59:34.582Z",
   "credentialSubject": {
-    "id": "urn:artwork:rosetta-stone",
-    "title": "Rosetta Stone",
-    "artist": null,
-    "culture": "Ptolemaic Egypt",
+    "id": "urn:artwork:the-concert-vermeer",
+    "title": "The Concert",
+    "artist": "Johannes Vermeer",
+    "culture": "Dutch Golden Age",
     "currentLocation": {
-      "institution": "British Museum",
-      "city": "London",
-      "country": "United Kingdom"
+      "institution": "Unknown — stolen, still at large",
+      "city": "—",
+      "country": "Unknown"
     },
     "provenanceJourney": [
       {
-        "year": "196 BCE",
-        "place": "Memphis",
-        "country": "Egypt",
-        "event": "Decree inscribed",
+        "year": "c. 1664",
+        "place": "Delft",
+        "country": "Netherlands",
+        "event": "Painted by Vermeer",
         "type": "origin"
       },
       {
-        "year": "1799",
-        "place": "Rosetta (Rashid)",
-        "country": "Egypt",
-        "event": "Found by French soldiers",
-        "type": "excavation"
+        "year": "1892",
+        "place": "Paris",
+        "country": "France",
+        "event": "Bought at auction by Isabella Stewart Gardner",
+        "type": "sale"
       },
       {
-        "year": "1801",
-        "place": "Alexandria",
-        "country": "Egypt",
-        "event": "Seized by British forces",
-        "type": "looting"
-      },
-      {
-        "year": "1802",
-        "place": "London",
-        "country": "United Kingdom",
-        "event": "Entered the British Museum",
+        "year": "1903",
+        "place": "Boston",
+        "country": "United States",
+        "event": "Installed in the Gardner Museum's Dutch Room",
         "type": "museum"
       },
       {
+        "year": "1990",
+        "place": "Boston",
+        "country": "United States",
+        "event": "Stolen in the Gardner heist with 12 other works",
+        "type": "looting"
+      },
+      {
         "year": "Present",
-        "place": "London",
-        "country": "United Kingdom",
-        "event": "Contested by Egypt",
+        "place": "Unknown",
+        "country": "Unknown",
+        "event": "Still missing; investigation open",
         "type": "contested"
       }
     ],
-    "confidenceScore": 34,
+    "confidenceScore": 6,
     "redFlags": [
       {
-        "type": "wartime-seizure",
+        "type": "active-theft",
         "severity": "high",
-        "evidence": "Ceded to Britain under the 1801 Capitulation of Alexandria after French defeat."
+        "evidence": "Stolen from the Isabella Stewart Gardner Museum, Boston, in the early hours of 18 March 1990 by two men posing as police officers. Never recovered."
       },
       {
-        "type": "source-country-origin",
-        "severity": "medium",
-        "evidence": "Egypt has repeatedly requested its return."
+        "type": "register-listed",
+        "severity": "high",
+        "evidence": "Carried on the FBI Art Crime Team's stolen-art listings and INTERPOL's Stolen Works of Art database; the museum's reward for information stands at $10 million."
+      },
+      {
+        "type": "no-lawful-market-title",
+        "severity": "high",
+        "evidence": "Title never left the museum. No purchase of this object can be lawful — any offer is prima facie evidence of a crime."
       }
     ],
     "repatriation": {
       "status": "contested",
-      "claimant": "Egypt",
-      "note": "Egypt has formally requested repatriation; the British Museum retains it."
+      "claimant": "Isabella Stewart Gardner Museum",
+      "note": "Not a repatriation dispute but an unsolved theft. Ownership is undisputed; the object is missing. The empty frame still hangs in the Dutch Room."
     },
     "sources": [
       {
-        "title": "British Museum — object record",
-        "url": "https://www.britishmuseum.org",
-        "issuer": "British Museum"
+        "title": "FBI Art Crime Team — National Stolen Art File",
+        "url": "https://artcrimes.fbi.gov/",
+        "issuer": "FBI Art Crime Team"
       },
       {
-        "title": "UNESCO 1970 Convention",
-        "url": "https://www.unesco.org/en/fight-illicit-trafficking",
-        "issuer": "UNESCO"
+        "title": "INTERPOL Stolen Works of Art Database",
+        "url": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+        "issuer": "INTERPOL"
       }
     ],
     "registryChecks": [
@@ -95,7 +100,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-        "checkedAt": "2026-07-23T14:59:30.627Z"
+        "checkedAt": "2026-07-23T14:59:34.365Z"
       },
       {
         "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -106,7 +111,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-        "checkedAt": "2026-07-23T14:59:30.586Z"
+        "checkedAt": "2026-07-23T14:59:34.325Z"
       },
       {
         "registry": "FBI National Stolen Art File",
@@ -117,7 +122,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://artcrimes.fbi.gov/",
-        "checkedAt": "2026-07-23T14:59:30.636Z"
+        "checkedAt": "2026-07-23T14:59:34.367Z"
       },
       {
         "registry": "Carabinieri TPC — Leonardo database",
@@ -128,7 +133,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-        "checkedAt": "2026-07-23T14:59:30.656Z"
+        "checkedAt": "2026-07-23T14:59:34.371Z"
       },
       {
         "registry": "Lost Art Database",
@@ -139,7 +144,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.lostart.de/en/search",
-        "checkedAt": "2026-07-23T14:59:30.645Z"
+        "checkedAt": "2026-07-23T14:59:34.372Z"
       },
       {
         "registry": "Getty Provenance Index",
@@ -150,7 +155,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-        "checkedAt": "2026-07-23T14:59:30.649Z"
+        "checkedAt": "2026-07-23T14:59:34.369Z"
       },
       {
         "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -161,44 +166,49 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://icom.museum/en/resources/red-lists/",
-        "checkedAt": "2026-07-23T14:59:30.637Z"
+        "checkedAt": "2026-07-23T14:59:34.369Z"
       },
       {
         "registry": "Wikidata (structured provenance events)",
         "assertedBy": "Wikidata contributors — community-maintained, not an authority",
         "access": "structured-api",
-        "verdict": "no-evidence-found",
-        "method": "SPARQL over Q48584 (Rosetta Stone) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 3 label-search candidate(s): Q48584 Rosetta Stone; Q4048553 Rosetta Stone; Q7368695 Rosetta Stone. Entity resolution is shown so the choice can be audited rather than trusted.",
+        "verdict": "possible-match",
+        "method": "SPARQL over Q1169395 (The Concert) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 1 label-search candidate(s): Q1169395 The Concert. Entity resolution is shown so the choice can be audited rather than trusted.",
         "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
         "hits": [
           {
-            "claim": "location of discovery: Fort Julien",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "significant event: Isabella Stewart Gardner Museum theft (1990-03-18)",
+            "source": "https://www.wikidata.org/wiki/Q1169395",
+            "riskRelevant": true
+          },
+          {
+            "claim": "location: Isabella Stewart Gardner Museum",
+            "source": "https://www.wikidata.org/wiki/Q1169395",
             "riskRelevant": false
           },
           {
-            "claim": "inception: -0195-01-01T00:00:00Z",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "creator: Johannes Vermeer",
+            "source": "https://www.wikidata.org/wiki/Q1169395",
             "riskRelevant": false
           },
           {
-            "claim": "collection: British Museum",
-            "source": "http://www.britishmuseum.org/explore/highlights/highlight_objects/aes/t/the_rosetta_stone.aspx",
+            "claim": "collection: Isabella Stewart Gardner Museum",
+            "source": "https://www.wikidata.org/wiki/Q1169395",
             "riskRelevant": false
           },
           {
-            "claim": "location: British Museum",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "inception: 1663-01-01T00:00:00Z",
+            "source": "https://www.wikidata.org/wiki/Q1169395",
             "riskRelevant": false
           },
           {
-            "claim": "country of origin: history of Ptolemaic Egypt",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "significant event: sales (1696-01-01)",
+            "source": "https://www.wikidata.org/wiki/Q1169395",
             "riskRelevant": false
           }
         ],
-        "officialSearch": "https://www.wikidata.org/wiki/Q48584",
-        "checkedAt": "2026-07-23T14:59:30.704Z"
+        "officialSearch": "https://www.wikidata.org/wiki/Q1169395",
+        "checkedAt": "2026-07-23T14:59:34.581Z"
       },
       {
         "registry": "Art Loss Register",
@@ -209,7 +219,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.artloss.com/",
-        "checkedAt": "2026-07-23T14:59:30.588Z"
+        "checkedAt": "2026-07-23T14:59:34.327Z"
       }
     ],
     "checksRun": [
@@ -225,13 +235,13 @@
       "registry:wikidata#structured-api",
       "registry:art-loss-register#paid-x402"
     ],
-    "assessedAt": "2026-07-23T14:59:30.705Z"
+    "assessedAt": "2026-07-23T14:59:34.582Z"
   },
   "proof": {
     "type": "EcdsaSecp256k1RecoverySignature2020",
-    "created": "2026-07-23T14:59:30.705Z",
+    "created": "2026-07-23T14:59:34.582Z",
     "verificationMethod": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c#blockchainAccountId",
     "proofPurpose": "assertionMethod",
-    "proofValue": "0x460aeb10e20e37105a339329e310b8748203f38062c573984c14ad67049601495d041c46d5a4d0f7de925932a43148092414f158572f05c5fc08f068bb9d53401c"
+    "proofValue": "0xdf00f2806b389483d091ad77a8664d2d3200ab7d2c4b37d7c436f6a6db39bcac5b4a0017504c0f6f2d13da1b7f0b50006f8bcfadd4d2db0c6573e4fc5889cfd41b"
   }
 }

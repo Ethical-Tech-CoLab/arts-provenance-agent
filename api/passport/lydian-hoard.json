@@ -1,1 +1,231 @@
-{"@context":["https://www.w3.org/ns/credentials/v2"],"type":["VerifiableCredential","DigitalProvenancePassport"],"issuer":"did:pkh:eip155:84532:0xeBAd0752cFEfC51B94140EDaD047934ad695A1e5","validFrom":"2026-07-09T17:49:17.978Z","credentialSubject":{"id":"urn:artwork:lydian-hoard","title":"Lydian Hoard (Karun Treasure)","artist":null,"culture":"Lydian / Achaemenid","currentLocation":{"institution":"Uşak Museum","city":"Uşak","country":"Turkey"},"provenanceJourney":[{"year":"c. 6th c. BCE","place":"Lydia (Uşak)","country":"Turkey","event":"Interred in burial tumuli","type":"origin"},{"year":"1960s","place":"Uşak","country":"Turkey","event":"Looted from tombs","type":"looting"},{"year":"1966–70","place":"New York","country":"United States","event":"Acquired by the Met","type":"museum"},{"year":"1993","place":"Uşak","country":"Turkey","event":"Repatriated to Turkey","type":"repatriation"}],"confidenceScore":22,"redFlags":[{"type":"looting-signal","severity":"high","evidence":"Looted from tumuli in the Uşak region of western Turkey in the 1960s."},{"type":"concealment","severity":"high","evidence":"The Met held the pieces in storage and obscured their origin for years."}],"repatriation":{"status":"repatriated","claimant":"Turkey","year":"1993","note":"Returned by the Met to Turkey in 1993 after litigation."},"sources":[{"title":"The Met — return history","url":"https://www.metmuseum.org","issuer":"The Metropolitan Museum of Art"},{"title":"ICOM red list","url":"https://icom.museum","issuer":"ICOM"}],"checksRun":["catalog-grounding","repatriation-registry"],"assessedAt":"2026-07-09T17:49:17.978Z"},"proof":{"type":"EcdsaSecp256k1RecoverySignature2020","created":"2026-07-09T17:49:17.978Z","verificationMethod":"did:pkh:eip155:84532:0xeBAd0752cFEfC51B94140EDaD047934ad695A1e5#blockchainAccountId","proofPurpose":"assertionMethod","proofValue":"0xce47ce87073ccce456c767e49754bd7518b0454a5a9faa0c633feac70972dbe92acbfe5f7a4d8178932a03e9e0b99793974bf9dc21ba99cbeb792913ca84a9d11c"}}
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "DigitalProvenancePassport"
+  ],
+  "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
+  "validFrom": "2026-07-23T14:59:31.040Z",
+  "credentialSubject": {
+    "id": "urn:artwork:lydian-hoard",
+    "title": "Lydian Hoard (Karun Treasure)",
+    "artist": null,
+    "culture": "Lydian / Achaemenid",
+    "currentLocation": {
+      "institution": "Uşak Museum",
+      "city": "Uşak",
+      "country": "Turkey"
+    },
+    "provenanceJourney": [
+      {
+        "year": "c. 6th c. BCE",
+        "place": "Lydia (Uşak)",
+        "country": "Turkey",
+        "event": "Interred in burial tumuli",
+        "type": "origin"
+      },
+      {
+        "year": "1960s",
+        "place": "Uşak",
+        "country": "Turkey",
+        "event": "Looted from tombs",
+        "type": "looting"
+      },
+      {
+        "year": "1966–70",
+        "place": "New York",
+        "country": "United States",
+        "event": "Acquired by the Met",
+        "type": "museum"
+      },
+      {
+        "year": "1993",
+        "place": "Uşak",
+        "country": "Turkey",
+        "event": "Repatriated to Turkey",
+        "type": "repatriation"
+      }
+    ],
+    "confidenceScore": 22,
+    "redFlags": [
+      {
+        "type": "looting-signal",
+        "severity": "high",
+        "evidence": "Looted from tumuli in the Uşak region of western Turkey in the 1960s."
+      },
+      {
+        "type": "concealment",
+        "severity": "high",
+        "evidence": "The Met held the pieces in storage and obscured their origin for years."
+      }
+    ],
+    "repatriation": {
+      "status": "repatriated",
+      "claimant": "Turkey",
+      "year": "1993",
+      "note": "Returned by the Met to Turkey in 1993 after litigation."
+    },
+    "sources": [
+      {
+        "title": "The Met — return history",
+        "url": "https://www.metmuseum.org",
+        "issuer": "The Metropolitan Museum of Art"
+      },
+      {
+        "title": "ICOM red list",
+        "url": "https://icom.museum",
+        "issuer": "ICOM"
+      }
+    ],
+    "registryChecks": [
+      {
+        "registry": "INTERPOL Stolen Works of Art Database",
+        "assertedBy": "INTERPOL — Cultural Heritage Crime Unit",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of interpol.int. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+        "checkedAt": "2026-07-23T14:59:30.821Z"
+      },
+      {
+        "registry": "INTERPOL ID-Art (mobile lookup)",
+        "assertedBy": "INTERPOL — Cultural Heritage Crime Unit",
+        "access": "referral-only",
+        "verdict": "not-queryable",
+        "method": "No programmatic interface exists. Deep link emitted for a human to run the authoritative search.",
+        "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+        "hits": [],
+        "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
+        "checkedAt": "2026-07-23T14:59:30.709Z"
+      },
+      {
+        "registry": "FBI National Stolen Art File",
+        "assertedBy": "US Federal Bureau of Investigation — Art Crime Team",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of fbi.gov. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://artcrimes.fbi.gov/",
+        "checkedAt": "2026-07-23T14:59:30.818Z"
+      },
+      {
+        "registry": "Carabinieri TPC — Leonardo database",
+        "assertedBy": "Comando Carabinieri Tutela Patrimonio Culturale (Italy)",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of carabinieri.it, beniculturali.it. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
+        "checkedAt": "2026-07-23T14:59:30.820Z"
+      },
+      {
+        "registry": "Lost Art Database",
+        "assertedBy": "German Lost Art Foundation (Deutsches Zentrum Kulturgutverluste)",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of lostart.de, kulturgutverluste.de, proveana.de. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://www.lostart.de/en/search",
+        "checkedAt": "2026-07-23T14:59:30.817Z"
+      },
+      {
+        "registry": "Getty Provenance Index",
+        "assertedBy": "Getty Research Institute",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of getty.edu. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
+        "checkedAt": "2026-07-23T14:59:30.821Z"
+      },
+      {
+        "registry": "ICOM Red Lists of Cultural Objects at Risk",
+        "assertedBy": "International Council of Museums",
+        "access": "grounded-search",
+        "verdict": "no-evidence-found",
+        "method": "Domain-scoped search of icom.museum, unesco.org. This searches the registry's public WEBSITE, not its register.",
+        "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+        "hits": [],
+        "officialSearch": "https://icom.museum/en/resources/red-lists/",
+        "checkedAt": "2026-07-23T14:59:30.819Z"
+      },
+      {
+        "registry": "Wikidata (structured provenance events)",
+        "assertedBy": "Wikidata contributors — community-maintained, not an authority",
+        "access": "structured-api",
+        "verdict": "possible-match",
+        "method": "SPARQL over Q4115387 (Karun Treasure) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 1 label-search candidate(s): Q4115387 Karun Treasure. Entity resolution is shown so the choice can be audited rather than trusted.",
+        "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
+        "hits": [
+          {
+            "claim": "significant event: claim for restitution of an artwork (1986-01-01)",
+            "source": "https://plone.unige.ch/art-adr/cases-affaires/lydian-hoard-2013-turkey-and-metropolitan-museum-of-art-1/case-note-2013-lydian-hoard-2013-turkey-and-metropolitan-museum-of-art",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: archaeological looting",
+            "source": "https://www.smithsonianmag.com/history/chasing-the-lydian-hoard-93685665/",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: repatriation (1993-01-01)",
+            "source": "https://plone.unige.ch/art-adr/cases-affaires/lydian-hoard-2013-turkey-and-metropolitan-museum-of-art-1",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: legal settlement",
+            "source": "https://www.wikidata.org/wiki/Q4115387",
+            "riskRelevant": false
+          },
+          {
+            "claim": "collection: Metropolitan Museum of Art",
+            "source": "https://plone.unige.ch/art-adr/cases-affaires/lydian-hoard-2013-turkey-and-metropolitan-museum-of-art-1",
+            "riskRelevant": false
+          }
+        ],
+        "officialSearch": "https://www.wikidata.org/wiki/Q4115387",
+        "checkedAt": "2026-07-23T14:59:31.038Z"
+      },
+      {
+        "registry": "Art Loss Register",
+        "assertedBy": "The Art Loss Register (commercial due-diligence registry)",
+        "access": "paid-x402",
+        "verdict": "not-queryable",
+        "method": "Commercial register — reached through the agent's paid x402 check, not this free layer.",
+        "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+        "hits": [],
+        "officialSearch": "https://www.artloss.com/",
+        "checkedAt": "2026-07-23T14:59:30.711Z"
+      }
+    ],
+    "checksRun": [
+      "catalog-grounding",
+      "repatriation-registry",
+      "registry:interpol-swoa#grounded-search",
+      "registry:interpol-id-art#referral-only",
+      "registry:fbi-nsaf#grounded-search",
+      "registry:carabinieri-tpc#grounded-search",
+      "registry:lostart-de#grounded-search",
+      "registry:getty-provenance-index#grounded-search",
+      "registry:icom-red-lists#grounded-search",
+      "registry:wikidata#structured-api",
+      "registry:art-loss-register#paid-x402"
+    ],
+    "assessedAt": "2026-07-23T14:59:31.040Z"
+  },
+  "proof": {
+    "type": "EcdsaSecp256k1RecoverySignature2020",
+    "created": "2026-07-23T14:59:31.040Z",
+    "verificationMethod": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c#blockchainAccountId",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "0x3ec8b7a00b6c3cfcc17c498bb4c250268fed1ae238395af8b132ae58438f2c145d12de3c128517e285edd845097630560b04d99c729eb84d88567e330a70238f1b"
+  }
+}

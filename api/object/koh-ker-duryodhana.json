@@ -1,0 +1,94 @@
+{
+  "id": "koh-ker-duryodhana",
+  "title": "Duryodhana of Prasat Chen (Koh Ker warrior)",
+  "culture": "Khmer (Koh Ker style)",
+  "period": "10th c.",
+  "icon": "🗿",
+  "accent": "#7a6a52",
+  "currentLocation": {
+    "institution": "National Museum of Cambodia",
+    "city": "Phnom Penh",
+    "country": "Cambodia"
+  },
+  "riskScore": 20,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "looting-signal",
+      "severity": "high",
+      "evidence": "Hacked from its pedestal at Prasat Chen, Koh Ker, during Cambodia's civil war. The feet were left in situ and later matched to the statue — physical proof of the removal."
+    },
+    {
+      "type": "trafficking-network",
+      "severity": "high",
+      "evidence": "Moved through the trafficking network associated with dealer Douglas Latchford, then consigned to a 2011 Sotheby's New York sale halted by a US forfeiture action."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Cambodia — a UNESCO 1970 source country with active and successful restitution claims for Koh Ker material."
+    }
+  ],
+  "repatriation": {
+    "status": "repatriated",
+    "claimant": "Kingdom of Cambodia",
+    "year": "2013",
+    "note": "Sotheby's and the consignor agreed to return the statue rather than litigate the US forfeiture case. It was handed to Cambodia in 2013 and displayed alongside other returned Prasat Chen figures."
+  },
+  "journey": [
+    {
+      "year": "10th c.",
+      "place": "Koh Ker",
+      "country": "Cambodia",
+      "event": "Carved for the Prasat Chen temple complex",
+      "type": "origin"
+    },
+    {
+      "year": "1970s",
+      "place": "Koh Ker",
+      "country": "Cambodia",
+      "event": "Cut from its pedestal and removed during the civil war",
+      "type": "looting"
+    },
+    {
+      "year": "1970s",
+      "place": "Bangkok",
+      "country": "Thailand",
+      "event": "Trafficked out through Thailand",
+      "type": "sale"
+    },
+    {
+      "year": "1975",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Sold at auction in London",
+      "type": "sale"
+    },
+    {
+      "year": "2011",
+      "place": "New York",
+      "country": "United States",
+      "event": "Withdrawn from a Sotheby's sale after US authorities intervened",
+      "type": "contested"
+    },
+    {
+      "year": "2013",
+      "place": "Phnom Penh",
+      "country": "Cambodia",
+      "event": "Returned to Cambodia",
+      "type": "repatriation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "ICOM Red List — Cambodia",
+      "url": "https://icom.museum/en/resources/red-lists/",
+      "issuer": "ICOM"
+    },
+    {
+      "title": "UNESCO 1970 Convention",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    }
+  ]
+}

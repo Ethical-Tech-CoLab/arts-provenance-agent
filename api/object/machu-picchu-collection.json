@@ -1,0 +1,82 @@
+{
+  "id": "machu-picchu-collection",
+  "title": "Machu Picchu excavation collection (Bingham material)",
+  "culture": "Inca",
+  "period": "15th c.; excavated 1911–15",
+  "icon": "⛏️",
+  "accent": "#9a6b3f",
+  "currentLocation": {
+    "institution": "Museo Machu Picchu, Casa Concha",
+    "city": "Cusco",
+    "country": "Peru"
+  },
+  "riskScore": 46,
+  "riskLevel": "medium",
+  "redFlags": [
+    {
+      "type": "contested-export",
+      "severity": "medium",
+      "evidence": "Removed by Hiram Bingham's Yale expeditions in 1911–1915 under Peruvian decrees Peru maintained were loans requiring return; Yale disputed that reading for decades."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Peru — a UNESCO 1970 source country that pursued the claim through US federal court."
+    }
+  ],
+  "repatriation": {
+    "status": "repatriated",
+    "claimant": "Republic of Peru",
+    "year": "2011–2012",
+    "note": "Peru sued Yale in 2008; a 2010 agreement and a memorandum with the Universidad Nacional de San Antonio Abad del Cusco led to the material returning in three shipments across 2011–2012, where it is now held and displayed in Cusco."
+  },
+  "journey": [
+    {
+      "year": "15th c.",
+      "place": "Machu Picchu",
+      "country": "Peru",
+      "event": "Made and deposited at the Inca site",
+      "type": "origin"
+    },
+    {
+      "year": "1911–15",
+      "place": "Machu Picchu",
+      "country": "Peru",
+      "event": "Excavated by the Yale Peruvian Expeditions",
+      "type": "excavation"
+    },
+    {
+      "year": "1912–16",
+      "place": "New Haven",
+      "country": "United States",
+      "event": "Shipped to Yale under permits Peru treated as loans",
+      "type": "museum"
+    },
+    {
+      "year": "2008",
+      "place": "Washington DC",
+      "country": "United States",
+      "event": "Peru sues Yale in US federal court",
+      "type": "contested"
+    },
+    {
+      "year": "2011",
+      "place": "Cusco",
+      "country": "Peru",
+      "event": "First shipment returns to Peru",
+      "type": "repatriation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "UNESCO 1970 Convention",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    },
+    {
+      "title": "ICOM Red List — Latin America",
+      "url": "https://icom.museum/en/resources/red-lists/",
+      "issuer": "ICOM"
+    }
+  ]
+}

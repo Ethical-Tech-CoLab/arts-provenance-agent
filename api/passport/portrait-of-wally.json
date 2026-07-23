@@ -7,82 +7,90 @@
     "DigitalProvenancePassport"
   ],
   "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
-  "validFrom": "2026-07-23T14:59:30.705Z",
+  "validFrom": "2026-07-23T14:59:34.321Z",
   "credentialSubject": {
-    "id": "urn:artwork:rosetta-stone",
-    "title": "Rosetta Stone",
-    "artist": null,
-    "culture": "Ptolemaic Egypt",
+    "id": "urn:artwork:portrait-of-wally",
+    "title": "Portrait of Wally Neuzil",
+    "artist": "Egon Schiele",
+    "culture": "Austrian (Expressionism)",
     "currentLocation": {
-      "institution": "British Museum",
-      "city": "London",
-      "country": "United Kingdom"
+      "institution": "Leopold Museum",
+      "city": "Vienna",
+      "country": "Austria"
     },
     "provenanceJourney": [
       {
-        "year": "196 BCE",
-        "place": "Memphis",
-        "country": "Egypt",
-        "event": "Decree inscribed",
+        "year": "1912",
+        "place": "Vienna",
+        "country": "Austria",
+        "event": "Painted; later owned by dealer Lea Bondi Jaray",
         "type": "origin"
       },
       {
-        "year": "1799",
-        "place": "Rosetta (Rashid)",
-        "country": "Egypt",
-        "event": "Found by French soldiers",
-        "type": "excavation"
-      },
-      {
-        "year": "1801",
-        "place": "Alexandria",
-        "country": "Egypt",
-        "event": "Seized by British forces",
+        "year": "1939",
+        "place": "Vienna",
+        "country": "Austria",
+        "event": "Taken from Bondi's gallery under Aryanisation",
         "type": "looting"
       },
       {
-        "year": "1802",
-        "place": "London",
-        "country": "United Kingdom",
-        "event": "Entered the British Museum",
+        "year": "1950s",
+        "place": "Vienna",
+        "country": "Austria",
+        "event": "Misidentified in post-war restitution; enters the Austrian National Gallery",
         "type": "museum"
       },
       {
-        "year": "Present",
-        "place": "London",
-        "country": "United Kingdom",
-        "event": "Contested by Egypt",
-        "type": "contested"
-      }
-    ],
-    "confidenceScore": 34,
-    "redFlags": [
-      {
-        "type": "wartime-seizure",
-        "severity": "high",
-        "evidence": "Ceded to Britain under the 1801 Capitulation of Alexandria after French defeat."
+        "year": "1954",
+        "place": "Vienna",
+        "country": "Austria",
+        "event": "Acquired by Rudolf Leopold",
+        "type": "sale"
       },
       {
-        "type": "source-country-origin",
+        "year": "1998",
+        "place": "New York",
+        "country": "United States",
+        "event": "Seized by US authorities while on loan to MoMA",
+        "type": "contested"
+      },
+      {
+        "year": "2010",
+        "place": "Vienna",
+        "country": "Austria",
+        "event": "$19M settlement; painting stays at the Leopold Museum",
+        "type": "sale"
+      }
+    ],
+    "confidenceScore": 62,
+    "redFlags": [
+      {
+        "type": "nazi-era-seizure",
+        "severity": "high",
+        "evidence": "Taken from Lea Bondi Jaray's Vienna gallery in 1939 under the Nazi 'Aryanisation' of Jewish-owned businesses."
+      },
+      {
+        "type": "provenance-gap",
         "severity": "medium",
-        "evidence": "Egypt has repeatedly requested its return."
+        "evidence": "Post-war restitution machinery misidentified it as part of a different collection, routing it into the Austrian National Gallery and then Rudolf Leopold's collection instead of back to its owner."
       }
     ],
     "repatriation": {
-      "status": "contested",
-      "claimant": "Egypt",
-      "note": "Egypt has formally requested repatriation; the British Museum retains it."
+      "status": "settled",
+      "claimant": "Estate of Lea Bondi Jaray",
+      "year": "2010",
+      "note": "Seized by US authorities in 1998 while on loan to MoMA in New York. Twelve years of litigation ended in July 2010 with the Leopold Museum paying the Bondi estate $19M and keeping the painting — a settlement, not a return."
     },
     "sources": [
       {
-        "title": "British Museum — object record",
-        "url": "https://www.britishmuseum.org",
-        "issuer": "British Museum"
+        "title": "Lost Art Database",
+        "url": "https://www.lostart.de/en/search",
+        "issuer": "German Lost Art Foundation"
       },
       {
-        "title": "UNESCO 1970 Convention",
-        "url": "https://www.unesco.org/en/fight-illicit-trafficking",
-        "issuer": "UNESCO"
+        "title": "Leopold Museum — collection",
+        "url": "https://www.leopoldmuseum.org",
+        "issuer": "Leopold Museum"
       }
     ],
     "registryChecks": [
@@ -95,7 +103,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-        "checkedAt": "2026-07-23T14:59:30.627Z"
+        "checkedAt": "2026-07-23T14:59:34.040Z"
       },
       {
         "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -106,7 +114,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-        "checkedAt": "2026-07-23T14:59:30.586Z"
+        "checkedAt": "2026-07-23T14:59:33.997Z"
       },
       {
         "registry": "FBI National Stolen Art File",
@@ -117,7 +125,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://artcrimes.fbi.gov/",
-        "checkedAt": "2026-07-23T14:59:30.636Z"
+        "checkedAt": "2026-07-23T14:59:34.038Z"
       },
       {
         "registry": "Carabinieri TPC — Leonardo database",
@@ -128,7 +136,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-        "checkedAt": "2026-07-23T14:59:30.656Z"
+        "checkedAt": "2026-07-23T14:59:34.040Z"
       },
       {
         "registry": "Lost Art Database",
@@ -139,7 +147,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.lostart.de/en/search",
-        "checkedAt": "2026-07-23T14:59:30.645Z"
+        "checkedAt": "2026-07-23T14:59:34.037Z"
       },
       {
         "registry": "Getty Provenance Index",
@@ -150,7 +158,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-        "checkedAt": "2026-07-23T14:59:30.649Z"
+        "checkedAt": "2026-07-23T14:59:34.036Z"
       },
       {
         "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -161,44 +169,64 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://icom.museum/en/resources/red-lists/",
-        "checkedAt": "2026-07-23T14:59:30.637Z"
+        "checkedAt": "2026-07-23T14:59:34.041Z"
       },
       {
         "registry": "Wikidata (structured provenance events)",
         "assertedBy": "Wikidata contributors — community-maintained, not an authority",
         "access": "structured-api",
-        "verdict": "no-evidence-found",
-        "method": "SPARQL over Q48584 (Rosetta Stone) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 3 label-search candidate(s): Q48584 Rosetta Stone; Q4048553 Rosetta Stone; Q7368695 Rosetta Stone. Entity resolution is shown so the choice can be audited rather than trusted.",
+        "verdict": "possible-match",
+        "method": "SPARQL over Q1555137 (Portrait of Wally) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 1 label-search candidate(s): Q1555137 Portrait of Wally. Entity resolution is shown so the choice can be audited rather than trusted.",
         "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
         "hits": [
           {
-            "claim": "location of discovery: Fort Julien",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "significant event: claim for restitution of an artwork",
+            "source": "http://web.archive.org/web/20200823153445/https://hyperallergic.com/51575/andrew-shea-portrait-of-wally/",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: erroneous provenance (artwork) (1966-01-01)",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: erroneous provenance (artwork) (1947-01-01)",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
+            "riskRelevant": true
+          },
+          {
+            "claim": "creator: Egon Schiele",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
             "riskRelevant": false
           },
           {
-            "claim": "inception: -0195-01-01T00:00:00Z",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "inception: 1912-01-01T00:00:00Z",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
             "riskRelevant": false
           },
           {
-            "claim": "collection: British Museum",
-            "source": "http://www.britishmuseum.org/explore/highlights/highlight_objects/aes/t/the_rosetta_stone.aspx",
+            "claim": "location: Leopold Museum",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
             "riskRelevant": false
           },
           {
-            "claim": "location: British Museum",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "significant event: lawsuit",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
             "riskRelevant": false
           },
           {
-            "claim": "country of origin: history of Ptolemaic Egypt",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "collection: Leopold Museum",
+            "source": "https://www.wikidata.org/wiki/Q1555137",
+            "riskRelevant": false
+          },
+          {
+            "claim": "significant event: legal settlement (2010-01-01)",
+            "source": "https://www.justice.gov/archive/usao/nys/pressreleases/July10/portraitofwallysettlementpr.pdf",
             "riskRelevant": false
           }
         ],
-        "officialSearch": "https://www.wikidata.org/wiki/Q48584",
-        "checkedAt": "2026-07-23T14:59:30.704Z"
+        "officialSearch": "https://www.wikidata.org/wiki/Q1555137",
+        "checkedAt": "2026-07-23T14:59:34.319Z"
       },
       {
         "registry": "Art Loss Register",
@@ -209,7 +237,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.artloss.com/",
-        "checkedAt": "2026-07-23T14:59:30.588Z"
+        "checkedAt": "2026-07-23T14:59:33.999Z"
       }
     ],
     "checksRun": [
@@ -225,13 +253,13 @@
       "registry:wikidata#structured-api",
       "registry:art-loss-register#paid-x402"
     ],
-    "assessedAt": "2026-07-23T14:59:30.705Z"
+    "assessedAt": "2026-07-23T14:59:34.321Z"
   },
   "proof": {
     "type": "EcdsaSecp256k1RecoverySignature2020",
-    "created": "2026-07-23T14:59:30.705Z",
+    "created": "2026-07-23T14:59:34.321Z",
     "verificationMethod": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c#blockchainAccountId",
     "proofPurpose": "assertionMethod",
-    "proofValue": "0x460aeb10e20e37105a339329e310b8748203f38062c573984c14ad67049601495d041c46d5a4d0f7de925932a43148092414f158572f05c5fc08f068bb9d53401c"
+    "proofValue": "0xc3d3fdfec8c9cadeeec29cb1621ba5eefd9ff975add4419280399918c698eb661e7532937e50b0a3253d79723ad8edf30206b720ac2ec8b1e76119aeb27deea31b"
   }
 }

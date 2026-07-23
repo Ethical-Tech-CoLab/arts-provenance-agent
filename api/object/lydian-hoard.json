@@ -1,1 +1,75 @@
-{"id":"lydian-hoard","title":"Lydian Hoard (Karun Treasure)","culture":"Lydian / Achaemenid","period":"c. 7th–6th c. BCE","icon":"💰","accent":"#b08d2e","currentLocation":{"institution":"Uşak Museum","city":"Uşak","country":"Turkey"},"riskScore":22,"riskLevel":"high","redFlags":[{"type":"looting-signal","severity":"high","evidence":"Looted from tumuli in the Uşak region of western Turkey in the 1960s."},{"type":"concealment","severity":"high","evidence":"The Met held the pieces in storage and obscured their origin for years."}],"repatriation":{"status":"repatriated","claimant":"Turkey","year":"1993","note":"Returned by the Met to Turkey in 1993 after litigation."},"journey":[{"year":"c. 6th c. BCE","place":"Lydia (Uşak)","country":"Turkey","event":"Interred in burial tumuli","type":"origin"},{"year":"1960s","place":"Uşak","country":"Turkey","event":"Looted from tombs","type":"looting"},{"year":"1966–70","place":"New York","country":"United States","event":"Acquired by the Met","type":"museum"},{"year":"1993","place":"Uşak","country":"Turkey","event":"Repatriated to Turkey","type":"repatriation"}],"sources":[{"title":"The Met — return history","url":"https://www.metmuseum.org","issuer":"The Metropolitan Museum of Art"},{"title":"ICOM red list","url":"https://icom.museum","issuer":"ICOM"}]}
+{
+  "id": "lydian-hoard",
+  "title": "Lydian Hoard (Karun Treasure)",
+  "culture": "Lydian / Achaemenid",
+  "period": "c. 7th–6th c. BCE",
+  "icon": "💰",
+  "accent": "#b08d2e",
+  "currentLocation": {
+    "institution": "Uşak Museum",
+    "city": "Uşak",
+    "country": "Turkey"
+  },
+  "riskScore": 22,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "looting-signal",
+      "severity": "high",
+      "evidence": "Looted from tumuli in the Uşak region of western Turkey in the 1960s."
+    },
+    {
+      "type": "concealment",
+      "severity": "high",
+      "evidence": "The Met held the pieces in storage and obscured their origin for years."
+    }
+  ],
+  "repatriation": {
+    "status": "repatriated",
+    "claimant": "Turkey",
+    "year": "1993",
+    "note": "Returned by the Met to Turkey in 1993 after litigation."
+  },
+  "journey": [
+    {
+      "year": "c. 6th c. BCE",
+      "place": "Lydia (Uşak)",
+      "country": "Turkey",
+      "event": "Interred in burial tumuli",
+      "type": "origin"
+    },
+    {
+      "year": "1960s",
+      "place": "Uşak",
+      "country": "Turkey",
+      "event": "Looted from tombs",
+      "type": "looting"
+    },
+    {
+      "year": "1966–70",
+      "place": "New York",
+      "country": "United States",
+      "event": "Acquired by the Met",
+      "type": "museum"
+    },
+    {
+      "year": "1993",
+      "place": "Uşak",
+      "country": "Turkey",
+      "event": "Repatriated to Turkey",
+      "type": "repatriation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Met — return history",
+      "url": "https://www.metmuseum.org",
+      "issuer": "The Metropolitan Museum of Art"
+    },
+    {
+      "title": "ICOM red list",
+      "url": "https://icom.museum",
+      "issuer": "ICOM"
+    }
+  ]
+}

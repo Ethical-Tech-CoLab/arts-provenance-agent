@@ -1,0 +1,93 @@
+{
+  "id": "victorious-youth",
+  "title": "Victorious Youth (Atleta di Fano)",
+  "culture": "Ancient Greek bronze",
+  "period": "c. 300–100 BCE",
+  "icon": "🥉",
+  "accent": "#6b7f5e",
+  "currentLocation": {
+    "institution": "Getty Villa",
+    "city": "Malibu",
+    "country": "United States"
+  },
+  "riskScore": 26,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "illicit-export",
+      "severity": "high",
+      "evidence": "Netted by Italian fishermen in the Adriatic in 1964 and moved out of Italy without an export licence; Italian prosecutions followed over its handling."
+    },
+    {
+      "type": "contested-title",
+      "severity": "high",
+      "evidence": "Italian courts ordered forfeiture and the Court of Cassation upheld it; in 2024 the European Court of Human Rights rejected the Getty's challenge to the confiscation order."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Italy — a UNESCO 1970 source country with an enforceable domestic confiscation order outstanding."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Italian Republic",
+    "note": "Italy's confiscation order stands after the 2024 ECHR ruling. The Getty disputes Italian jurisdiction over an object it says was acquired in international waters and outside Italy, and the bronze remains at the Getty Villa."
+  },
+  "journey": [
+    {
+      "year": "c. 300 BCE",
+      "place": "Greece",
+      "country": "Greece",
+      "event": "Cast in a Greek workshop",
+      "type": "origin"
+    },
+    {
+      "year": "1964",
+      "place": "Fano",
+      "country": "Italy",
+      "event": "Recovered in fishing nets in the Adriatic",
+      "type": "excavation"
+    },
+    {
+      "year": "1964–70s",
+      "place": "Various",
+      "country": "Italy",
+      "event": "Moved through dealers; leaves Italy without an export licence",
+      "type": "sale"
+    },
+    {
+      "year": "1977",
+      "place": "Malibu",
+      "country": "United States",
+      "event": "Acquired by the J. Paul Getty Museum",
+      "type": "museum"
+    },
+    {
+      "year": "2018",
+      "place": "Rome",
+      "country": "Italy",
+      "event": "Italian Court of Cassation upholds the forfeiture order",
+      "type": "contested"
+    },
+    {
+      "year": "2024",
+      "place": "Strasbourg",
+      "country": "France",
+      "event": "ECHR rejects the Getty's challenge to the confiscation",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Getty — Victorious Youth collection record",
+      "url": "https://www.getty.edu",
+      "issuer": "J. Paul Getty Museum"
+    },
+    {
+      "title": "Carabinieri TPC — illicitly removed cultural property",
+      "url": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
+      "issuer": "Carabinieri TPC (Italy)"
+    }
+  ]
+}

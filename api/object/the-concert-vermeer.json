@@ -1,0 +1,88 @@
+{
+  "id": "the-concert-vermeer",
+  "title": "The Concert",
+  "artist": "Johannes Vermeer",
+  "culture": "Dutch Golden Age",
+  "period": "c. 1664",
+  "icon": "🎼",
+  "accent": "#2f5d50",
+  "currentLocation": {
+    "institution": "Unknown — stolen, still at large",
+    "city": "—",
+    "country": "Unknown"
+  },
+  "riskScore": 6,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "active-theft",
+      "severity": "high",
+      "evidence": "Stolen from the Isabella Stewart Gardner Museum, Boston, in the early hours of 18 March 1990 by two men posing as police officers. Never recovered."
+    },
+    {
+      "type": "register-listed",
+      "severity": "high",
+      "evidence": "Carried on the FBI Art Crime Team's stolen-art listings and INTERPOL's Stolen Works of Art database; the museum's reward for information stands at $10 million."
+    },
+    {
+      "type": "no-lawful-market-title",
+      "severity": "high",
+      "evidence": "Title never left the museum. No purchase of this object can be lawful — any offer is prima facie evidence of a crime."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Isabella Stewart Gardner Museum",
+    "note": "Not a repatriation dispute but an unsolved theft. Ownership is undisputed; the object is missing. The empty frame still hangs in the Dutch Room."
+  },
+  "journey": [
+    {
+      "year": "c. 1664",
+      "place": "Delft",
+      "country": "Netherlands",
+      "event": "Painted by Vermeer",
+      "type": "origin"
+    },
+    {
+      "year": "1892",
+      "place": "Paris",
+      "country": "France",
+      "event": "Bought at auction by Isabella Stewart Gardner",
+      "type": "sale"
+    },
+    {
+      "year": "1903",
+      "place": "Boston",
+      "country": "United States",
+      "event": "Installed in the Gardner Museum's Dutch Room",
+      "type": "museum"
+    },
+    {
+      "year": "1990",
+      "place": "Boston",
+      "country": "United States",
+      "event": "Stolen in the Gardner heist with 12 other works",
+      "type": "looting"
+    },
+    {
+      "year": "Present",
+      "place": "Unknown",
+      "country": "Unknown",
+      "event": "Still missing; investigation open",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "FBI Art Crime Team — National Stolen Art File",
+      "url": "https://artcrimes.fbi.gov/",
+      "issuer": "FBI Art Crime Team"
+    },
+    {
+      "title": "INTERPOL Stolen Works of Art Database",
+      "url": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+      "issuer": "INTERPOL"
+    }
+  ],
+  "estimatedMarketValueUSD": 200000000
+}

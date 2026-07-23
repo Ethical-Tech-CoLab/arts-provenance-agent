@@ -1,0 +1,91 @@
+{
+  "id": "adele-bloch-bauer-i",
+  "title": "Portrait of Adele Bloch-Bauer I",
+  "artist": "Gustav Klimt",
+  "culture": "Austrian (Vienna Secession)",
+  "period": "1907",
+  "icon": "👗",
+  "accent": "#c9a227",
+  "currentLocation": {
+    "institution": "Neue Galerie",
+    "city": "New York",
+    "country": "United States"
+  },
+  "riskScore": 74,
+  "riskLevel": "medium",
+  "redFlags": [
+    {
+      "type": "nazi-era-seizure",
+      "severity": "high",
+      "evidence": "The Bloch-Bauer estate was seized after the 1938 Anschluss; the painting passed to the Austrian Gallery Belvedere, which held it for close to six decades."
+    },
+    {
+      "type": "contested-title-resolved",
+      "severity": "low",
+      "evidence": "Title was disputed until an Austrian arbitration panel ruled for the heirs in 2006. The gap is documented, not open."
+    }
+  ],
+  "repatriation": {
+    "status": "repatriated",
+    "claimant": "Maria Altmann and the Bloch-Bauer heirs",
+    "year": "2006",
+    "note": "After Altmann v. Republic of Austria reached the US Supreme Court in 2004, an Austrian arbitration panel awarded the painting to the heirs in January 2006. It was sold to Ronald Lauder for the Neue Galerie for a reported $135M — then the highest price paid for a painting."
+  },
+  "journey": [
+    {
+      "year": "1907",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Painted on commission from Ferdinand Bloch-Bauer",
+      "type": "origin"
+    },
+    {
+      "year": "1938",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Bloch-Bauer assets seized after the Anschluss; the family flees",
+      "type": "looting"
+    },
+    {
+      "year": "1941",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Enters the Austrian Gallery Belvedere",
+      "type": "museum"
+    },
+    {
+      "year": "1998–2005",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Restitution claim; litigation reaches the US Supreme Court in 2004",
+      "type": "contested"
+    },
+    {
+      "year": "2006",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Arbitration panel awards the painting to the heirs",
+      "type": "repatriation"
+    },
+    {
+      "year": "2006",
+      "place": "New York",
+      "country": "United States",
+      "event": "Acquired for the Neue Galerie",
+      "type": "museum"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Lost Art Database — Nazi-era spoliation register",
+      "url": "https://www.lostart.de/en/search",
+      "issuer": "German Lost Art Foundation"
+    },
+    {
+      "title": "Neue Galerie — collection",
+      "url": "https://www.neuegalerie.org",
+      "issuer": "Neue Galerie New York"
+    }
+  ],
+  "estimatedMarketValueUSD": 135000000
+}

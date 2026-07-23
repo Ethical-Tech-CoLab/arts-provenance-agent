@@ -1,1 +1,51 @@
-{"id":"madame-x","title":"Madame X (Madame Pierre Gautreau)","artist":"John Singer Sargent","culture":"American / French","period":"1883–84","icon":"🖼️","accent":"#3f6f8a","currentLocation":{"institution":"The Metropolitan Museum of Art","city":"New York","country":"United States"},"riskScore":93,"riskLevel":"low","redFlags":[],"repatriation":{"status":"clear","note":"Continuous, documented ownership; acquired from the artist. No outstanding claims."},"journey":[{"year":"1884","place":"Paris","country":"France","event":"Exhibited at the Paris Salon","type":"origin"},{"year":"1884–1916","place":"Paris","country":"France","event":"Retained in the artist's studio","type":"sale"},{"year":"1916","place":"New York","country":"United States","event":"Purchased by the Met from Sargent","type":"museum"}],"sources":[{"title":"The Met — collection record","url":"https://www.metmuseum.org/art/collection","issuer":"The Metropolitan Museum of Art"}]}
+{
+  "id": "madame-x",
+  "title": "Madame X (Madame Pierre Gautreau)",
+  "artist": "John Singer Sargent",
+  "culture": "American / French",
+  "period": "1883–84",
+  "icon": "🖼️",
+  "accent": "#3f6f8a",
+  "currentLocation": {
+    "institution": "The Metropolitan Museum of Art",
+    "city": "New York",
+    "country": "United States"
+  },
+  "riskScore": 93,
+  "riskLevel": "low",
+  "redFlags": [],
+  "repatriation": {
+    "status": "clear",
+    "note": "Continuous, documented ownership; acquired from the artist. No outstanding claims."
+  },
+  "journey": [
+    {
+      "year": "1884",
+      "place": "Paris",
+      "country": "France",
+      "event": "Exhibited at the Paris Salon",
+      "type": "origin"
+    },
+    {
+      "year": "1884–1916",
+      "place": "Paris",
+      "country": "France",
+      "event": "Retained in the artist's studio",
+      "type": "sale"
+    },
+    {
+      "year": "1916",
+      "place": "New York",
+      "country": "United States",
+      "event": "Purchased by the Met from Sargent",
+      "type": "museum"
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Met — collection record",
+      "url": "https://www.metmuseum.org/art/collection",
+      "issuer": "The Metropolitan Museum of Art"
+    }
+  ]
+}

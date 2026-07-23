@@ -1,1 +1,5 @@
-{"valid":true,"issuer":"did:pkh:eip155:84532:0x82ba407f9C1ff162E0f1D605fC5BC03d9a4F8499","recoveredAddress":"0x82ba407f9C1ff162E0f1D605fC5BC03d9a4F8499"}
+{
+  "valid": true,
+  "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
+  "recoveredAddress": "0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c"
+}

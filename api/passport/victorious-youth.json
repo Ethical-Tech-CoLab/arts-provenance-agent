@@ -7,82 +7,94 @@
     "DigitalProvenancePassport"
   ],
   "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
-  "validFrom": "2026-07-23T14:59:30.705Z",
+  "validFrom": "2026-07-23T14:59:36.273Z",
   "credentialSubject": {
-    "id": "urn:artwork:rosetta-stone",
-    "title": "Rosetta Stone",
+    "id": "urn:artwork:victorious-youth",
+    "title": "Victorious Youth (Atleta di Fano)",
     "artist": null,
-    "culture": "Ptolemaic Egypt",
+    "culture": "Ancient Greek bronze",
     "currentLocation": {
-      "institution": "British Museum",
-      "city": "London",
-      "country": "United Kingdom"
+      "institution": "Getty Villa",
+      "city": "Malibu",
+      "country": "United States"
     },
     "provenanceJourney": [
       {
-        "year": "196 BCE",
-        "place": "Memphis",
-        "country": "Egypt",
-        "event": "Decree inscribed",
+        "year": "c. 300 BCE",
+        "place": "Greece",
+        "country": "Greece",
+        "event": "Cast in a Greek workshop",
         "type": "origin"
       },
       {
-        "year": "1799",
-        "place": "Rosetta (Rashid)",
-        "country": "Egypt",
-        "event": "Found by French soldiers",
+        "year": "1964",
+        "place": "Fano",
+        "country": "Italy",
+        "event": "Recovered in fishing nets in the Adriatic",
         "type": "excavation"
       },
       {
-        "year": "1801",
-        "place": "Alexandria",
-        "country": "Egypt",
-        "event": "Seized by British forces",
-        "type": "looting"
+        "year": "1964–70s",
+        "place": "Various",
+        "country": "Italy",
+        "event": "Moved through dealers; leaves Italy without an export licence",
+        "type": "sale"
       },
       {
-        "year": "1802",
-        "place": "London",
-        "country": "United Kingdom",
-        "event": "Entered the British Museum",
+        "year": "1977",
+        "place": "Malibu",
+        "country": "United States",
+        "event": "Acquired by the J. Paul Getty Museum",
         "type": "museum"
       },
       {
-        "year": "Present",
-        "place": "London",
-        "country": "United Kingdom",
-        "event": "Contested by Egypt",
+        "year": "2018",
+        "place": "Rome",
+        "country": "Italy",
+        "event": "Italian Court of Cassation upholds the forfeiture order",
+        "type": "contested"
+      },
+      {
+        "year": "2024",
+        "place": "Strasbourg",
+        "country": "France",
+        "event": "ECHR rejects the Getty's challenge to the confiscation",
         "type": "contested"
       }
     ],
-    "confidenceScore": 34,
+    "confidenceScore": 26,
     "redFlags": [
       {
-        "type": "wartime-seizure",
+        "type": "illicit-export",
         "severity": "high",
-        "evidence": "Ceded to Britain under the 1801 Capitulation of Alexandria after French defeat."
+        "evidence": "Netted by Italian fishermen in the Adriatic in 1964 and moved out of Italy without an export licence; Italian prosecutions followed over its handling."
+      },
+      {
+        "type": "contested-title",
+        "severity": "high",
+        "evidence": "Italian courts ordered forfeiture and the Court of Cassation upheld it; in 2024 the European Court of Human Rights rejected the Getty's challenge to the confiscation order."
       },
       {
         "type": "source-country-origin",
         "severity": "medium",
-        "evidence": "Egypt has repeatedly requested its return."
+        "evidence": "Italy — a UNESCO 1970 source country with an enforceable domestic confiscation order outstanding."
       }
     ],
     "repatriation": {
       "status": "contested",
-      "claimant": "Egypt",
-      "note": "Egypt has formally requested repatriation; the British Museum retains it."
+      "claimant": "Italian Republic",
+      "note": "Italy's confiscation order stands after the 2024 ECHR ruling. The Getty disputes Italian jurisdiction over an object it says was acquired in international waters and outside Italy, and the bronze remains at the Getty Villa."
     },
     "sources": [
       {
-        "title": "British Museum — object record",
-        "url": "https://www.britishmuseum.org",
-        "issuer": "British Museum"
+        "title": "Getty — Victorious Youth collection record",
+        "url": "https://www.getty.edu",
+        "issuer": "J. Paul Getty Museum"
       },
       {
-        "title": "UNESCO 1970 Convention",
-        "url": "https://www.unesco.org/en/fight-illicit-trafficking",
-        "issuer": "UNESCO"
+        "title": "Carabinieri TPC — illicitly removed cultural property",
+        "url": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
+        "issuer": "Carabinieri TPC (Italy)"
       }
     ],
     "registryChecks": [
@@ -95,7 +107,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-        "checkedAt": "2026-07-23T14:59:30.627Z"
+        "checkedAt": "2026-07-23T14:59:36.060Z"
       },
       {
         "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -106,7 +118,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-        "checkedAt": "2026-07-23T14:59:30.586Z"
+        "checkedAt": "2026-07-23T14:59:35.973Z"
       },
       {
         "registry": "FBI National Stolen Art File",
@@ -117,7 +129,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://artcrimes.fbi.gov/",
-        "checkedAt": "2026-07-23T14:59:30.636Z"
+        "checkedAt": "2026-07-23T14:59:36.061Z"
       },
       {
         "registry": "Carabinieri TPC — Leonardo database",
@@ -128,7 +140,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-        "checkedAt": "2026-07-23T14:59:30.656Z"
+        "checkedAt": "2026-07-23T14:59:36.061Z"
       },
       {
         "registry": "Lost Art Database",
@@ -139,7 +151,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.lostart.de/en/search",
-        "checkedAt": "2026-07-23T14:59:30.645Z"
+        "checkedAt": "2026-07-23T14:59:36.062Z"
       },
       {
         "registry": "Getty Provenance Index",
@@ -150,7 +162,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-        "checkedAt": "2026-07-23T14:59:30.649Z"
+        "checkedAt": "2026-07-23T14:59:36.062Z"
       },
       {
         "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -161,44 +173,34 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://icom.museum/en/resources/red-lists/",
-        "checkedAt": "2026-07-23T14:59:30.637Z"
+        "checkedAt": "2026-07-23T14:59:36.062Z"
       },
       {
         "registry": "Wikidata (structured provenance events)",
         "assertedBy": "Wikidata contributors — community-maintained, not an authority",
         "access": "structured-api",
         "verdict": "no-evidence-found",
-        "method": "SPARQL over Q48584 (Rosetta Stone) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 3 label-search candidate(s): Q48584 Rosetta Stone; Q4048553 Rosetta Stone; Q7368695 Rosetta Stone. Entity resolution is shown so the choice can be audited rather than trusted.",
+        "method": "SPARQL over Q642140 (Victorious Youth) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 2 label-search candidate(s): Q642140 Victorious Youth; Q66564581 Victorious Youth. Entity resolution is shown so the choice can be audited rather than trusted.",
         "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
         "hits": [
           {
-            "claim": "location of discovery: Fort Julien",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "collection: J. Paul Getty Museum",
+            "source": "https://www.wikidata.org/wiki/Q642140",
             "riskRelevant": false
           },
           {
-            "claim": "inception: -0195-01-01T00:00:00Z",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "location: Getty Villa",
+            "source": "https://www.wikidata.org/wiki/Q642140",
             "riskRelevant": false
           },
           {
-            "claim": "collection: British Museum",
-            "source": "http://www.britishmuseum.org/explore/highlights/highlight_objects/aes/t/the_rosetta_stone.aspx",
-            "riskRelevant": false
-          },
-          {
-            "claim": "location: British Museum",
-            "source": "https://www.wikidata.org/wiki/Q48584",
-            "riskRelevant": false
-          },
-          {
-            "claim": "country of origin: history of Ptolemaic Egypt",
-            "source": "https://www.wikidata.org/wiki/Q48584",
+            "claim": "location of creation: Ancient Greece",
+            "source": "https://www.wikidata.org/wiki/Q642140",
             "riskRelevant": false
           }
         ],
-        "officialSearch": "https://www.wikidata.org/wiki/Q48584",
-        "checkedAt": "2026-07-23T14:59:30.704Z"
+        "officialSearch": "https://www.wikidata.org/wiki/Q642140",
+        "checkedAt": "2026-07-23T14:59:36.272Z"
       },
       {
         "registry": "Art Loss Register",
@@ -209,7 +211,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.artloss.com/",
-        "checkedAt": "2026-07-23T14:59:30.588Z"
+        "checkedAt": "2026-07-23T14:59:35.975Z"
       }
     ],
     "checksRun": [
@@ -225,13 +227,13 @@
       "registry:wikidata#structured-api",
       "registry:art-loss-register#paid-x402"
     ],
-    "assessedAt": "2026-07-23T14:59:30.705Z"
+    "assessedAt": "2026-07-23T14:59:36.273Z"
   },
   "proof": {
     "type": "EcdsaSecp256k1RecoverySignature2020",
-    "created": "2026-07-23T14:59:30.705Z",
+    "created": "2026-07-23T14:59:36.273Z",
     "verificationMethod": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c#blockchainAccountId",
     "proofPurpose": "assertionMethod",
-    "proofValue": "0x460aeb10e20e37105a339329e310b8748203f38062c573984c14ad67049601495d041c46d5a4d0f7de925932a43148092414f158572f05c5fc08f068bb9d53401c"
+    "proofValue": "0xf619d59d06674301bae64e4dc1ed1f0a53d94425f373f4bc234426a20ccb76ea37434429db6b66e3db688885a8cbf6199e1f6f37ee652b9ba44fb4b12ef0d10e1b"
   }
 }

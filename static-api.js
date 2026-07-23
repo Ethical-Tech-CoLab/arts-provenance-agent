@@ -1,12 +1,15 @@
 /**
  * Static shim for the Provenance Tracer demo.
  *
- * The real app talks to an Express + SSE backend running in DEMO_MODE=mock.
- * GitHub Pages can't run a server, so this file overrides `fetch` and
- * `EventSource` to serve pre-baked fixtures (captured from the mock backend)
- * from the sibling ./api/ folder. app.js is untouched — it just sees the same
- * shapes it always did. The live "Trace" run replays the recorded event
- * sequence on timers so it still animates like the real stream.
+ * The real app talks to an Express + SSE backend. GitHub Pages can't run a
+ * server, so this file overrides `fetch` and `EventSource` to serve pre-baked
+ * fixtures from the sibling ./api/ folder. app.js is untouched — it just sees
+ * the same shapes it always did. The live "Trace" run replays the recorded
+ * event sequence on timers so it still animates like the real stream.
+ *
+ * This file is the SOURCE of the shim; `npm run build:pages` copies it into the
+ * snapshot. It used to exist only on the gh-pages branch, which meant the
+ * published site could not be rebuilt from the repo.
  */
 (function () {
   // ./api relative to this document, so it works under the /arts-provenance-agent/ Pages subpath.
@@ -30,10 +33,16 @@
 
     if (route === "config") return ok(await json("config.json"));
     if (route === "catalog") return ok(await json("catalog.json"));
+    if (route === "registries") return ok(await json("registries.json"));
     if (route === "verify") return ok(await json("verify.json"));
     if (route === "run") return ok({ runId: "static" });
 
     let mm;
+    // Register checks for one object. Ordered before the bare-object route
+    // because /object/:id would otherwise not match this longer path anyway,
+    // but keeping the specific pattern first makes the intent obvious.
+    if ((mm = route.match(/^object\/([^/]+)\/registries$/)))
+      return ok(await json(`registries/${mm[1]}.json`));
     if ((mm = route.match(/^object\/([^/]+)\/passport$/)))
       return ok(await json(`passport/${mm[1]}.json`));
     if ((mm = route.match(/^object\/([^/]+)$/)))

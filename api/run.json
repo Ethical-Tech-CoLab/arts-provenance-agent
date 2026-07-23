@@ -1,1 +1,764 @@
-[{"phase": "intent", "message": "Assessing \u201cEuphronios Krater\u201d.", "data": {"title": "Euphronios Krater"}, "at": "2026-07-09T17:49:33.693Z"}, {"phase": "reasoning", "message": "Searching authoritative sources (Met, UNESCO, Art Loss Register)\u2026", "at": "2026-07-09T17:49:33.693Z"}, {"phase": "grounding", "message": "Grounded 3 cited fact(s).", "data": [{"claim": "Euphronios Krater \u2014 The Met (formerly), repatriated to Italy 2008", "sourceUrl": "https://www.metmuseum.org/press/news/2006/statement-by-the-metropolitan-museum-of-art", "sourceTitle": "Euphronios Krater \u2014 The Met (formerly), repatriated to Italy 2008", "sourceQuote": "The Metropolitan Museum of Art acquired the Euphronios (Sarpedon) krater in 1972 for $1 million. Following Italy's evidence of illicit excavation, the Met agreed in 2006 to transfer title; the krater was returned to Italy in January 2008.", "issuer": "The Metropolitan Museum of Art"}, {"claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri", "sourceUrl": "https://whc.unesco.org/en/list/", "sourceTitle": "Sarpedon Krater displayed at Villa Giulia / Cerveteri", "sourceQuote": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns.", "issuer": "UNESCO"}, {"claim": "Acquisition controversy and the Medici conviction", "sourceUrl": "https://www.artloss.com/news/", "sourceTitle": "Acquisition controversy and the Medici conviction", "sourceQuote": "Press and registry coverage tied the krater's surfacing in the early 1970s to dealer networks later subject to looting investigations; provenance before 1971 is undocumented.", "issuer": "Art Loss Register (public page)"}], "at": "2026-07-09T17:49:33.693Z"}, {"phase": "risk", "message": "Provenance confidence: 40/100.", "data": {"confidenceScore": 0, "redFlags": [{"type": "provenance-gap", "severity": "high", "evidence": "Authoritative sources show an undocumented period in the ownership timeline."}, {"type": "source-country-origin", "severity": "medium", "evidence": "Linked to italy \u2014 a UNESCO 1970 source country with active repatriation claims."}, {"type": "looting-signal", "severity": "high", "evidence": "Sources contain looting / repatriation language associated with this object or its type."}, {"type": "art-loss-register-match", "severity": "high", "evidence": "Art Loss Register premium search: MATCH: object family appears in repatriation/stolen records (MOCK fixture)."}], "rationale": "3 red flag(s) detected from authoritative sources; confidence reduced accordingly."}, "at": "2026-07-09T17:49:33.693Z"}, {"phase": "x402:offer", "message": "Premium Art Loss Register search available for $0.05 (USDC, mock (no settlement)).", "data": {"priceUSD": 0.05, "vendor": "http://localhost:4021", "network": "base-sepolia"}, "at": "2026-07-09T17:49:33.694Z"}, {"phase": "x402:decision", "message": "Confidence is 40/100 with 3 red flag(s). A $0.05 Art Loss Register search could materially change the record \u2014 worth paying.", "data": {"pay": true}, "at": "2026-07-09T17:49:33.694Z"}, {"phase": "x402:paid", "message": "Paid $0.05 \u2014 MATCH: object family appears in repatriation/stolen records (MOCK fixture).", "data": {"database": "Art Loss Register", "issuer": "The Art Loss Register (commercial due-diligence registry)", "priceUSD": 0.05, "paid": true, "settlement": {"mode": "mock", "network": "base-sepolia", "asset": "USDC", "amount": "0.05", "txHash": "0xMOCK_no_settlement_in_demo_mode", "payer": "did:demo:agent", "payee": "0xVendor", "settledAt": "2026-07-09T17:49:33.694Z"}, "match": true, "outcome": "MATCH: object family appears in repatriation/stolen records (MOCK fixture)."}, "at": "2026-07-09T17:49:33.694Z"}, {"phase": "risk", "message": "Confidence revised to 0/100 after paid check.", "data": {"confidenceScore": 0, "redFlags": [{"type": "provenance-gap", "severity": "high", "evidence": "Authoritative sources show an undocumented period in the ownership timeline."}, {"type": "source-country-origin", "severity": "medium", "evidence": "Linked to italy \u2014 a UNESCO 1970 source country with active repatriation claims."}, {"type": "looting-signal", "severity": "high", "evidence": "Sources contain looting / repatriation language associated with this object or its type."}, {"type": "art-loss-register-match", "severity": "high", "evidence": "Art Loss Register premium search: MATCH: object family appears in repatriation/stolen records (MOCK fixture)."}], "rationale": "3 red flag(s) detected from authoritative sources; confidence reduced accordingly."}, "at": "2026-07-09T17:49:33.694Z"}, {"phase": "passport", "message": "Signed Digital Provenance Passport issued.", "data": {"@context": ["https://www.w3.org/ns/credentials/v2"], "type": ["VerifiableCredential", "DigitalProvenancePassport"], "issuer": "did:pkh:eip155:84532:0x75938E9D9416dDabc90Ee7925D69ae343b7F2504", "validFrom": "2026-07-09T17:49:33.694Z", "credentialSubject": {"id": "urn:artwork:euphronios-krater", "title": "Euphronios Krater", "artist": null, "origin": null, "provenanceTimeline": [{"claim": "Euphronios Krater \u2014 The Met (formerly), repatriated to Italy 2008", "source": "https://www.metmuseum.org/press/news/2006/statement-by-the-metropolitan-museum-of-art", "assertedBy": "The Metropolitan Museum of Art", "quote": "The Metropolitan Museum of Art acquired the Euphronios (Sarpedon) krater in 1972 for $1 million. Following Italy's evidence of illicit excavation, the Met agreed in 2006 to transfer title; the krater was returned to Italy in January 2008."}, {"claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri", "source": "https://whc.unesco.org/en/list/", "assertedBy": "UNESCO", "quote": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns."}, {"claim": "Acquisition controversy and the Medici conviction", "source": "https://www.artloss.com/news/", "assertedBy": "Art Loss Register (public page)", "quote": "Press and registry coverage tied the krater's surfacing in the early 1970s to dealer networks later subject to looting investigations; provenance before 1971 is undocumented."}], "confidenceScore": 0, "redFlags": [{"type": "provenance-gap", "severity": "high", "evidence": "Authoritative sources show an undocumented period in the ownership timeline."}, {"type": "source-country-origin", "severity": "medium", "evidence": "Linked to italy \u2014 a UNESCO 1970 source country with active repatriation claims."}, {"type": "looting-signal", "severity": "high", "evidence": "Sources contain looting / repatriation language associated with this object or its type."}, {"type": "art-loss-register-match", "severity": "high", "evidence": "Art Loss Register premium search: MATCH: object family appears in repatriation/stolen records (MOCK fixture)."}], "premiumChecks": [{"database": "Art Loss Register", "assertedBy": "The Art Loss Register (commercial due-diligence registry)", "match": true, "outcome": "MATCH: object family appears in repatriation/stolen records (MOCK fixture).", "paidUSD": 0.05, "payment": {"mode": "mock", "network": "base-sepolia", "asset": "USDC", "amount": "0.05", "txHash": "0xMOCK_no_settlement_in_demo_mode", "payer": "did:demo:agent", "payee": "0xVendor", "settledAt": "2026-07-09T17:49:33.694Z"}}], "checksRun": ["tavily-authoritative-grounding", "art-loss-register#x402"], "assessedAt": "2026-07-09T17:49:33.694Z"}, "proof": {"type": "EcdsaSecp256k1RecoverySignature2020", "created": "2026-07-09T17:49:33.694Z", "verificationMethod": "did:pkh:eip155:84532:0x75938E9D9416dDabc90Ee7925D69ae343b7F2504#blockchainAccountId", "proofPurpose": "assertionMethod", "proofValue": "0x407b041579001568e5bb05cd57231587965de4b9c3c0ea0e7295eaa9b1a46eda2eaefc14d532a3e1684cd10601627bca95b97d8925f251b6d7f73a0dd66adbcd1c"}}, "at": "2026-07-09T17:49:33.695Z"}, {"phase": "done", "message": "Done.", "at": "2026-07-09T17:49:33.695Z"}]
+[
+  {
+    "phase": "intent",
+    "message": "Assessing “Euphronios Krater”.",
+    "data": {
+      "title": "Euphronios Krater",
+      "origin": "Italy",
+      "knownHistory": "Surfaced on the market in 1971 with no documented prior ownership.",
+      "askingPriceUSD": 1200000,
+      "estimatedMarketValueUSD": 250000
+    },
+    "at": "2026-07-23T14:59:36.955Z"
+  },
+  {
+    "phase": "reasoning",
+    "message": "Searching authoritative sources (Met, UNESCO, Art Loss Register)…",
+    "at": "2026-07-23T14:59:36.955Z"
+  },
+  {
+    "phase": "grounding",
+    "message": "Grounded 3 cited fact(s).",
+    "data": [
+      {
+        "claim": "Euphronios Krater — The Met (formerly), repatriated to Italy 2008",
+        "sourceUrl": "https://www.metmuseum.org/press/news/2006/statement-by-the-metropolitan-museum-of-art",
+        "sourceTitle": "Euphronios Krater — The Met (formerly), repatriated to Italy 2008",
+        "sourceQuote": "The Metropolitan Museum of Art acquired the Euphronios (Sarpedon) krater in 1972 for $1 million. Following Italy's evidence of illicit excavation, the Met agreed in 2006 to transfer title; the krater was returned to Italy in January 2008.",
+        "issuer": "The Metropolitan Museum of Art"
+      },
+      {
+        "claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+        "sourceUrl": "https://whc.unesco.org/en/list/",
+        "sourceTitle": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+        "sourceQuote": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns.",
+        "issuer": "UNESCO"
+      },
+      {
+        "claim": "Acquisition controversy and the Medici conviction",
+        "sourceUrl": "https://www.artloss.com/news/",
+        "sourceTitle": "Acquisition controversy and the Medici conviction",
+        "sourceQuote": "Press and registry coverage tied the krater's surfacing in the early 1970s to dealer networks later subject to looting investigations; provenance before 1971 is undocumented.",
+        "issuer": "Art Loss Register (public page)"
+      }
+    ],
+    "at": "2026-07-23T14:59:36.955Z"
+  },
+  {
+    "phase": "reasoning",
+    "message": "Checking stolen-art and cultural-property registers…",
+    "at": "2026-07-23T14:59:36.955Z"
+  },
+  {
+    "phase": "registry",
+    "message": "9 register(s) checked — 2 possible match(es), 2 not machine-queryable. No register can return \"clear\".",
+    "data": {
+      "checks": [
+        {
+          "registryId": "interpol-swoa",
+          "registry": "INTERPOL Stolen Works of Art Database",
+          "issuer": "INTERPOL — Cultural Heritage Crime Unit",
+          "jurisdiction": "International (196 member countries)",
+          "access": "grounded-search",
+          "verdict": "no-evidence-found",
+          "method": "Domain-scoped search of interpol.int. This searches the registry's public WEBSITE, not its register.",
+          "hits": [],
+          "referralUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+          "applyUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database/Application-form-to-access-INTERPOL-s-Works-of-Art-Database",
+          "coverage": "The only global database of certified police information on stolen and missing cultural objects (~52,000 items). Entries come from member-country police forces, so an object only appears if a theft was reported to and recorded by a national force. Unreported and never-inventoried material — most looted archaeological and colonial-era objects — is structurally absent.",
+          "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+          "checkedAt": "2026-07-23T14:59:36.990Z"
+        },
+        {
+          "registryId": "interpol-id-art",
+          "registry": "INTERPOL ID-Art (mobile lookup)",
+          "issuer": "INTERPOL — Cultural Heritage Crime Unit",
+          "jurisdiction": "International",
+          "access": "referral-only",
+          "verdict": "not-queryable",
+          "method": "No programmatic interface exists. Deep link emitted for a human to run the authoritative search.",
+          "hits": [],
+          "referralUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
+          "coverage": "The same Stolen Works of Art database, searchable by image or description from a phone with no login required. This is the fastest authoritative check a human can run on an object in front of them — and it cannot be automated, which is why it appears here as a referral rather than a result.",
+          "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+          "checkedAt": "2026-07-23T14:59:36.956Z"
+        },
+        {
+          "registryId": "fbi-nsaf",
+          "registry": "FBI National Stolen Art File",
+          "issuer": "US Federal Bureau of Investigation — Art Crime Team",
+          "jurisdiction": "United States (accepts foreign law-enforcement submissions)",
+          "access": "grounded-search",
+          "verdict": "no-evidence-found",
+          "method": "Domain-scoped search of fbi.gov. This searches the registry's public WEBSITE, not its register.",
+          "hits": [],
+          "referralUrl": "https://artcrimes.fbi.gov/",
+          "coverage": "Stolen art and cultural property submitted by US and foreign law-enforcement agencies. Entry requires a police report and a value threshold, so it is a record of reported thefts from documented collections, not of looting at source.",
+          "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+          "checkedAt": "2026-07-23T14:59:36.998Z"
+        },
+        {
+          "registryId": "carabinieri-tpc",
+          "registry": "Carabinieri TPC — Leonardo database",
+          "issuer": "Comando Carabinieri Tutela Patrimonio Culturale (Italy)",
+          "jurisdiction": "Italy (largest national stolen-cultural-property archive)",
+          "access": "grounded-search",
+          "verdict": "no-evidence-found",
+          "method": "Domain-scoped search of carabinieri.it, beniculturali.it. This searches the registry's public WEBSITE, not its register.",
+          "hits": [],
+          "referralUrl": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
+          "coverage": "Over 1.1 million stolen or illicitly exported cultural objects — the largest such archive in the world, and the most important single source for Italian antiquities. Public search is a web form; the full archive is law-enforcement access.",
+          "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+          "checkedAt": "2026-07-23T14:59:36.996Z"
+        },
+        {
+          "registryId": "lostart-de",
+          "registry": "Lost Art Database",
+          "issuer": "German Lost Art Foundation (Deutsches Zentrum Kulturgutverluste)",
+          "jurisdiction": "Germany / Nazi-era spoliation, international scope",
+          "access": "grounded-search",
+          "verdict": "no-evidence-found",
+          "method": "Domain-scoped search of lostart.de, kulturgutverluste.de, proveana.de. This searches the registry's public WEBSITE, not its register.",
+          "hits": [],
+          "referralUrl": "https://www.lostart.de/en/search",
+          "coverage": "Cultural property lost, moved or seized as a result of Nazi persecution 1933–1945, plus wartime relocations. Carries both 'found' and 'search' reports. The reference register for Nazi-era provenance gaps — and irrelevant to colonial-era and archaeological looting.",
+          "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+          "checkedAt": "2026-07-23T14:59:36.995Z"
+        },
+        {
+          "registryId": "getty-provenance-index",
+          "registry": "Getty Provenance Index",
+          "issuer": "Getty Research Institute",
+          "jurisdiction": "International (archival, 16th c. – present)",
+          "access": "grounded-search",
+          "verdict": "no-evidence-found",
+          "method": "Domain-scoped search of getty.edu. This searches the registry's public WEBSITE, not its register.",
+          "hits": [],
+          "referralUrl": "https://www.getty.edu/research/tools/provenance/search.html",
+          "coverage": "Transcribed auction catalogues, dealer stock books and collection inventories — the primary evidence base for reconstructing an ownership chain rather than for flagging a theft. Strongest on the European and American art market; thin outside it.",
+          "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+          "checkedAt": "2026-07-23T14:59:37.009Z"
+        },
+        {
+          "registryId": "icom-red-lists",
+          "registry": "ICOM Red Lists of Cultural Objects at Risk",
+          "issuer": "International Council of Museums",
+          "jurisdiction": "International (region-specific lists)",
+          "access": "grounded-search",
+          "verdict": "possible-match",
+          "method": "Domain-scoped search of icom.museum, unesco.org. This searches the registry's public WEBSITE, not its register.",
+          "hits": [
+            {
+              "claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+              "sourceUrl": "https://whc.unesco.org/en/list/",
+              "sourceQuote": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns.",
+              "riskRelevant": true,
+              "date": "1970-11-14"
+            }
+          ],
+          "referralUrl": "https://icom.museum/en/resources/red-lists/",
+          "coverage": "Object CATEGORIES at risk of illicit trafficking by region — not individual objects. A Red List hit never identifies a specific piece; it says an object of this type from this region should not move without documentation. That is a due-diligence trigger, not an identification.",
+          "caveat": "A source on this registry's domain names this object. This is a lead requiring human verification against the register itself, not a confirmed register entry.",
+          "checkedAt": "2026-07-23T14:59:36.997Z"
+        },
+        {
+          "registryId": "wikidata",
+          "registry": "Wikidata (structured provenance events)",
+          "issuer": "Wikidata contributors — community-maintained, not an authority",
+          "jurisdiction": "International, open data",
+          "access": "structured-api",
+          "verdict": "possible-match",
+          "method": "SPARQL over Q1323051 (Euphronios krater) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 3 label-search candidate(s): Q15639446 Euphronios Krater; Q1323051 Euphronios krater; Q48997113 Amazonomachy on the Arezzo 1465 Vase. Entity resolution is shown so the choice can be audited rather than trusted.",
+          "hits": [
+            {
+              "claim": "significant event: claim for restitution of an artwork",
+              "sourceUrl": "https://www.ifar.org/case_summary.php?docid=1184619726",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = claim for restitution of an artwork",
+              "riskRelevant": true,
+              "date": null
+            },
+            {
+              "claim": "significant event: erroneous provenance (artwork)",
+              "sourceUrl": "https://soundcloud.com/vamuseum/s2-e7-youve-gotta-have-good",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = erroneous provenance (artwork)",
+              "riskRelevant": true,
+              "date": null
+            },
+            {
+              "claim": "significant event: archaeological looting (1971-12-01)",
+              "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = archaeological looting",
+              "riskRelevant": true,
+              "date": "1971-12-01T00:00:00Z"
+            },
+            {
+              "claim": "significant event: restitution (2006-01-01)",
+              "sourceUrl": "https://www.ifar.org/case_summary.php?docid=1184619726",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = restitution",
+              "riskRelevant": true,
+              "date": "2006-01-01T00:00:00Z"
+            },
+            {
+              "claim": "collection: Museo Nazionale Etrusco di Villa Giulia",
+              "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · collection = Museo Nazionale Etrusco di Villa Giulia",
+              "riskRelevant": false,
+              "date": null
+            },
+            {
+              "claim": "inception: -0515-01-01T00:00:00Z",
+              "sourceUrl": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-ia-prehistoric-era-399-ce/",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · inception = -0515-01-01T00:00:00Z",
+              "riskRelevant": false,
+              "date": null
+            },
+            {
+              "claim": "location: Cerveteri",
+              "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · location = Cerveteri",
+              "riskRelevant": false,
+              "date": null
+            },
+            {
+              "claim": "creator: Euxitheos",
+              "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · creator = Euxitheos",
+              "riskRelevant": false,
+              "date": null
+            },
+            {
+              "claim": "creator: Euphronios",
+              "sourceUrl": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-ia-prehistoric-era-399-ce/",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · creator = Euphronios",
+              "riskRelevant": false,
+              "date": null
+            },
+            {
+              "claim": "location: Museo Nazionale Archeologico",
+              "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · location = Museo Nazionale Archeologico",
+              "riskRelevant": false,
+              "date": null
+            },
+            {
+              "claim": "collection: Metropolitan Museum of Art",
+              "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+              "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · collection = Metropolitan Museum of Art",
+              "riskRelevant": false,
+              "date": null
+            }
+          ],
+          "referralUrl": "https://www.wikidata.org/wiki/Q1323051",
+          "coverage": "The only openly machine-queryable source here. Its 'significant event' statements carry dated values such as archaeological looting, art theft, restitution and claim for restitution, usually with a reference URL. Coverage is uneven and edits are unreviewed, so this generates leads to verify — never findings.",
+          "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
+          "checkedAt": "2026-07-23T14:59:37.177Z"
+        },
+        {
+          "registryId": "art-loss-register",
+          "registry": "Art Loss Register",
+          "issuer": "The Art Loss Register (commercial due-diligence registry)",
+          "jurisdiction": "International, commercial",
+          "access": "paid-x402",
+          "verdict": "not-queryable",
+          "method": "Commercial register — reached through the agent's paid x402 check, not this free layer.",
+          "hits": [],
+          "referralUrl": "https://www.artloss.com/",
+          "coverage": "The largest private database of stolen and looted art. Registration and search are commercial services — which is exactly why this one is the agent's paid x402 check rather than a free lookup.",
+          "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+          "checkedAt": "2026-07-23T14:59:36.956Z"
+        }
+      ],
+      "possibleMatches": 2,
+      "notQueryable": 2,
+      "riskRelevantHits": [
+        {
+          "claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+          "sourceUrl": "https://whc.unesco.org/en/list/",
+          "sourceQuote": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns.",
+          "riskRelevant": true,
+          "date": "1970-11-14"
+        },
+        {
+          "claim": "significant event: claim for restitution of an artwork",
+          "sourceUrl": "https://www.ifar.org/case_summary.php?docid=1184619726",
+          "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = claim for restitution of an artwork",
+          "riskRelevant": true,
+          "date": null
+        },
+        {
+          "claim": "significant event: erroneous provenance (artwork)",
+          "sourceUrl": "https://soundcloud.com/vamuseum/s2-e7-youve-gotta-have-good",
+          "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = erroneous provenance (artwork)",
+          "riskRelevant": true,
+          "date": null
+        },
+        {
+          "claim": "significant event: archaeological looting (1971-12-01)",
+          "sourceUrl": "https://www.wikidata.org/wiki/Q1323051",
+          "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = archaeological looting",
+          "riskRelevant": true,
+          "date": "1971-12-01T00:00:00Z"
+        },
+        {
+          "claim": "significant event: restitution (2006-01-01)",
+          "sourceUrl": "https://www.ifar.org/case_summary.php?docid=1184619726",
+          "sourceQuote": "Euphronios krater — ancient Greek bowl used for mixing wine with water, made around 515 B.C. · significant event = restitution",
+          "riskRelevant": true,
+          "date": "2006-01-01T00:00:00Z"
+        }
+      ]
+    },
+    "at": "2026-07-23T14:59:37.177Z"
+  },
+  {
+    "phase": "risk",
+    "message": "Provenance confidence: 0/100.",
+    "data": {
+      "confidenceScore": 0,
+      "redFlags": [
+        {
+          "type": "provenance-gap",
+          "severity": "high",
+          "evidence": "Authoritative sources show an undocumented period in the ownership timeline."
+        },
+        {
+          "type": "source-country-origin",
+          "severity": "medium",
+          "evidence": "Linked to italy — a UNESCO 1970 source country with active repatriation claims."
+        },
+        {
+          "type": "looting-signal",
+          "severity": "high",
+          "evidence": "Sources contain looting / repatriation language associated with this object or its type."
+        },
+        {
+          "type": "registry-signal",
+          "severity": "high",
+          "evidence": "Register source names this object in theft/looting/restitution terms: “Sarpedon Krater displayed at Villa Giulia / Cerveteri” (https://whc.unesco.org/en/list/). Lead requiring verification against the register itself."
+        },
+        {
+          "type": "registry-signal",
+          "severity": "high",
+          "evidence": "Register source names this object in theft/looting/restitution terms: “significant event: claim for restitution of an artwork” (https://www.ifar.org/case_summary.php?docid=1184619726). Lead requiring verification against the register itself."
+        },
+        {
+          "type": "registry-signal",
+          "severity": "high",
+          "evidence": "Register source names this object in theft/looting/restitution terms: “significant event: erroneous provenance (artwork)” (https://soundcloud.com/vamuseum/s2-e7-youve-gotta-have-good). Lead requiring verification against the register itself."
+        },
+        {
+          "type": "registry-coverage-gap",
+          "severity": "low",
+          "evidence": "2 of 9 registers could not be searched programmatically (no public API — INTERPOL, FBI NSAF and Carabinieri TPC among them). Their absence from these results carries no information; run the official searches by hand."
+        },
+        {
+          "type": "valuation-outlier",
+          "severity": "high",
+          "evidence": "Asking $1,200,000 is 4.8× the ~$250,000 market estimate — possible value laundering."
+        },
+        {
+          "type": "art-loss-register-match",
+          "severity": "high",
+          "evidence": "Art Loss Register premium search: MATCH: object family appears in repatriation/stolen records (MOCK fixture)."
+        }
+      ],
+      "rationale": "8 red flag(s) detected from authoritative sources; confidence reduced accordingly."
+    },
+    "at": "2026-07-23T14:59:37.193Z"
+  },
+  {
+    "phase": "x402:offer",
+    "message": "Premium Art Loss Register search available for $0.05 (USDC, mock (no settlement)).",
+    "data": {
+      "priceUSD": 0.05,
+      "vendor": "http://localhost:4021",
+      "network": "base-sepolia"
+    },
+    "at": "2026-07-23T14:59:37.193Z"
+  },
+  {
+    "phase": "x402:decision",
+    "message": "Confidence is 0/100 with 8 red flag(s). A $0.05 Art Loss Register search could materially change the record — worth paying.",
+    "data": {
+      "pay": true
+    },
+    "at": "2026-07-23T14:59:37.193Z"
+  },
+  {
+    "phase": "x402:paid",
+    "message": "Paid $0.05 — MATCH: object family appears in repatriation/stolen records (MOCK fixture).",
+    "data": {
+      "database": "Art Loss Register",
+      "issuer": "The Art Loss Register (commercial due-diligence registry)",
+      "priceUSD": 0.05,
+      "paid": true,
+      "settlement": {
+        "mode": "mock",
+        "network": "base-sepolia",
+        "asset": "USDC",
+        "amount": "0.05",
+        "txHash": "0xMOCK_no_settlement_in_demo_mode",
+        "payer": "did:demo:agent",
+        "payee": "0x824C9275c55Bb810f7a69d650A1d329B377fC784",
+        "settledAt": "2026-07-23T14:59:37.193Z"
+      },
+      "match": true,
+      "outcome": "MATCH: object family appears in repatriation/stolen records (MOCK fixture)."
+    },
+    "at": "2026-07-23T14:59:37.193Z"
+  },
+  {
+    "phase": "risk",
+    "message": "Confidence revised to 0/100 after paid check.",
+    "data": {
+      "confidenceScore": 0,
+      "redFlags": [
+        {
+          "type": "provenance-gap",
+          "severity": "high",
+          "evidence": "Authoritative sources show an undocumented period in the ownership timeline."
+        },
+        {
+          "type": "source-country-origin",
+          "severity": "medium",
+          "evidence": "Linked to italy — a UNESCO 1970 source country with active repatriation claims."
+        },
+        {
+          "type": "looting-signal",
+          "severity": "high",
+          "evidence": "Sources contain looting / repatriation language associated with this object or its type."
+        },
+        {
+          "type": "registry-signal",
+          "severity": "high",
+          "evidence": "Register source names this object in theft/looting/restitution terms: “Sarpedon Krater displayed at Villa Giulia / Cerveteri” (https://whc.unesco.org/en/list/). Lead requiring verification against the register itself."
+        },
+        {
+          "type": "registry-signal",
+          "severity": "high",
+          "evidence": "Register source names this object in theft/looting/restitution terms: “significant event: claim for restitution of an artwork” (https://www.ifar.org/case_summary.php?docid=1184619726). Lead requiring verification against the register itself."
+        },
+        {
+          "type": "registry-signal",
+          "severity": "high",
+          "evidence": "Register source names this object in theft/looting/restitution terms: “significant event: erroneous provenance (artwork)” (https://soundcloud.com/vamuseum/s2-e7-youve-gotta-have-good). Lead requiring verification against the register itself."
+        },
+        {
+          "type": "registry-coverage-gap",
+          "severity": "low",
+          "evidence": "2 of 9 registers could not be searched programmatically (no public API — INTERPOL, FBI NSAF and Carabinieri TPC among them). Their absence from these results carries no information; run the official searches by hand."
+        },
+        {
+          "type": "valuation-outlier",
+          "severity": "high",
+          "evidence": "Asking $1,200,000 is 4.8× the ~$250,000 market estimate — possible value laundering."
+        },
+        {
+          "type": "art-loss-register-match",
+          "severity": "high",
+          "evidence": "Art Loss Register premium search: MATCH: object family appears in repatriation/stolen records (MOCK fixture)."
+        }
+      ],
+      "rationale": "8 red flag(s) detected from authoritative sources; confidence reduced accordingly."
+    },
+    "at": "2026-07-23T14:59:37.193Z"
+  },
+  {
+    "phase": "passport",
+    "message": "Signed Digital Provenance Passport issued.",
+    "data": {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2"
+      ],
+      "type": [
+        "VerifiableCredential",
+        "DigitalProvenancePassport"
+      ],
+      "issuer": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c",
+      "validFrom": "2026-07-23T14:59:37.194Z",
+      "credentialSubject": {
+        "id": "urn:artwork:euphronios-krater",
+        "title": "Euphronios Krater",
+        "artist": null,
+        "origin": "Italy",
+        "provenanceTimeline": [
+          {
+            "claim": "Euphronios Krater — The Met (formerly), repatriated to Italy 2008",
+            "source": "https://www.metmuseum.org/press/news/2006/statement-by-the-metropolitan-museum-of-art",
+            "assertedBy": "The Metropolitan Museum of Art",
+            "quote": "The Metropolitan Museum of Art acquired the Euphronios (Sarpedon) krater in 1972 for $1 million. Following Italy's evidence of illicit excavation, the Met agreed in 2006 to transfer title; the krater was returned to Italy in January 2008."
+          },
+          {
+            "claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+            "source": "https://whc.unesco.org/en/list/",
+            "assertedBy": "UNESCO",
+            "quote": "Repatriated antiquities including the Euphronios krater are associated with Etruscan sites near Cerveteri; UNESCO frameworks on illicit trafficking of cultural property (1970 Convention) underpin such returns."
+          },
+          {
+            "claim": "Acquisition controversy and the Medici conviction",
+            "source": "https://www.artloss.com/news/",
+            "assertedBy": "Art Loss Register (public page)",
+            "quote": "Press and registry coverage tied the krater's surfacing in the early 1970s to dealer networks later subject to looting investigations; provenance before 1971 is undocumented."
+          }
+        ],
+        "confidenceScore": 0,
+        "redFlags": [
+          {
+            "type": "provenance-gap",
+            "severity": "high",
+            "evidence": "Authoritative sources show an undocumented period in the ownership timeline."
+          },
+          {
+            "type": "source-country-origin",
+            "severity": "medium",
+            "evidence": "Linked to italy — a UNESCO 1970 source country with active repatriation claims."
+          },
+          {
+            "type": "looting-signal",
+            "severity": "high",
+            "evidence": "Sources contain looting / repatriation language associated with this object or its type."
+          },
+          {
+            "type": "registry-signal",
+            "severity": "high",
+            "evidence": "Register source names this object in theft/looting/restitution terms: “Sarpedon Krater displayed at Villa Giulia / Cerveteri” (https://whc.unesco.org/en/list/). Lead requiring verification against the register itself."
+          },
+          {
+            "type": "registry-signal",
+            "severity": "high",
+            "evidence": "Register source names this object in theft/looting/restitution terms: “significant event: claim for restitution of an artwork” (https://www.ifar.org/case_summary.php?docid=1184619726). Lead requiring verification against the register itself."
+          },
+          {
+            "type": "registry-signal",
+            "severity": "high",
+            "evidence": "Register source names this object in theft/looting/restitution terms: “significant event: erroneous provenance (artwork)” (https://soundcloud.com/vamuseum/s2-e7-youve-gotta-have-good). Lead requiring verification against the register itself."
+          },
+          {
+            "type": "registry-coverage-gap",
+            "severity": "low",
+            "evidence": "2 of 9 registers could not be searched programmatically (no public API — INTERPOL, FBI NSAF and Carabinieri TPC among them). Their absence from these results carries no information; run the official searches by hand."
+          },
+          {
+            "type": "valuation-outlier",
+            "severity": "high",
+            "evidence": "Asking $1,200,000 is 4.8× the ~$250,000 market estimate — possible value laundering."
+          },
+          {
+            "type": "art-loss-register-match",
+            "severity": "high",
+            "evidence": "Art Loss Register premium search: MATCH: object family appears in repatriation/stolen records (MOCK fixture)."
+          }
+        ],
+        "registryChecks": [
+          {
+            "registry": "INTERPOL Stolen Works of Art Database",
+            "assertedBy": "INTERPOL — Cultural Heritage Crime Unit",
+            "access": "grounded-search",
+            "verdict": "no-evidence-found",
+            "method": "Domain-scoped search of interpol.int. This searches the registry's public WEBSITE, not its register.",
+            "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+            "hits": [],
+            "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+            "checkedAt": "2026-07-23T14:59:36.990Z"
+          },
+          {
+            "registry": "INTERPOL ID-Art (mobile lookup)",
+            "assertedBy": "INTERPOL — Cultural Heritage Crime Unit",
+            "access": "referral-only",
+            "verdict": "not-queryable",
+            "method": "No programmatic interface exists. Deep link emitted for a human to run the authoritative search.",
+            "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+            "hits": [],
+            "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
+            "checkedAt": "2026-07-23T14:59:36.956Z"
+          },
+          {
+            "registry": "FBI National Stolen Art File",
+            "assertedBy": "US Federal Bureau of Investigation — Art Crime Team",
+            "access": "grounded-search",
+            "verdict": "no-evidence-found",
+            "method": "Domain-scoped search of fbi.gov. This searches the registry's public WEBSITE, not its register.",
+            "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+            "hits": [],
+            "officialSearch": "https://artcrimes.fbi.gov/",
+            "checkedAt": "2026-07-23T14:59:36.998Z"
+          },
+          {
+            "registry": "Carabinieri TPC — Leonardo database",
+            "assertedBy": "Comando Carabinieri Tutela Patrimonio Culturale (Italy)",
+            "access": "grounded-search",
+            "verdict": "no-evidence-found",
+            "method": "Domain-scoped search of carabinieri.it, beniculturali.it. This searches the registry's public WEBSITE, not its register.",
+            "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+            "hits": [],
+            "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
+            "checkedAt": "2026-07-23T14:59:36.996Z"
+          },
+          {
+            "registry": "Lost Art Database",
+            "assertedBy": "German Lost Art Foundation (Deutsches Zentrum Kulturgutverluste)",
+            "access": "grounded-search",
+            "verdict": "no-evidence-found",
+            "method": "Domain-scoped search of lostart.de, kulturgutverluste.de, proveana.de. This searches the registry's public WEBSITE, not its register.",
+            "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+            "hits": [],
+            "officialSearch": "https://www.lostart.de/en/search",
+            "checkedAt": "2026-07-23T14:59:36.995Z"
+          },
+          {
+            "registry": "Getty Provenance Index",
+            "assertedBy": "Getty Research Institute",
+            "access": "grounded-search",
+            "verdict": "no-evidence-found",
+            "method": "Domain-scoped search of getty.edu. This searches the registry's public WEBSITE, not its register.",
+            "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
+            "hits": [],
+            "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
+            "checkedAt": "2026-07-23T14:59:37.009Z"
+          },
+          {
+            "registry": "ICOM Red Lists of Cultural Objects at Risk",
+            "assertedBy": "International Council of Museums",
+            "access": "grounded-search",
+            "verdict": "possible-match",
+            "method": "Domain-scoped search of icom.museum, unesco.org. This searches the registry's public WEBSITE, not its register.",
+            "caveat": "A source on this registry's domain names this object. This is a lead requiring human verification against the register itself, not a confirmed register entry.",
+            "hits": [
+              {
+                "claim": "Sarpedon Krater displayed at Villa Giulia / Cerveteri",
+                "source": "https://whc.unesco.org/en/list/",
+                "riskRelevant": true
+              }
+            ],
+            "officialSearch": "https://icom.museum/en/resources/red-lists/",
+            "checkedAt": "2026-07-23T14:59:36.997Z"
+          },
+          {
+            "registry": "Wikidata (structured provenance events)",
+            "assertedBy": "Wikidata contributors — community-maintained, not an authority",
+            "access": "structured-api",
+            "verdict": "possible-match",
+            "method": "SPARQL over Q1323051 (Euphronios krater) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 3 label-search candidate(s): Q15639446 Euphronios Krater; Q1323051 Euphronios krater; Q48997113 Amazonomachy on the Arezzo 1465 Vase. Entity resolution is shown so the choice can be audited rather than trusted.",
+            "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
+            "hits": [
+              {
+                "claim": "significant event: claim for restitution of an artwork",
+                "source": "https://www.ifar.org/case_summary.php?docid=1184619726",
+                "riskRelevant": true
+              },
+              {
+                "claim": "significant event: erroneous provenance (artwork)",
+                "source": "https://soundcloud.com/vamuseum/s2-e7-youve-gotta-have-good",
+                "riskRelevant": true
+              },
+              {
+                "claim": "significant event: archaeological looting (1971-12-01)",
+                "source": "https://www.wikidata.org/wiki/Q1323051",
+                "riskRelevant": true
+              },
+              {
+                "claim": "significant event: restitution (2006-01-01)",
+                "source": "https://www.ifar.org/case_summary.php?docid=1184619726",
+                "riskRelevant": true
+              },
+              {
+                "claim": "collection: Museo Nazionale Etrusco di Villa Giulia",
+                "source": "https://www.wikidata.org/wiki/Q1323051",
+                "riskRelevant": false
+              },
+              {
+                "claim": "inception: -0515-01-01T00:00:00Z",
+                "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-ia-prehistoric-era-399-ce/",
+                "riskRelevant": false
+              },
+              {
+                "claim": "location: Cerveteri",
+                "source": "https://www.wikidata.org/wiki/Q1323051",
+                "riskRelevant": false
+              },
+              {
+                "claim": "creator: Euxitheos",
+                "source": "https://www.wikidata.org/wiki/Q1323051",
+                "riskRelevant": false
+              },
+              {
+                "claim": "creator: Euphronios",
+                "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-ia-prehistoric-era-399-ce/",
+                "riskRelevant": false
+              },
+              {
+                "claim": "location: Museo Nazionale Archeologico",
+                "source": "https://www.wikidata.org/wiki/Q1323051",
+                "riskRelevant": false
+              },
+              {
+                "claim": "collection: Metropolitan Museum of Art",
+                "source": "https://www.wikidata.org/wiki/Q1323051",
+                "riskRelevant": false
+              }
+            ],
+            "officialSearch": "https://www.wikidata.org/wiki/Q1323051",
+            "checkedAt": "2026-07-23T14:59:37.177Z"
+          },
+          {
+            "registry": "Art Loss Register",
+            "assertedBy": "The Art Loss Register (commercial due-diligence registry)",
+            "access": "paid-x402",
+            "verdict": "not-queryable",
+            "method": "Commercial register — reached through the agent's paid x402 check, not this free layer.",
+            "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
+            "hits": [],
+            "officialSearch": "https://www.artloss.com/",
+            "checkedAt": "2026-07-23T14:59:36.956Z"
+          }
+        ],
+        "premiumChecks": [
+          {
+            "database": "Art Loss Register",
+            "assertedBy": "The Art Loss Register (commercial due-diligence registry)",
+            "match": true,
+            "outcome": "MATCH: object family appears in repatriation/stolen records (MOCK fixture).",
+            "paidUSD": 0.05,
+            "payment": {
+              "mode": "mock",
+              "network": "base-sepolia",
+              "asset": "USDC",
+              "amount": "0.05",
+              "txHash": "0xMOCK_no_settlement_in_demo_mode",
+              "payer": "did:demo:agent",
+              "payee": "0x824C9275c55Bb810f7a69d650A1d329B377fC784",
+              "settledAt": "2026-07-23T14:59:37.193Z"
+            }
+          }
+        ],
+        "checksRun": [
+          "tavily-authoritative-grounding",
+          "registry:interpol-swoa#grounded-search",
+          "registry:interpol-id-art#referral-only",
+          "registry:fbi-nsaf#grounded-search",
+          "registry:carabinieri-tpc#grounded-search",
+          "registry:lostart-de#grounded-search",
+          "registry:getty-provenance-index#grounded-search",
+          "registry:icom-red-lists#grounded-search",
+          "registry:wikidata#structured-api",
+          "registry:art-loss-register#paid-x402",
+          "art-loss-register#x402"
+        ],
+        "assessedAt": "2026-07-23T14:59:37.194Z"
+      },
+      "proof": {
+        "type": "EcdsaSecp256k1RecoverySignature2020",
+        "created": "2026-07-23T14:59:37.194Z",
+        "verificationMethod": "did:pkh:eip155:84532:0x7456D51cb6fc9723D5E6EcCD0b64d1026411FA1c#blockchainAccountId",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "0x950dbe50b7fe6867929c639125773cf2f2466028f1838548273bc0a07504e0ec6c157ce2d545aa330038d11f52764f7ff22b119c8516325f89fbd600045d1dbd1b"
+      }
+    },
+    "at": "2026-07-23T14:59:37.196Z"
+  },
+  {
+    "phase": "done",
+    "message": "Done.",
+    "at": "2026-07-23T14:59:37.196Z"
+  }
+]

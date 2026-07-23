@@ -1,0 +1,88 @@
+{
+  "id": "parthenon-marbles",
+  "title": "Parthenon Marbles (Elgin Marbles)",
+  "culture": "Ancient Greek (Classical Athens)",
+  "period": "447–432 BCE",
+  "icon": "🏛️",
+  "accent": "#8a8f7a",
+  "currentLocation": {
+    "institution": "British Museum",
+    "city": "London",
+    "country": "United Kingdom"
+  },
+  "riskScore": 24,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "colonial-acquisition",
+      "severity": "high",
+      "evidence": "Removed from the Parthenon by agents of Lord Elgin between 1801 and 1812 under a disputed Ottoman authorisation. The original firman does not survive; what its terms permitted has been argued over ever since."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Greece — a UNESCO 1970 source country with a formally lodged and continuously pressed restitution request."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Hellenic Republic (Greece)",
+    "note": "Greece has sought return since the 19th century. The Acropolis Museum opened in 2009 with the space reserved. UNESCO's intergovernmental committee has repeatedly urged a bilateral settlement; the British Museum cites the British Museum Act 1963 as barring deaccession."
+  },
+  "journey": [
+    {
+      "year": "447–432 BCE",
+      "place": "Athens",
+      "country": "Greece",
+      "event": "Carved for the Parthenon under Phidias",
+      "type": "origin"
+    },
+    {
+      "year": "1801–12",
+      "place": "Athens",
+      "country": "Greece",
+      "event": "Removed by Lord Elgin's agents",
+      "type": "looting"
+    },
+    {
+      "year": "1816",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Purchased from Elgin by Act of Parliament for £35,000",
+      "type": "sale"
+    },
+    {
+      "year": "1817",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Displayed at the British Museum",
+      "type": "museum"
+    },
+    {
+      "year": "2009",
+      "place": "Athens",
+      "country": "Greece",
+      "event": "Acropolis Museum opens with space reserved for their return",
+      "type": "contested"
+    },
+    {
+      "year": "Present",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Contested by Greece",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "UNESCO — return and restitution of cultural property",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    },
+    {
+      "title": "British Museum — object record",
+      "url": "https://www.britishmuseum.org",
+      "issuer": "British Museum"
+    }
+  ]
+}

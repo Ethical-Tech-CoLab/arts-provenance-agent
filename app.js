@@ -6,9 +6,31 @@ const FLAGS = {
   Italy: "🇮🇹", Greece: "🇬🇷", Egypt: "🇪🇬", Turkey: "🇹🇷", Nigeria: "🇳🇬",
   "United States": "🇺🇸", "United Kingdom": "🇬🇧", Switzerland: "🇨🇭",
   France: "🇫🇷", Cambodia: "🇰🇭", China: "🇨🇳", Iraq: "🇮🇶", Peru: "🇵🇪",
+  Austria: "🇦🇹", Germany: "🇩🇪", Netherlands: "🇳🇱", Thailand: "🇹🇭",
+  India: "🇮🇳", Mexico: "🇲🇽", Syria: "🇸🇾", Cyprus: "🇨🇾",
+  // An object whose current whereabouts are unknown is the most important
+  // state on this map, so it gets a mark of its own rather than the fallback.
+  Unknown: "❔",
 };
 const flag = (c) => FLAGS[c] || "📍";
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Attribute-safe href builder. esc() does NOT cover the URL scheme, so a
+// `javascript:` / `data:` value coming from an external search result would
+// otherwise become a clickable XSS sink. Only http(s) survives; anything else
+// (including unparseable input) collapses to "#".
+const ALLOWED_SCHEMES = new Set(["http:", "https:"]);
+function safeUrl(u) {
+  const raw = String(u ?? "").trim();
+  if (!raw) return "#";
+  try {
+    const parsed = new URL(raw, window.location.origin);
+    if (!ALLOWED_SCHEMES.has(parsed.protocol)) return "#";
+    return esc(parsed.href);
+  } catch {
+    return "#";
+  }
+}
 const short = (d) => String(d).replace(/(0x[0-9a-fA-F]{6})[0-9a-fA-F]+([0-9a-fA-F]{4})/, "$1…$2");
 
 // ---- bootstrap -------------------------------------------------------------
@@ -96,9 +118,13 @@ function renderDashboard(o) {
           <h3>Risk & red flags</h3>
           ${o.redFlags.length ? o.redFlags.map(flagHTML).join("") : '<div class="repat-note">No red flags — well-documented provenance.</div>'}
         </div>
+        <div class="panel" id="regPanel">
+          <h3>Stolen-art registers</h3>
+          <div class="repat-note">checking…</div>
+        </div>
         <div class="panel">
           <h3>Sources</h3>
-          <ul class="sources">${o.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a> — ${esc(s.issuer)}</li>`).join("")}</ul>
+          <ul class="sources">${o.sources.map((s) => `<li><a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a> — ${esc(s.issuer)}</li>`).join("")}</ul>
         </div>
       </div>
     </div>
@@ -117,6 +143,63 @@ function renderDashboard(o) {
   window.scrollTo(0, 0);
   $("#back").addEventListener("click", showGallery);
   $("#issueBtn").addEventListener("click", () => issuePassport(o.id));
+  loadRegistries(o.id); // async — the dashboard renders before the checks land
+}
+
+// ---- stolen-art register checks --------------------------------------------
+// The access tier is rendered next to every verdict on purpose. "No evidence
+// found" from a domain-scoped web search and "no evidence found" from a real
+// query are not the same claim, and a reader who cannot see which one they got
+// has been told nothing useful.
+const ACCESS_LABEL = {
+  "structured-api": "queried directly",
+  "grounded-search": "site searched, not the register",
+  "referral-only": "no API — human check required",
+  "paid-x402": "commercial — paid check",
+};
+const VERDICT_LABEL = {
+  "possible-match": "possible match",
+  "no-evidence-found": "no evidence found",
+  "not-queryable": "not machine-queryable",
+  "not-run": "not run",
+};
+
+function registryHTML(c) {
+  const hits = (c.hits || []).slice(0, 3);
+  return `<div class="reg reg-${c.verdict}">
+    <div class="reg-head">
+      <span class="reg-name">${esc(c.registry)}</span>
+      <span class="reg-verdict v-${c.verdict}">${VERDICT_LABEL[c.verdict] || esc(c.verdict)}</span>
+    </div>
+    <div class="reg-access">${esc(ACCESS_LABEL[c.access] || c.access)} · ${esc(c.issuer)}</div>
+    ${hits.length ? `<ul class="reg-hits">${hits.map((h) =>
+      `<li class="${h.riskRelevant ? "hit-risk" : ""}"><a href="${safeUrl(h.source || h.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(h.claim)}</a></li>`
+    ).join("")}</ul>` : ""}
+    <div class="reg-caveat">${esc(c.caveat)}</div>
+    <div class="reg-links">
+      <a href="${safeUrl(c.referralUrl || c.officialSearch)}" target="_blank" rel="noopener noreferrer">run the official search →</a>
+      ${c.applyUrl ? ` <a href="${safeUrl(c.applyUrl)}" target="_blank" rel="noopener noreferrer">apply for database access →</a>` : ""}
+    </div>
+  </div>`;
+}
+
+function registryPanelHTML(summary) {
+  if (!summary || !summary.checks) return '<div class="repat-note">Register checks unavailable.</div>';
+  return `<div class="reg-summary">
+      ${summary.possibleMatches} possible match(es) · ${summary.notQueryable} of ${summary.checks.length}
+      registers have no public API and were not searched. <b>No register here can return “clear”.</b>
+    </div>` + summary.checks.map(registryHTML).join("");
+}
+
+async function loadRegistries(id) {
+  const el = $("#regPanel");
+  if (!el) return;
+  try {
+    const summary = await (await fetch(`/api/object/${id}/registries`)).json();
+    el.innerHTML = `<h3>Stolen-art registers <span class="sub">INTERPOL · FBI NSAF · TPC · Lost Art · Getty · ICOM · Wikidata</span></h3>${registryPanelHTML(summary)}`;
+  } catch {
+    el.innerHTML = '<h3>Stolen-art registers</h3><div class="repat-note">Register checks could not be run. That is not a negative result — nothing was established either way.</div>';
+  }
 }
 
 function stopHTML(s) {
@@ -160,6 +243,7 @@ function runSearch(title) {
       <div class="panel"><h3>Live trace</h3><ol class="steps" id="steps"></ol></div>
       <div>
         <div class="panel" id="riskPanel"><h3>Risk & red flags</h3><div class="repat-note">running…</div></div>
+        <div class="panel" id="regPanel"><h3>Stolen-art registers</h3><div class="repat-note">waiting…</div></div>
         <div class="panel"><h3>Sources</h3><ul class="sources" id="srcList"></ul></div>
         <div class="panel"><h3>Passport</h3><div class="actions"><span class="verify" id="verify"></span></div><pre id="passportJson" class="hidden"></pre></div>
       </div>
@@ -175,7 +259,12 @@ function runSearch(title) {
         const e = JSON.parse(ev.data);
         addStep(e);
         if (e.phase === "grounding" && Array.isArray(e.data)) {
-          $("#srcList").innerHTML = e.data.map((f) => `<li><a href="${esc(f.sourceUrl)}" target="_blank" rel="noopener">${esc(f.issuer || f.sourceTitle)}</a> — ${esc(f.claim)}</li>`).join("");
+          $("#srcList").innerHTML = e.data.map((f) => `<li><a href="${safeUrl(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(f.issuer || f.sourceTitle)}</a> — ${esc(f.claim)}</li>`).join("");
+        }
+        if (e.phase === "registry" && e.data) {
+          $("#regPanel").innerHTML =
+            `<h3>Stolen-art registers <span class="sub">INTERPOL · FBI NSAF · TPC · Lost Art · Getty · ICOM · Wikidata</span></h3>` +
+            registryPanelHTML(e.data);
         }
         if (e.phase === "risk" && e.data) {
           const lvl = e.data.confidenceScore >= 75 ? "low" : e.data.confidenceScore >= 50 ? "medium" : "high";

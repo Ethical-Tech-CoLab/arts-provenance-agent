@@ -1,0 +1,82 @@
+{
+  "id": "nefertiti-bust",
+  "title": "Bust of Nefertiti",
+  "artist": "Attributed to the sculptor Thutmose",
+  "culture": "Ancient Egyptian (Amarna period)",
+  "period": "c. 1345 BCE",
+  "icon": "👑",
+  "accent": "#3f7f8a",
+  "currentLocation": {
+    "institution": "Neues Museum",
+    "city": "Berlin",
+    "country": "Germany"
+  },
+  "riskScore": 28,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "contested-export",
+      "severity": "high",
+      "evidence": "Left Egypt in the 1913 partage division of the German excavation's finds. Egyptian authorities have long argued the division was obtained by understating the bust's significance to the inspector."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Egypt — a UNESCO 1970 source country that has requested this object's return repeatedly since the 1920s."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Arab Republic of Egypt",
+    "note": "Egypt has sought the bust since the 1920s and renewed formal requests in 2005 and 2011. Germany maintains the 1913 division was lawful and the acquisition valid."
+  },
+  "journey": [
+    {
+      "year": "c. 1345 BCE",
+      "place": "Amarna",
+      "country": "Egypt",
+      "event": "Carved in the workshop of the sculptor Thutmose",
+      "type": "origin"
+    },
+    {
+      "year": "1912",
+      "place": "Amarna",
+      "country": "Egypt",
+      "event": "Found on 6 December by Ludwig Borchardt's German expedition",
+      "type": "excavation"
+    },
+    {
+      "year": "1913",
+      "place": "Cairo",
+      "country": "Egypt",
+      "event": "Allocated to the German side in the division of finds",
+      "type": "sale"
+    },
+    {
+      "year": "1924",
+      "place": "Berlin",
+      "country": "Germany",
+      "event": "First put on public display in Berlin",
+      "type": "museum"
+    },
+    {
+      "year": "Present",
+      "place": "Berlin",
+      "country": "Germany",
+      "event": "Contested by Egypt",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "UNESCO 1970 Convention",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    },
+    {
+      "title": "Staatliche Museen zu Berlin — Ägyptisches Museum",
+      "url": "https://www.smb.museum",
+      "issuer": "Staatliche Museen zu Berlin"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "poppy-flowers-van-gogh",
+  "title": "Poppy Flowers (Vase with Viscaria)",
+  "artist": "Vincent van Gogh",
+  "culture": "Dutch / French",
+  "period": "1887",
+  "icon": "🌺",
+  "accent": "#c4452f",
+  "currentLocation": {
+    "institution": "Unknown — stolen, still at large",
+    "city": "—",
+    "country": "Unknown"
+  },
+  "riskScore": 8,
+  "riskLevel": "high",
+  "redFlags": [
+    {
+      "type": "active-theft",
+      "severity": "high",
+      "evidence": "Stolen twice from the same museum: once in 1977 (recovered a decade later in Kuwait) and again on 21 August 2010, cut from its frame in daylight. Not recovered."
+    },
+    {
+      "type": "security-failure",
+      "severity": "medium",
+      "evidence": "Egyptian officials reported that at the time of the 2010 theft only a small fraction of the museum's cameras were operational and the gallery alarms were not working."
+    },
+    {
+      "type": "register-listed",
+      "severity": "high",
+      "evidence": "Reported to INTERPOL's Stolen Works of Art database; any appearance on the market is a criminal matter, not a due-diligence question."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Arab Republic of Egypt",
+    "note": "An unsolved theft from a state museum, not a restitution claim. Egyptian ownership is undisputed."
+  },
+  "journey": [
+    {
+      "year": "1887",
+      "place": "Paris",
+      "country": "France",
+      "event": "Painted during Van Gogh's Paris period",
+      "type": "origin"
+    },
+    {
+      "year": "1920s",
+      "place": "Cairo",
+      "country": "Egypt",
+      "event": "Acquired by the collector Mohamed Mahmoud Khalil",
+      "type": "sale"
+    },
+    {
+      "year": "1958",
+      "place": "Cairo",
+      "country": "Egypt",
+      "event": "Passes to the Egyptian state; hangs in the Khalil Museum",
+      "type": "museum"
+    },
+    {
+      "year": "1977",
+      "place": "Cairo",
+      "country": "Egypt",
+      "event": "Stolen from the museum",
+      "type": "looting"
+    },
+    {
+      "year": "1987",
+      "place": "Cairo",
+      "country": "Egypt",
+      "event": "Recovered in Kuwait and returned to the museum",
+      "type": "repatriation"
+    },
+    {
+      "year": "2010",
+      "place": "Cairo",
+      "country": "Egypt",
+      "event": "Stolen a second time; cut from its frame",
+      "type": "looting"
+    },
+    {
+      "year": "Present",
+      "place": "Unknown",
+      "country": "Unknown",
+      "event": "Still missing",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "INTERPOL Stolen Works of Art Database",
+      "url": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
+      "issuer": "INTERPOL"
+    },
+    {
+      "title": "UNESCO — fighting illicit trafficking",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    }
+  ],
+  "estimatedMarketValueUSD": 55000000
+}

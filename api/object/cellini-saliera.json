@@ -1,0 +1,77 @@
+{
+  "id": "cellini-saliera",
+  "title": "Saliera (Cellini Salt Cellar)",
+  "artist": "Benvenuto Cellini",
+  "culture": "Italian Mannerist goldsmithing",
+  "period": "1540–43",
+  "icon": "🧂",
+  "accent": "#b8860b",
+  "currentLocation": {
+    "institution": "Kunsthistorisches Museum",
+    "city": "Vienna",
+    "country": "Austria"
+  },
+  "riskScore": 71,
+  "riskLevel": "medium",
+  "redFlags": [
+    {
+      "type": "theft-resolved",
+      "severity": "low",
+      "evidence": "Stolen from the Kunsthistorisches Museum on 11 May 2003 via scaffolding on the facade; recovered in January 2006, buried in a lead box in woodland near Zwettl, Lower Austria. The thief was convicted."
+    }
+  ],
+  "repatriation": {
+    "status": "clear",
+    "note": "Continuous documented ownership since the 16th century and undisputed title. The 2003 theft is a closed criminal episode, not a provenance defect — included here precisely because a register hit is not always a title problem."
+  },
+  "journey": [
+    {
+      "year": "1543",
+      "place": "Paris",
+      "country": "France",
+      "event": "Made for Francis I of France",
+      "type": "origin"
+    },
+    {
+      "year": "1570",
+      "place": "Innsbruck",
+      "country": "Austria",
+      "event": "Given by Charles IX to Archduke Ferdinand II of Tyrol",
+      "type": "sale"
+    },
+    {
+      "year": "19th c.",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Enters the imperial collections, later the Kunsthistorisches Museum",
+      "type": "museum"
+    },
+    {
+      "year": "2003",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Stolen from the museum",
+      "type": "looting"
+    },
+    {
+      "year": "2006",
+      "place": "Zwettl",
+      "country": "Austria",
+      "event": "Recovered buried in woodland; returned to the museum",
+      "type": "repatriation"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Kunsthistorisches Museum — collection",
+      "url": "https://www.khm.at",
+      "issuer": "Kunsthistorisches Museum Vienna"
+    },
+    {
+      "title": "INTERPOL — cultural heritage crime",
+      "url": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime",
+      "issuer": "INTERPOL"
+    }
+  ],
+  "estimatedMarketValueUSD": 60000000
+}

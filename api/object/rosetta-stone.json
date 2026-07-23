@@ -1,1 +1,81 @@
-{"id":"rosetta-stone","title":"Rosetta Stone","culture":"Ptolemaic Egypt","period":"196 BCE","icon":"🪨","accent":"#5a6b7a","currentLocation":{"institution":"British Museum","city":"London","country":"United Kingdom"},"riskScore":34,"riskLevel":"medium","redFlags":[{"type":"wartime-seizure","severity":"high","evidence":"Ceded to Britain under the 1801 Capitulation of Alexandria after French defeat."},{"type":"source-country-origin","severity":"medium","evidence":"Egypt has repeatedly requested its return."}],"repatriation":{"status":"contested","claimant":"Egypt","note":"Egypt has formally requested repatriation; the British Museum retains it."},"journey":[{"year":"196 BCE","place":"Memphis","country":"Egypt","event":"Decree inscribed","type":"origin"},{"year":"1799","place":"Rosetta (Rashid)","country":"Egypt","event":"Found by French soldiers","type":"excavation"},{"year":"1801","place":"Alexandria","country":"Egypt","event":"Seized by British forces","type":"looting"},{"year":"1802","place":"London","country":"United Kingdom","event":"Entered the British Museum","type":"museum"},{"year":"Present","place":"London","country":"United Kingdom","event":"Contested by Egypt","type":"contested"}],"sources":[{"title":"British Museum — object record","url":"https://www.britishmuseum.org","issuer":"British Museum"},{"title":"UNESCO 1970 Convention","url":"https://www.unesco.org/en/fight-illicit-trafficking","issuer":"UNESCO"}]}
+{
+  "id": "rosetta-stone",
+  "title": "Rosetta Stone",
+  "culture": "Ptolemaic Egypt",
+  "period": "196 BCE",
+  "icon": "🪨",
+  "accent": "#5a6b7a",
+  "currentLocation": {
+    "institution": "British Museum",
+    "city": "London",
+    "country": "United Kingdom"
+  },
+  "riskScore": 34,
+  "riskLevel": "medium",
+  "redFlags": [
+    {
+      "type": "wartime-seizure",
+      "severity": "high",
+      "evidence": "Ceded to Britain under the 1801 Capitulation of Alexandria after French defeat."
+    },
+    {
+      "type": "source-country-origin",
+      "severity": "medium",
+      "evidence": "Egypt has repeatedly requested its return."
+    }
+  ],
+  "repatriation": {
+    "status": "contested",
+    "claimant": "Egypt",
+    "note": "Egypt has formally requested repatriation; the British Museum retains it."
+  },
+  "journey": [
+    {
+      "year": "196 BCE",
+      "place": "Memphis",
+      "country": "Egypt",
+      "event": "Decree inscribed",
+      "type": "origin"
+    },
+    {
+      "year": "1799",
+      "place": "Rosetta (Rashid)",
+      "country": "Egypt",
+      "event": "Found by French soldiers",
+      "type": "excavation"
+    },
+    {
+      "year": "1801",
+      "place": "Alexandria",
+      "country": "Egypt",
+      "event": "Seized by British forces",
+      "type": "looting"
+    },
+    {
+      "year": "1802",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Entered the British Museum",
+      "type": "museum"
+    },
+    {
+      "year": "Present",
+      "place": "London",
+      "country": "United Kingdom",
+      "event": "Contested by Egypt",
+      "type": "contested"
+    }
+  ],
+  "sources": [
+    {
+      "title": "British Museum — object record",
+      "url": "https://www.britishmuseum.org",
+      "issuer": "British Museum"
+    },
+    {
+      "title": "UNESCO 1970 Convention",
+      "url": "https://www.unesco.org/en/fight-illicit-trafficking",
+      "issuer": "UNESCO"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "portrait-of-wally",
+  "title": "Portrait of Wally Neuzil",
+  "artist": "Egon Schiele",
+  "culture": "Austrian (Expressionism)",
+  "period": "1912",
+  "icon": "🎭",
+  "accent": "#7a4b6b",
+  "currentLocation": {
+    "institution": "Leopold Museum",
+    "city": "Vienna",
+    "country": "Austria"
+  },
+  "riskScore": 62,
+  "riskLevel": "medium",
+  "redFlags": [
+    {
+      "type": "nazi-era-seizure",
+      "severity": "high",
+      "evidence": "Taken from Lea Bondi Jaray's Vienna gallery in 1939 under the Nazi 'Aryanisation' of Jewish-owned businesses."
+    },
+    {
+      "type": "provenance-gap",
+      "severity": "medium",
+      "evidence": "Post-war restitution machinery misidentified it as part of a different collection, routing it into the Austrian National Gallery and then Rudolf Leopold's collection instead of back to its owner."
+    }
+  ],
+  "repatriation": {
+    "status": "settled",
+    "claimant": "Estate of Lea Bondi Jaray",
+    "year": "2010",
+    "note": "Seized by US authorities in 1998 while on loan to MoMA in New York. Twelve years of litigation ended in July 2010 with the Leopold Museum paying the Bondi estate $19M and keeping the painting — a settlement, not a return."
+  },
+  "journey": [
+    {
+      "year": "1912",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Painted; later owned by dealer Lea Bondi Jaray",
+      "type": "origin"
+    },
+    {
+      "year": "1939",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Taken from Bondi's gallery under Aryanisation",
+      "type": "looting"
+    },
+    {
+      "year": "1950s",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Misidentified in post-war restitution; enters the Austrian National Gallery",
+      "type": "museum"
+    },
+    {
+      "year": "1954",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "Acquired by Rudolf Leopold",
+      "type": "sale"
+    },
+    {
+      "year": "1998",
+      "place": "New York",
+      "country": "United States",
+      "event": "Seized by US authorities while on loan to MoMA",
+      "type": "contested"
+    },
+    {
+      "year": "2010",
+      "place": "Vienna",
+      "country": "Austria",
+      "event": "$19M settlement; painting stays at the Leopold Museum",
+      "type": "sale"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Lost Art Database",
+      "url": "https://www.lostart.de/en/search",
+      "issuer": "German Lost Art Foundation"
+    },
+    {
+      "title": "Leopold Museum — collection",
+      "url": "https://www.leopoldmuseum.org",
+      "issuer": "Leopold Museum"
+    }
+  ],
+  "estimatedMarketValueUSD": 19000000
+}

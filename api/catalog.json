@@ -1,1 +1,329 @@
-[{"id":"euphronios-krater","title":"Euphronios Krater","artist":"Painted by Euphronios; potted by Euxitheos","culture":"Ancient Greek (Attic red-figure)","period":"c. 515 BCE","icon":"🏺","accent":"#c0563e","riskScore":12,"riskLevel":"high","repatriation":{"status":"repatriated","claimant":"Italy","year":"2008","note":"Returned by the Met to Italy in 2008 after a long legal dispute."},"currentLocation":{"institution":"Museo Nazionale Etrusco","city":"Rome","country":"Italy"},"stops":6},{"id":"benin-bronze-plaque","title":"Benin Bronze Plaque","culture":"Edo (Kingdom of Benin)","period":"16th–17th c.","icon":"🛡️","accent":"#9a7b3f","riskScore":18,"riskLevel":"high","repatriation":{"status":"contested","claimant":"Nigeria","note":"Active restitution claims; some institutions have begun returns, the British Museum has not."},"currentLocation":{"institution":"British Museum","city":"London","country":"United Kingdom"},"stops":4},{"id":"rosetta-stone","title":"Rosetta Stone","culture":"Ptolemaic Egypt","period":"196 BCE","icon":"🪨","accent":"#5a6b7a","riskScore":34,"riskLevel":"medium","repatriation":{"status":"contested","claimant":"Egypt","note":"Egypt has formally requested repatriation; the British Museum retains it."},"currentLocation":{"institution":"British Museum","city":"London","country":"United Kingdom"},"stops":5},{"id":"lydian-hoard","title":"Lydian Hoard (Karun Treasure)","culture":"Lydian / Achaemenid","period":"c. 7th–6th c. BCE","icon":"💰","accent":"#b08d2e","riskScore":22,"riskLevel":"high","repatriation":{"status":"repatriated","claimant":"Turkey","year":"1993","note":"Returned by the Met to Turkey in 1993 after litigation."},"currentLocation":{"institution":"Uşak Museum","city":"Uşak","country":"Turkey"},"stops":4},{"id":"madame-x","title":"Madame X (Madame Pierre Gautreau)","artist":"John Singer Sargent","culture":"American / French","period":"1883–84","icon":"🖼️","accent":"#3f6f8a","riskScore":93,"riskLevel":"low","repatriation":{"status":"clear","note":"Continuous, documented ownership; acquired from the artist. No outstanding claims."},"currentLocation":{"institution":"The Metropolitan Museum of Art","city":"New York","country":"United States"},"stops":3}]
+[
+  {
+    "id": "euphronios-krater",
+    "title": "Euphronios Krater",
+    "artist": "Painted by Euphronios; potted by Euxitheos",
+    "culture": "Ancient Greek (Attic red-figure)",
+    "period": "c. 515 BCE",
+    "icon": "🏺",
+    "accent": "#c0563e",
+    "riskScore": 12,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "repatriated",
+      "claimant": "Italy",
+      "year": "2008",
+      "note": "Returned by the Met to Italy in 2008 after a long legal dispute."
+    },
+    "currentLocation": {
+      "institution": "Museo Nazionale Etrusco",
+      "city": "Rome",
+      "country": "Italy"
+    },
+    "stops": 6
+  },
+  {
+    "id": "benin-bronze-plaque",
+    "title": "Benin Bronze Plaque",
+    "culture": "Edo (Kingdom of Benin)",
+    "period": "16th–17th c.",
+    "icon": "🛡️",
+    "accent": "#9a7b3f",
+    "riskScore": 18,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Nigeria",
+      "note": "Active restitution claims; some institutions have begun returns, the British Museum has not."
+    },
+    "currentLocation": {
+      "institution": "British Museum",
+      "city": "London",
+      "country": "United Kingdom"
+    },
+    "stops": 4
+  },
+  {
+    "id": "rosetta-stone",
+    "title": "Rosetta Stone",
+    "culture": "Ptolemaic Egypt",
+    "period": "196 BCE",
+    "icon": "🪨",
+    "accent": "#5a6b7a",
+    "riskScore": 34,
+    "riskLevel": "medium",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Egypt",
+      "note": "Egypt has formally requested repatriation; the British Museum retains it."
+    },
+    "currentLocation": {
+      "institution": "British Museum",
+      "city": "London",
+      "country": "United Kingdom"
+    },
+    "stops": 5
+  },
+  {
+    "id": "lydian-hoard",
+    "title": "Lydian Hoard (Karun Treasure)",
+    "culture": "Lydian / Achaemenid",
+    "period": "c. 7th–6th c. BCE",
+    "icon": "💰",
+    "accent": "#b08d2e",
+    "riskScore": 22,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "repatriated",
+      "claimant": "Turkey",
+      "year": "1993",
+      "note": "Returned by the Met to Turkey in 1993 after litigation."
+    },
+    "currentLocation": {
+      "institution": "Uşak Museum",
+      "city": "Uşak",
+      "country": "Turkey"
+    },
+    "stops": 4
+  },
+  {
+    "id": "madame-x",
+    "title": "Madame X (Madame Pierre Gautreau)",
+    "artist": "John Singer Sargent",
+    "culture": "American / French",
+    "period": "1883–84",
+    "icon": "🖼️",
+    "accent": "#3f6f8a",
+    "riskScore": 93,
+    "riskLevel": "low",
+    "repatriation": {
+      "status": "clear",
+      "note": "Continuous, documented ownership; acquired from the artist. No outstanding claims."
+    },
+    "currentLocation": {
+      "institution": "The Metropolitan Museum of Art",
+      "city": "New York",
+      "country": "United States"
+    },
+    "stops": 3
+  },
+  {
+    "id": "adele-bloch-bauer-i",
+    "title": "Portrait of Adele Bloch-Bauer I",
+    "artist": "Gustav Klimt",
+    "culture": "Austrian (Vienna Secession)",
+    "period": "1907",
+    "icon": "👗",
+    "accent": "#c9a227",
+    "riskScore": 74,
+    "riskLevel": "medium",
+    "repatriation": {
+      "status": "repatriated",
+      "claimant": "Maria Altmann and the Bloch-Bauer heirs",
+      "year": "2006",
+      "note": "After Altmann v. Republic of Austria reached the US Supreme Court in 2004, an Austrian arbitration panel awarded the painting to the heirs in January 2006. It was sold to Ronald Lauder for the Neue Galerie for a reported $135M — then the highest price paid for a painting."
+    },
+    "currentLocation": {
+      "institution": "Neue Galerie",
+      "city": "New York",
+      "country": "United States"
+    },
+    "stops": 6
+  },
+  {
+    "id": "portrait-of-wally",
+    "title": "Portrait of Wally Neuzil",
+    "artist": "Egon Schiele",
+    "culture": "Austrian (Expressionism)",
+    "period": "1912",
+    "icon": "🎭",
+    "accent": "#7a4b6b",
+    "riskScore": 62,
+    "riskLevel": "medium",
+    "repatriation": {
+      "status": "settled",
+      "claimant": "Estate of Lea Bondi Jaray",
+      "year": "2010",
+      "note": "Seized by US authorities in 1998 while on loan to MoMA in New York. Twelve years of litigation ended in July 2010 with the Leopold Museum paying the Bondi estate $19M and keeping the painting — a settlement, not a return."
+    },
+    "currentLocation": {
+      "institution": "Leopold Museum",
+      "city": "Vienna",
+      "country": "Austria"
+    },
+    "stops": 6
+  },
+  {
+    "id": "the-concert-vermeer",
+    "title": "The Concert",
+    "artist": "Johannes Vermeer",
+    "culture": "Dutch Golden Age",
+    "period": "c. 1664",
+    "icon": "🎼",
+    "accent": "#2f5d50",
+    "riskScore": 6,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Isabella Stewart Gardner Museum",
+      "note": "Not a repatriation dispute but an unsolved theft. Ownership is undisputed; the object is missing. The empty frame still hangs in the Dutch Room."
+    },
+    "currentLocation": {
+      "institution": "Unknown — stolen, still at large",
+      "city": "—",
+      "country": "Unknown"
+    },
+    "stops": 5
+  },
+  {
+    "id": "poppy-flowers-van-gogh",
+    "title": "Poppy Flowers (Vase with Viscaria)",
+    "artist": "Vincent van Gogh",
+    "culture": "Dutch / French",
+    "period": "1887",
+    "icon": "🌺",
+    "accent": "#c4452f",
+    "riskScore": 8,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Arab Republic of Egypt",
+      "note": "An unsolved theft from a state museum, not a restitution claim. Egyptian ownership is undisputed."
+    },
+    "currentLocation": {
+      "institution": "Unknown — stolen, still at large",
+      "city": "—",
+      "country": "Unknown"
+    },
+    "stops": 7
+  },
+  {
+    "id": "cellini-saliera",
+    "title": "Saliera (Cellini Salt Cellar)",
+    "artist": "Benvenuto Cellini",
+    "culture": "Italian Mannerist goldsmithing",
+    "period": "1540–43",
+    "icon": "🧂",
+    "accent": "#b8860b",
+    "riskScore": 71,
+    "riskLevel": "medium",
+    "repatriation": {
+      "status": "clear",
+      "note": "Continuous documented ownership since the 16th century and undisputed title. The 2003 theft is a closed criminal episode, not a provenance defect — included here precisely because a register hit is not always a title problem."
+    },
+    "currentLocation": {
+      "institution": "Kunsthistorisches Museum",
+      "city": "Vienna",
+      "country": "Austria"
+    },
+    "stops": 5
+  },
+  {
+    "id": "parthenon-marbles",
+    "title": "Parthenon Marbles (Elgin Marbles)",
+    "culture": "Ancient Greek (Classical Athens)",
+    "period": "447–432 BCE",
+    "icon": "🏛️",
+    "accent": "#8a8f7a",
+    "riskScore": 24,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Hellenic Republic (Greece)",
+      "note": "Greece has sought return since the 19th century. The Acropolis Museum opened in 2009 with the space reserved. UNESCO's intergovernmental committee has repeatedly urged a bilateral settlement; the British Museum cites the British Museum Act 1963 as barring deaccession."
+    },
+    "currentLocation": {
+      "institution": "British Museum",
+      "city": "London",
+      "country": "United Kingdom"
+    },
+    "stops": 6
+  },
+  {
+    "id": "nefertiti-bust",
+    "title": "Bust of Nefertiti",
+    "artist": "Attributed to the sculptor Thutmose",
+    "culture": "Ancient Egyptian (Amarna period)",
+    "period": "c. 1345 BCE",
+    "icon": "👑",
+    "accent": "#3f7f8a",
+    "riskScore": 28,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Arab Republic of Egypt",
+      "note": "Egypt has sought the bust since the 1920s and renewed formal requests in 2005 and 2011. Germany maintains the 1913 division was lawful and the acquisition valid."
+    },
+    "currentLocation": {
+      "institution": "Neues Museum",
+      "city": "Berlin",
+      "country": "Germany"
+    },
+    "stops": 5
+  },
+  {
+    "id": "victorious-youth",
+    "title": "Victorious Youth (Atleta di Fano)",
+    "culture": "Ancient Greek bronze",
+    "period": "c. 300–100 BCE",
+    "icon": "🥉",
+    "accent": "#6b7f5e",
+    "riskScore": 26,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "contested",
+      "claimant": "Italian Republic",
+      "note": "Italy's confiscation order stands after the 2024 ECHR ruling. The Getty disputes Italian jurisdiction over an object it says was acquired in international waters and outside Italy, and the bronze remains at the Getty Villa."
+    },
+    "currentLocation": {
+      "institution": "Getty Villa",
+      "city": "Malibu",
+      "country": "United States"
+    },
+    "stops": 6
+  },
+  {
+    "id": "koh-ker-duryodhana",
+    "title": "Duryodhana of Prasat Chen (Koh Ker warrior)",
+    "culture": "Khmer (Koh Ker style)",
+    "period": "10th c.",
+    "icon": "🗿",
+    "accent": "#7a6a52",
+    "riskScore": 20,
+    "riskLevel": "high",
+    "repatriation": {
+      "status": "repatriated",
+      "claimant": "Kingdom of Cambodia",
+      "year": "2013",
+      "note": "Sotheby's and the consignor agreed to return the statue rather than litigate the US forfeiture case. It was handed to Cambodia in 2013 and displayed alongside other returned Prasat Chen figures."
+    },
+    "currentLocation": {
+      "institution": "National Museum of Cambodia",
+      "city": "Phnom Penh",
+      "country": "Cambodia"
+    },
+    "stops": 6
+  },
+  {
+    "id": "machu-picchu-collection",
+    "title": "Machu Picchu excavation collection (Bingham material)",
+    "culture": "Inca",
+    "period": "15th c.; excavated 1911–15",
+    "icon": "⛏️",
+    "accent": "#9a6b3f",
+    "riskScore": 46,
+    "riskLevel": "medium",
+    "repatriation": {
+      "status": "repatriated",
+      "claimant": "Republic of Peru",
+      "year": "2011–2012",
+      "note": "Peru sued Yale in 2008; a 2010 agreement and a memorandum with the Universidad Nacional de San Antonio Abad del Cusco led to the material returning in three shipments across 2011–2012, where it is now held and displayed in Cusco."
+    },
+    "currentLocation": {
+      "institution": "Museo Machu Picchu, Casa Concha",
+      "city": "Cusco",
+      "country": "Peru"
+    },
+    "stops": 5
+  }
+]
