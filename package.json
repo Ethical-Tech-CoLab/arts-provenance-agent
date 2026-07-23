@@ -1,7 +1,7 @@
 {
   "name": "arts-provenance-agent",
   "version": "0.1.0",
-  "description": "Digital Provenance Passport — an x402-native agent that grounds artwork provenance in authoritative sources (Tavily), autonomously pays a real Base Sepolia USDC micropayment over x402 for a premium due-diligence check, traces/flags the on-chain payment via Coinbase, and emits a cryptographically signed, tamper-evident Passport.",
+  "description": "Digital Provenance Passport \u2014 an x402-native agent that grounds artwork provenance in authoritative sources (Tavily), autonomously pays a real Base Sepolia USDC micropayment over x402 for a premium due-diligence check, traces/flags the on-chain payment via Coinbase, and emits a cryptographically signed, tamper-evident Passport.",
   "type": "module",
   "scripts": {
     "wallet": "tsx src/wallet/wallet.ts",
@@ -9,7 +9,8 @@
     "pay": "tsx scripts/pay-smoke.ts",
     "smoke-tavily": "tsx src/smoke-tavily.ts",
     "web": "tsx src/web/server.ts",
-    "demo": "tsx scripts/demo.ts"
+    "demo": "tsx scripts/demo.ts",
+    "start": "tsx src/web/server.ts"
   },
   "dependencies": {
     "@coinbase/cdp-sdk": "^1.51.0",

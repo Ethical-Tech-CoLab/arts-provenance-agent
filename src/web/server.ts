@@ -18,7 +18,7 @@ import { spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import type { Emit, RunEvent, Intent } from "../lib/schema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PORT = Number(process.env.WEB_PORT ?? 3000);
+const PORT = Number(process.env.PORT ?? process.env.WEB_PORT ?? 3000);
 
 // --- Guardrails (all env-tunable, safe defaults so local demo just works) ----
 /** Opt-in hard auth: when set, POST /api/run needs this bearer token. */
