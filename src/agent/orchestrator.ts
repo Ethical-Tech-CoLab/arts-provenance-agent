@@ -72,9 +72,9 @@ export async function runAgent(
     data: pay,
   });
 
-  // Coinbase trace + AML screen of the payment
+  // Record the settlement tx for audit (no AML screening is implemented yet)
   const trace = await traceTransaction(pay.paymentTx);
-  push({ step: "trace", title: `Payment screened: ${trace.verdict} (${trace.screenedVia})`, data: trace });
+  push({ step: "trace", title: `Payment trace: ${trace.verdict} (screening: ${trace.screenedVia})`, data: trace });
 
   // Re-score with premium result + crypto flag
   risk = assessRisk({

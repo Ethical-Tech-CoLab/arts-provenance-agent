@@ -22,7 +22,31 @@ const FIXTURE = JSON.parse(
 ) as Record<string, any>;
 
 const PORT = Number(new URL(config.vendorUrl).port || 4021);
-const PAY_TO = (config.vendorPayTo ?? "0x0000000000000000000000000000000000000000") as `0x${string}`;
+
+/**
+ * Resolve the vendor payout address. There is no safe default here: falling back
+ * to the zero address would make every settled x402 payment burn the USDC, so a
+ * missing/malformed VENDOR_PAYTO must fail loudly at startup instead.
+ */
+function resolvePayTo(): `0x${string}` {
+  const raw = (config.vendorPayTo ?? "").trim();
+  if (!raw) {
+    throw new Error(
+      "VENDOR_PAYTO is not set. The vendor refuses to start without a payout address — " +
+        "defaulting to the zero address would burn every payment. " +
+        "Run `npm run wallet -- --new` and set VENDOR_PAYTO in .env."
+    );
+  }
+  if (!/^0x[0-9a-fA-F]{40}$/.test(raw)) {
+    throw new Error(`VENDOR_PAYTO is not a valid 20-byte EVM address: ${raw}`);
+  }
+  if (/^0x0{40}$/.test(raw)) {
+    throw new Error("VENDOR_PAYTO is the zero address — payments would be burned. Set a real payout address.");
+  }
+  return raw as `0x${string}`;
+}
+
+const PAY_TO = resolvePayTo();
 const PRICE = `$${config.vendorPrice.toFixed(2)}`;
 
 const app = express();

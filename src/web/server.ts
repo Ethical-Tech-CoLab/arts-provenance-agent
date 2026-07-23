@@ -6,32 +6,114 @@
  * Run:  npm run web   (then open http://localhost:3000)
  */
 import "dotenv/config";
-import express from "express";
-import { randomUUID } from "node:crypto";
+import express, { type Request, type Response, type NextFunction } from "express";
+import { randomUUID, timingSafeEqual } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { config, DEMO_MODE, facilitatorLabel } from "../config.js";
 import { runProvenance } from "./pipeline.js";
 import { getCatalog, getObject, issueObjectPassport } from "./catalog.js";
 import { verifyCredential, type VerifiableCredential } from "../lib/signing.js";
+import { spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import type { Emit, RunEvent, Intent } from "../lib/schema.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.WEB_PORT ?? 3000);
 
+// --- Guardrails (all env-tunable, safe defaults so local demo just works) ----
+/** Opt-in hard auth: when set, POST /api/run needs this bearer token. */
+const API_TOKEN = (process.env.API_TOKEN ?? "").trim();
+/** Per-IP sliding-window rate limit for the expensive endpoint. */
+const RATE_LIMIT = Number(process.env.RUN_RATE_LIMIT ?? 10);
+const RATE_WINDOW_MS = Number(process.env.RUN_RATE_WINDOW_MS ?? 60_000);
+/** Run buffers are evicted after this long, and the map is hard-capped. */
+const RUN_TTL_MS = Number(process.env.RUN_TTL_MS ?? 10 * 60_000);
+const MAX_RUNS = Number(process.env.MAX_RUNS ?? 200);
+/** Grace period a finished run's buffer is kept for slow SSE clients. */
+const DONE_GRACE_MS = Number(process.env.RUN_DONE_GRACE_MS ?? 60_000);
+
 interface Run {
   events: RunEvent[];
   done: boolean;
   listeners: Set<(e: RunEvent) => void>;
+  createdAt: number;
 }
 const runs = new Map<string, Run>();
 
-function emitterFor(run: Run): Emit {
+/** Drop finished/stale runs, then hard-cap the map (insertion order = oldest first). */
+function sweepRuns(now = Date.now()): void {
+  for (const [id, r] of runs) {
+    if (now - r.createdAt > RUN_TTL_MS) {
+      r.listeners.clear();
+      runs.delete(id);
+    }
+  }
+  while (runs.size > MAX_RUNS) {
+    const oldest = runs.keys().next();
+    if (oldest.done) break;
+    runs.delete(oldest.value);
+  }
+}
+
+// --- Per-IP rate limiting ----------------------------------------------------
+const hits = new Map<string, number[]>();
+
+function rateLimited(ip: string, now = Date.now()): boolean {
+  if (!Number.isFinite(RATE_LIMIT) || RATE_LIMIT <= 0) return false; // disabled
+  const recent = (hits.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (hits.size > 5_000) hits.clear(); // bound the limiter's own memory
+  if (recent.length >= RATE_LIMIT) {
+    hits.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  hits.set(ip, recent);
+  return false;
+}
+
+/** Constant-time bearer-token check. No API_TOKEN set => auth is off (local demo). */
+function authorized(req: Request): boolean {
+  if (!API_TOKEN) return true;
+  const header = req.get("authorization") ?? "";
+  const presented = header.toLowerCase().startsWith("bearer ")
+    ? header.slice(7).trim()
+    : (req.get("x-api-token") ?? "").trim();
+  const a = Buffer.from(presented);
+  const b = Buffer.from(API_TOKEN);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
+/** Guard for the endpoint that can spend money. */
+function guardRun(req: Request, res: Response, next: NextFunction) {
+  if (!authorized(req)) return res.status(401).json({ error: "unauthorized" });
+  const ip = req.ip ?? req.socket.remoteAddress ?? "unknown";
+  if (rateLimited(ip)) {
+    return res
+      .status(429)
+      .json({ error: `rate limit: max ${RATE_LIMIT} runs per ${Math.round(RATE_WINDOW_MS / 1000)}s` });
+  }
+  if (!config.isMock && remainingBudgetUsd() < config.vendorPrice) {
+    return res.status(402).json({
+      error: `spend budget exhausted: $${spentUsd().toFixed(2)} of $${config.maxSpendUsd.toFixed(2)} MAX_SPEND_USD used`,
+    });
+  }
+  next();
+}
+
+function emitterFor(runId: string, run: Run): Emit {
   return (phase, payload) => {
     const e: RunEvent = { phase, message: payload.message, data: payload.data, at: new Date().toISOString() };
     run.events.push(e);
     for (const l of run.listeners) l(e);
-    if (phase === "done" || phase === "error") run.done = true;
+    if (phase === "done" || phase === "error") {
+      run.done = true;
+      // Keep the buffer around briefly so a slow client can still replay it,
+      // then drop it — otherwise the map grows without bound.
+      setTimeout(() => {
+        run.listeners.clear();
+        runs.delete(runId);
+      }, DONE_GRACE_MS).unref?.();
+    }
   };
 }
 
@@ -46,6 +128,8 @@ app.get("/api/config", (_req, res) => {
     vendorPriceUSD: config.vendorPrice,
     facilitator: facilitatorLabel(),
     maxSpendUSD: config.maxSpendUsd,
+    spentUSD: Number(spentUsd().toFixed(6)),
+    authRequired: Boolean(API_TOKEN),
   });
 });
 
@@ -84,10 +168,10 @@ app.post("/api/object/:id/passport", async (req, res) => {
 });
 
 /** Start a run. Returns a runId the client subscribes to over SSE. */
-app.post("/api/run", (req, res) => {
+app.post("/api/run", guardRun, (req, res) => {
   const b = req.body ?? {};
-  if (!b.title || typeof b.title !== "string") {
-    return res.status(400).json({ error: "title is required" });
+  if (!b.title || typeof b.title !== "string" || b.title.length > 300) {
+    return res.status(400).json({ error: "title is required (max 300 chars)" });
   }
   const intent: Intent = {
     title: b.title,
@@ -97,10 +181,11 @@ app.post("/api/run", (req, res) => {
     askingPriceUSD: numberOrUndef(b.askingPriceUSD),
     estimatedMarketValueUSD: numberOrUndef(b.estimatedMarketValueUSD),
   };
+  sweepRuns(); // evict expired / overflowing run buffers before adding another
   const runId = randomUUID();
-  const run: Run = { events: [], done: false, listeners: new Set() };
+  const run: Run = { events: [], done: false, listeners: new Set(), createdAt: Date.now() };
   runs.set(runId, run);
-  const emit = emitterFor(run);
+  const emit = emitterFor(runId, run);
 
   runProvenance(runId, intent, emit).catch((e) => {
     emit("error", { message: (e as Error).message });

@@ -16,6 +16,7 @@ import { dirname, join } from "node:path";
 import { wrapFetchWithPayment, createSigner, decodeXPaymentResponse } from "x402-fetch";
 import { config, IS_MOCK, facilitatorLabel } from "../config.js";
 import { requirePrivateKey } from "../wallet/wallet.js";
+import { usdToAtomic, preflight402, recordSpendUsd, spentUsd } from "../lib/spend.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FIXTURE = JSON.parse(
@@ -66,7 +67,8 @@ function simulatedTx(title: string): string {
 export async function payForCheck(opts: PayOptions): Promise<PremiumCheckResult> {
   const price = config.vendorPrice;
   const maxSpend = opts.maxSpendUsd ?? config.maxSpendUsd;
-  const spent = opts.alreadySpentUsd ?? 0;
+  // Default to the process-wide ledger so repeated runs share one lifetime cap.
+  const spent = opts.alreadySpentUsd ?? spentUsd();
   const base: Omit<PremiumCheckResult, "mode" | "reasoning" | "paid" | "result" | "paymentTx"> = {
     vendor: "Art Loss Register — Premium Search",
     amountUsd: price,
@@ -112,12 +114,42 @@ export async function payForCheck(opts: PayOptions): Promise<PremiumCheckResult>
   }
 
   // --- Live x402 payment -----------------------------------------------------
+  // Hard ceiling for anything we sign: whatever is left of the run budget.
+  const budgetUsd = Math.max(0, maxSpend - spent);
+  const maxAtomic = usdToAtomic(budgetUsd);
+  const url = `${config.vendorUrl}/alr/premium-search?title=${encodeURIComponent(opts.title)}`;
+
+  // Read the vendor's 402 quote BEFORE any key touches the request. A vendor
+  // that demands more than the budget gets refused without a signature.
+  let quotedUsd: number | null = null;
+  try {
+    const quote = await preflight402(url, maxAtomic);
+    quotedUsd = quote.requiredUsd;
+    if (!quote.withinBudget) {
+      return {
+        ...base,
+        mode: "skipped",
+        paid: false,
+        result: null,
+        paymentTx: null,
+        reasoning:
+          `Vendor demanded $${(quote.requiredUsd ?? 0).toFixed(6)} for this check, but only ` +
+          `$${budgetUsd.toFixed(2)} of the $${maxSpend.toFixed(2)} budget remains. ` +
+          `Refusing to sign a payment authorization above the cap.`,
+      };
+    }
+  } catch {
+    /* Preflight is best-effort; wrapFetchWithPayment still enforces maxAtomic. */
+  }
+
+  const paidUsd = quotedUsd ?? price;
   try {
     const pk = requirePrivateKey(); // never reached in mock mode (the default)
     const signer = await createSigner("base-sepolia", pk);
-    const fetchWithPay = wrapFetchWithPayment(fetch, signer as any);
+    // maxAtomic is the signed-authorization ceiling: x402-fetch throws rather
+    // than sign anything larger.
+    const fetchWithPay = wrapFetchWithPayment(fetch, signer as any, maxAtomic);
 
-    const url = `${config.vendorUrl}/alr/premium-search?title=${encodeURIComponent(opts.title)}`;
     const res = await fetchWithPay(url, { method: "GET" });
     if (!res.ok) throw new Error(`vendor returned HTTP ${res.status}`);
     const data = await res.json();
@@ -131,8 +163,10 @@ export async function payForCheck(opts: PayOptions): Promise<PremiumCheckResult>
       } catch { /* leave null */ }
     }
 
+    recordSpendUsd(paidUsd); // count it against the lifetime MAX_SPEND_USD cap
     return {
       ...base,
+      amountUsd: paidUsd,
       mode: "live",
       paid: true,
       result: data,

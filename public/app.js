@@ -9,6 +9,23 @@ const FLAGS = {
 };
 const flag = (c) => FLAGS[c] || "📍";
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Attribute-safe href builder. esc() does NOT cover the URL scheme, so a
+// `javascript:` / `data:` value coming from an external search result would
+// otherwise become a clickable XSS sink. Only http(s) survives; anything else
+// (including unparseable input) collapses to "#".
+const ALLOWED_SCHEMES = new Set(["http:", "https:"]);
+function safeUrl(u) {
+  const raw = String(u ?? "").trim();
+  if (!raw) return "#";
+  try {
+    const parsed = new URL(raw, window.location.origin);
+    if (!ALLOWED_SCHEMES.has(parsed.protocol)) return "#";
+    return esc(parsed.href);
+  } catch {
+    return "#";
+  }
+}
 const short = (d) => String(d).replace(/(0x[0-9a-fA-F]{6})[0-9a-fA-F]+([0-9a-fA-F]{4})/, "$1…$2");
 
 // ---- bootstrap -------------------------------------------------------------
@@ -98,7 +115,7 @@ function renderDashboard(o) {
         </div>
         <div class="panel">
           <h3>Sources</h3>
-          <ul class="sources">${o.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a> — ${esc(s.issuer)}</li>`).join("")}</ul>
+          <ul class="sources">${o.sources.map((s) => `<li><a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a> — ${esc(s.issuer)}</li>`).join("")}</ul>
         </div>
       </div>
     </div>
@@ -175,7 +192,7 @@ function runSearch(title) {
         const e = JSON.parse(ev.data);
         addStep(e);
         if (e.phase === "grounding" && Array.isArray(e.data)) {
-          $("#srcList").innerHTML = e.data.map((f) => `<li><a href="${esc(f.sourceUrl)}" target="_blank" rel="noopener">${esc(f.issuer || f.sourceTitle)}</a> — ${esc(f.claim)}</li>`).join("");
+          $("#srcList").innerHTML = e.data.map((f) => `<li><a href="${safeUrl(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(f.issuer || f.sourceTitle)}</a> — ${esc(f.claim)}</li>`).join("");
         }
         if (e.phase === "risk" && e.data) {
           const lvl = e.data.confidenceScore >= 75 ? "low" : e.data.confidenceScore >= 50 ? "medium" : "high";
