@@ -29,7 +29,33 @@
     const path = url.replace(/^https?:\/\/[^/]+/, ""); // strip origin
     const m = path.match(/\/api\/(.*)$/);
     if (!m) return realFetch(input, init);
-    const route = m[1];
+    const [route, qs] = m[1].split("?");
+    const params = new URLSearchParams(qs || "");
+
+    // The watchlist filters server-side in the real app; here the whole list
+    // ships as one file and the same filtering runs in the browser, so the
+    // static site behaves identically instead of losing the controls.
+    if (route === "watchlist") {
+      const wl = await json("watchlist.json");
+      const needle = (params.get("q") || "").trim().toLowerCase();
+      const status = params.get("status");
+      let rows = wl.entries;
+      if (status) rows = rows.filter((e) => e.status === status);
+      if (needle) {
+        rows = rows.filter((e) =>
+          `${e.title} ${e.artist} ${e.collections.join(" ")} ${e.country || ""}`
+            .toLowerCase()
+            .includes(needle)
+        );
+      }
+      const limit = Math.min(Math.max(Number(params.get("limit")) || 60, 1), 500);
+      return ok({
+        total: wl.entries.length,
+        matched: rows.length,
+        entries: rows.slice(0, limit),
+        caveat: wl.caveat,
+      });
+    }
 
     if (route === "config") return ok(await json("config.json"));
     if (route === "catalog") return ok(await json("catalog.json"));

@@ -44,9 +44,15 @@ $("#home").addEventListener("click", showGallery);
 async function loadGallery() {
   const items = await (await fetch("/api/catalog")).json();
   $("#grid").innerHTML = items.map(cardHTML).join("");
-  document.querySelectorAll(".card").forEach((el) =>
-    el.addEventListener("click", () => openObject(el.dataset.id))
-  );
+  document.querySelectorAll(".card").forEach((el) => {
+    const open = () => openObject(el.dataset.id);
+    el.addEventListener("click", open);
+    // A card is a control, so it should behave like one: reachable by Tab and
+    // activated by Enter/Space, not mouse-only.
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  });
 }
 
 function routeFlags(stops, country) {
@@ -55,7 +61,8 @@ function routeFlags(stops, country) {
 }
 
 function cardHTML(o) {
-  return `<div class="card" data-id="${o.id}">
+  return `<div class="card" data-id="${o.id}" role="button" tabindex="0"
+       aria-label="Open tracing dashboard for ${esc(o.title)}">
     <div class="tile" style="background:linear-gradient(135deg, ${o.accent}33, ${o.accent}0a)">${o.icon}</div>
     <div class="body">
       <h3>${esc(o.title)}</h3>
@@ -65,8 +72,87 @@ function cardHTML(o) {
         <span class="chip ${o.repatriation.status}">${o.repatriation.status}</span>
       </div>
       <div class="route">${flag(o.currentLocation.country)} ${esc(o.currentLocation.institution)} · ${o.stops} stops</div>
+      <div class="open-hint">open dashboard →</div>
     </div>
   </div>`;
+}
+
+// ---- stolen-art watchlist ---------------------------------------------------
+// Rendered as a dense list rather than cards, and visually plainer than the
+// curated grid above. That difference is the point: these rows are generated
+// Wikidata leads, and they should not look like the researched case files.
+let wlStatus = "";
+let wlQuery = "";
+let wlTimer = null;
+
+function wlRowHTML(e) {
+  const where = e.collections[0] || e.country || "";
+  return `<div class="wl-row" role="button" tabindex="0"
+       data-title="${esc(e.title)}" data-artist="${esc(e.artist)}"
+       aria-label="Run a live provenance trace for ${esc(e.title)}">
+    <span class="wl-status s-${e.status}">${e.status}</span>
+    <span class="wl-title">${esc(e.title)}</span>
+    <span class="wl-artist">${esc(e.artist)}</span>
+    <span class="wl-when">${esc(e.eventDate || "—")}</span>
+    <span class="wl-where">${esc(where)}</span>
+    <a class="wl-wd" href="${safeUrl(e.url)}" target="_blank" rel="noopener noreferrer"
+       title="View on Wikidata">wd</a>
+  </div>`;
+}
+
+async function loadWatchlist() {
+  const params = new URLSearchParams({ limit: "60" });
+  if (wlQuery) params.set("q", wlQuery);
+  if (wlStatus) params.set("status", wlStatus);
+
+  let data;
+  try {
+    data = await (await fetch(`/api/watchlist?${params}`)).json();
+  } catch {
+    $("#wlList").innerHTML = '<div class="wl-empty">Watchlist unavailable.</div>';
+    return;
+  }
+
+  $("#wlCount").textContent = data.total;
+  $("#wlList").innerHTML = data.entries.length
+    ? data.entries.map(wlRowHTML).join("")
+    : '<div class="wl-empty">No matches. That means nothing was found in <em>this list</em> — not that the object is clear.</div>';
+
+  // Say what was cut. A silently truncated page reads as the whole result set.
+  const more = $("#wlMore");
+  if (data.matched > data.entries.length) {
+    more.textContent = `Showing ${data.entries.length} of ${data.matched} matches — narrow the filter to see the rest.`;
+    more.classList.remove("hidden");
+  } else {
+    more.classList.add("hidden");
+  }
+
+  document.querySelectorAll(".wl-row").forEach((el) => {
+    const run = (ev) => {
+      if (ev.target.closest("a")) return; // let the Wikidata link through
+      runSearch(el.dataset.title, el.dataset.artist);
+    };
+    el.addEventListener("click", run);
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); run(e); }
+    });
+  });
+}
+
+function wireWatchlistControls() {
+  $("#wlSearch").addEventListener("input", (e) => {
+    wlQuery = e.target.value;
+    clearTimeout(wlTimer);
+    wlTimer = setTimeout(loadWatchlist, 200); // debounce — this filters server-side
+  });
+  document.querySelectorAll(".wl-tab").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".wl-tab").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      wlStatus = btn.dataset.status;
+      loadWatchlist();
+    })
+  );
 }
 
 // ---- object dashboard ------------------------------------------------------
@@ -232,12 +318,12 @@ $("#searchForm").addEventListener("submit", (e) => {
   if (title) runSearch(title);
 });
 
-function runSearch(title) {
+function runSearch(title, artist) {
   detail.innerHTML = `
     <span class="back" id="back">← all tracked objects</span>
     <div class="dash-head">
       <div class="hero" style="background:linear-gradient(135deg,#5b9dff40,#5b9dff10)">🔎</div>
-      <div><h1>${esc(title)}</h1><div class="sub">Live agent trace — grounding, risk, x402 payment, passport</div></div>
+      <div><h1>${esc(title)}</h1><div class="sub">${artist ? esc(artist) + " · " : ""}Live agent trace — grounding, registers, risk, x402 payment, passport</div></div>
     </div>
     <div class="cols">
       <div class="panel"><h3>Live trace</h3><ol class="steps" id="steps"></ol></div>
@@ -251,7 +337,7 @@ function runSearch(title) {
   gallery.classList.add("hidden"); detail.classList.remove("hidden"); window.scrollTo(0, 0);
   $("#back").addEventListener("click", showGallery);
 
-  fetch("/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title }) })
+  fetch("/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title, artist }) })
     .then((r) => r.json())
     .then(({ runId }) => {
       const es = new EventSource(`/api/stream/${runId}`);
@@ -291,3 +377,5 @@ function addStep(e) {
 }
 
 loadGallery();
+wireWatchlistControls();
+loadWatchlist();

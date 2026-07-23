@@ -23,9 +23,44 @@
     <section id="galleryView">
       <div class="section-head">
         <h2>Tracked objects</h2>
-        <span class="hint">click a card to open its tracing dashboard</span>
+        <span class="hint">researched case files — click any card to open its tracing dashboard</span>
       </div>
       <div id="grid" class="grid"></div>
+
+      <!-- The watchlist sits BELOW the curated catalog, and looks different on
+           purpose. These are generated leads, not researched case files, and a
+           reader who cannot tell them apart at a glance has been misled. -->
+      <div class="section-head wl-head">
+        <h2>Stolen-art watchlist</h2>
+        <span class="hint"><span id="wlCount">…</span> works recorded as stolen or plundered — click to run a live trace</span>
+      </div>
+
+      <div class="wl-note" id="wlNote">
+        <b>These are leads, not register entries.</b>
+        Generated from Wikidata's theft records — community data, not certified police
+        information. This is <b>not</b> an extract from INTERPOL's Stolen Works of Art
+        database or the FBI's National Stolen Art File; neither can be queried by machine.
+        Verify anything here against the official searches, and note that absence from this
+        list means nothing.
+        <div class="wl-links">
+          <a href="https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database" target="_blank" rel="noopener noreferrer">INTERPOL Stolen Works of Art →</a>
+          <a href="https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app" target="_blank" rel="noopener noreferrer">INTERPOL ID-Art →</a>
+          <a href="https://artcrimes.fbi.gov/" target="_blank" rel="noopener noreferrer">FBI National Stolen Art File →</a>
+          <a href="https://tpcweb.carabinieri.it/SitoPubblico/ricerca" target="_blank" rel="noopener noreferrer">Carabinieri TPC →</a>
+          <a href="https://www.lostart.de/en/search" target="_blank" rel="noopener noreferrer">Lost Art Database →</a>
+        </div>
+      </div>
+
+      <div class="wl-controls">
+        <input id="wlSearch" placeholder="Filter the watchlist by title, artist, collection or country…" autocomplete="off" />
+        <div class="wl-filters">
+          <button type="button" class="wl-tab active" data-status="">all</button>
+          <button type="button" class="wl-tab" data-status="outstanding">outstanding</button>
+          <button type="button" class="wl-tab" data-status="resolved">resolved</button>
+        </div>
+      </div>
+      <div id="wlList" class="wl-list"></div>
+      <div id="wlMore" class="wl-more hidden"></div>
     </section>
 
     <section id="detailView" class="hidden"></section>
