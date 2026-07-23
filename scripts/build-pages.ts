@@ -66,6 +66,8 @@ writeFileSync(join(OUT, "index.html"), html);
 copyFileSync(join(ROOT, "public/app.js"), join(OUT, "app.js"));
 copyFileSync(join(ROOT, "public/styles.css"), join(OUT, "styles.css"));
 copyFileSync(join(ROOT, "scripts/pages/static-api.js"), join(OUT, "static-api.js"));
+copyFileSync(join(ROOT, "public/etc-icon.svg"), join(OUT, "etc-icon.svg"));
+copyFileSync(join(ROOT, "public/etc-icon.png"), join(OUT, "etc-icon.png"));
 writeFileSync(join(OUT, ".nojekyll"), ""); // stop Jekyll eating the api/ folder
 
 // --- /api/config and /api/registries ----------------------------------------
