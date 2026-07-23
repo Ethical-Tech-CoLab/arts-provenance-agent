@@ -6,8 +6,8 @@
     "VerifiableCredential",
     "DigitalProvenancePassport"
   ],
-  "issuer": "did:pkh:eip155:84532:0xcaaB3FD402E0A8ff327De21eE28964d7888c8C07",
-  "validFrom": "2026-07-23T16:30:01.619Z",
+  "issuer": "did:pkh:eip155:84532:0x5AFC062B486514E57a70EdE5d1C0AA7cE717e1C2",
+  "validFrom": "2026-07-23T16:42:16.365Z",
   "credentialSubject": {
     "id": "urn:artwork:adele-bloch-bauer-i",
     "title": "Portrait of Adele Bloch-Bauer I",
@@ -103,7 +103,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-        "checkedAt": "2026-07-23T16:29:53.448Z"
+        "checkedAt": "2026-07-23T16:42:16.160Z"
       },
       {
         "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -114,7 +114,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-        "checkedAt": "2026-07-23T16:29:53.397Z"
+        "checkedAt": "2026-07-23T16:42:16.095Z"
       },
       {
         "registry": "FBI National Stolen Art File",
@@ -125,7 +125,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://artcrimes.fbi.gov/",
-        "checkedAt": "2026-07-23T16:29:53.452Z"
+        "checkedAt": "2026-07-23T16:42:16.140Z"
       },
       {
         "registry": "Carabinieri TPC — Leonardo database",
@@ -136,7 +136,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-        "checkedAt": "2026-07-23T16:29:53.447Z"
+        "checkedAt": "2026-07-23T16:42:16.137Z"
       },
       {
         "registry": "Lost Art Database",
@@ -147,7 +147,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.lostart.de/en/search",
-        "checkedAt": "2026-07-23T16:29:53.446Z"
+        "checkedAt": "2026-07-23T16:42:16.149Z"
       },
       {
         "registry": "Getty Provenance Index",
@@ -158,7 +158,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-        "checkedAt": "2026-07-23T16:29:53.458Z"
+        "checkedAt": "2026-07-23T16:42:16.135Z"
       },
       {
         "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -169,18 +169,59 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://icom.museum/en/resources/red-lists/",
-        "checkedAt": "2026-07-23T16:29:53.446Z"
+        "checkedAt": "2026-07-23T16:42:16.134Z"
       },
       {
         "registry": "Wikidata (structured provenance events)",
         "assertedBy": "Wikidata contributors — community-maintained, not an authority",
         "access": "structured-api",
-        "verdict": "no-evidence-found",
+        "verdict": "possible-match",
         "method": "SPARQL over Q354396 (Portrait of Adele Bloch-Bauer I) — significant-event (P793), collection (P195), origin (P495), discovery (P189). Chosen from 1 label-search candidate(s): Q354396 Portrait of Adele Bloch-Bauer I. Entity resolution is shown so the choice can be audited rather than trusted.",
         "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
-        "hits": [],
+        "hits": [
+          {
+            "claim": "significant event: claim for restitution of an artwork (2004-01-01)",
+            "source": "https://www.wikidata.org/wiki/Q354396",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: erroneous provenance (artwork)",
+            "source": "https://www.wikidata.org/wiki/Q354396",
+            "riskRelevant": true
+          },
+          {
+            "claim": "significant event: restitution of Nazi-looted art (2006-01-01)",
+            "source": "https://www.nytimes.com/2015/03/31/arts/design/the-story-behind-woman-in-gold-nazi-art-thieves-and-one-paintings-return.html",
+            "riskRelevant": true
+          },
+          {
+            "claim": "creator: Gustav Klimt",
+            "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-v-1900-present-2/",
+            "riskRelevant": false
+          },
+          {
+            "claim": "collection: Neue Galerie",
+            "source": "https://www.neuegalerie.org/womaningold",
+            "riskRelevant": false
+          },
+          {
+            "claim": "inception: 1907-01-01T00:00:00Z",
+            "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-v-1900-present-2/",
+            "riskRelevant": false
+          },
+          {
+            "claim": "location: Austria",
+            "source": "https://beckchris.wordpress.com/visual-arts/art-history-101-part-v-1900-present-2/",
+            "riskRelevant": false
+          },
+          {
+            "claim": "location: Neue Galerie",
+            "source": "https://www.wikidata.org/wiki/Q354396",
+            "riskRelevant": false
+          }
+        ],
         "officialSearch": "https://www.wikidata.org/wiki/Q354396",
-        "checkedAt": "2026-07-23T16:30:01.617Z"
+        "checkedAt": "2026-07-23T16:42:16.363Z"
       },
       {
         "registry": "Art Loss Register",
@@ -191,7 +232,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.artloss.com/",
-        "checkedAt": "2026-07-23T16:29:53.398Z"
+        "checkedAt": "2026-07-23T16:42:16.096Z"
       }
     ],
     "checksRun": [
@@ -207,13 +248,13 @@
       "registry:wikidata#structured-api",
       "registry:art-loss-register#paid-x402"
     ],
-    "assessedAt": "2026-07-23T16:30:01.619Z"
+    "assessedAt": "2026-07-23T16:42:16.365Z"
   },
   "proof": {
     "type": "EcdsaSecp256k1RecoverySignature2020",
-    "created": "2026-07-23T16:30:01.619Z",
-    "verificationMethod": "did:pkh:eip155:84532:0xcaaB3FD402E0A8ff327De21eE28964d7888c8C07#blockchainAccountId",
+    "created": "2026-07-23T16:42:16.365Z",
+    "verificationMethod": "did:pkh:eip155:84532:0x5AFC062B486514E57a70EdE5d1C0AA7cE717e1C2#blockchainAccountId",
     "proofPurpose": "assertionMethod",
-    "proofValue": "0xb2f76a27377be46322a44f91fc42d0cec1c12bb34af894ff4b311eb9c1e7711069fd3b9d5cf1163d8e936d161473dfcd5eda616fbae5cd427fc4edead0a399051c"
+    "proofValue": "0x5f01538c5e0b89431214acc631a1eb6a7d27aa11965407ebd95037533910e61e25c17fd8036f4e9d749d2fa5c54662754cdddb38d0f795509378969ae2ba13501c"
   }
 }
