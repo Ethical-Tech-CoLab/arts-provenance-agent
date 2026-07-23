@@ -8,3 +8,5 @@ keys/
 
 .env
 venv/
+dist-pages/
+.DS_Store

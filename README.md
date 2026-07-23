@@ -25,6 +25,11 @@ wallet key that doubles as the object's signing authority (*"a wallet is PKI"*).
    qualification that made it accurate, or that a page on an authoritative domain is
    itself authoritative. A false claim wearing a real source address is not prevented,
    and is more dangerous for looking sourced.
+2b. **Register checks** — the object is put to INTERPOL's Stolen Works of Art database,
+   the FBI's National Stolen Art File, the Carabinieri TPC archive, the German Lost Art
+   Foundation, the Getty Provenance Index, ICOM's Red Lists and Wikidata. Read
+   [Stolen-art registers](#stolen-art-registers) before trusting any verdict: only one of
+   those is machine-queryable, and **no register check can ever return "clear"**.
 3. **Risk flagging** — looting / repatriation signals, provenance gaps, source-country
    origin, and a **valuation sanity check** (extreme markups flag possible laundering) →
    a confidence score (0–100) with red flags.
@@ -37,10 +42,59 @@ wallet key that doubles as the object's signing authority (*"a wallet is PKI"*).
 
 ## The dashboard
 
-A web UI for **tracing objects**: a gallery of tracked artifacts, and a per-object
+A web UI for **tracing objects**: a gallery of 15 tracked artifacts, and a per-object
 dashboard showing **where it's been** (the provenance journey across places/countries),
-**risk** (score + red flags), **repatriation** status, sources, and the signed Passport.
-A search bar runs the live agent on any new object.
+**risk** (score + red flags), **repatriation** status, **stolen-art register checks**,
+sources, and the signed Passport. A search bar runs the live agent on any new object.
+
+The catalog spans the distinct shapes a provenance problem takes, because they do not
+behave alike: archaeological looting (Euphronios Krater, Koh Ker Duryodhana, Lydian
+Hoard), colonial acquisition (Benin Bronze, Parthenon Marbles, Rosetta Stone, Nefertiti),
+Nazi-era spoliation (Klimt's *Adele Bloch-Bauer I*, Schiele's *Portrait of Wally*),
+outright theft still unsolved (Vermeer's *The Concert*, Van Gogh's *Poppy Flowers*),
+theft since recovered (Cellini's *Saliera*), contested export (the Getty Bronze), completed
+returns (Machu Picchu material) and a clean chain (Sargent's *Madame X*).
+
+---
+
+## Stolen-art registers
+
+The registers that actually certify stolen cultural property **have no public API**. This
+was checked, not assumed — see the header of [`src/tools/registries.ts`](src/tools/registries.ts):
+
+| Register | Coverage | How this agent reaches it |
+|---|---|---|
+| **INTERPOL Stolen Works of Art** | ~52,000 objects, certified police data, global | Domain-scoped search + referral. Real access is the ID-Art app, or an account vetted by your national NCB. |
+| **INTERPOL ID-Art** | Same database, phone lookup, no login | Referral only — cannot be automated |
+| **FBI National Stolen Art File** | US + foreign law-enforcement submissions | Domain-scoped search + referral (`artcrimes.fbi.gov` blocks non-browser clients) |
+| **Carabinieri TPC "Leonardo"** | ~1.1M objects — the largest archive there is | Domain-scoped search + referral |
+| **German Lost Art Foundation** | Nazi-era spoliation 1933–45 | Domain-scoped search + referral |
+| **Getty Provenance Index** | Auction catalogues, dealer stock books | Domain-scoped search + referral |
+| **ICOM Red Lists** | Object *categories* at risk by region | Domain-scoped search + referral |
+| **Wikidata** | Dated theft / looting / restitution events | **Genuinely queried** over SPARQL |
+| **Art Loss Register** | Commercial stolen-art database | The paid x402 check |
+
+Three things follow, and the code enforces all three:
+
+**A domain-scoped search reads what a register *publishes*, not what it *holds*.** Those
+are different claims, so every result carries its access tier next to its verdict.
+
+**No check can return "clear".** The strongest negative in the type is
+`no-evidence-found`. This is not pedantry: material taken from an archaeological site or
+under colonial rule was never inventoried and never reported stolen, so it *cannot* appear
+in a stolen-property register. Rendering that absence as a clean bill of health would be
+actively dangerous, and it is the exact objects this project exists for.
+
+**Silence never earns confidence.** A register hit costs score; a register that came back
+empty adds nothing. Registers that could not be searched are counted and reported as a
+coverage gap, so a thin check cannot be mistaken for a thorough one.
+
+Every check — including the ones that failed and the ones that could not run — is signed
+into the Passport alongside its caveat text, so the caveat cannot be stripped downstream.
+
+```bash
+npm run smoke-registries -- "The Concert" "Johannes Vermeer"
+```
 
 ---
 
@@ -73,6 +127,21 @@ DEMO_MODE=live npm run web    # terminal B — the dashboard; agent pays real US
 | `npm run wallet -- --new` | Generate a fresh Base Sepolia key |
 | `npm run pay` | One-shot x402 payment smoke test |
 | `npm run smoke-tavily` | Tavily grounding connectivity test |
+| `npm run smoke-registries -- "Title" "Artist"` | Run every stolen-art register check for one object |
+| `npm run build:pages` | Regenerate the static GitHub Pages snapshot into `dist-pages/` |
+| `npm run deploy:pages` | Publish `dist-pages/` to the `gh-pages` branch |
+
+### The published site
+
+GitHub Pages can't run the Express backend, so the [live site](https://ethical-tech-colab.github.io/arts-provenance-agent/)
+is a pre-rendered capture: every API response written to a JSON file, plus
+`scripts/pages/static-api.js`, which overrides `fetch`/`EventSource` to read them. The
+frontend itself is unmodified.
+
+`build:pages` signs the published passports with a **throwaway per-process key** — they
+are demo artifacts that verify against themselves and commit no real identity to a public
+branch — while querying the registers **for real**, so the snapshot shows what the tool
+actually finds. Pass `--offline` to skip the live calls.
 
 ## Configuration
 
@@ -102,7 +171,7 @@ The full independent academic peer review of this report is in [PEER-REVIEW.md](
 
 - An overclaim the paper itself retracts: hallucinated history is called "structurally impossible" (S04 Objective 2) but S13 concedes the sourcing rule blocks unsourced, not false, claims. — **Fixed, in this repo and in the report text.**
 - Two disagreeing scoring systems (deduction vs accumulation) return different numbers for the same object (S06/S13); no canonical scorer is designated. — **Canonical model designated.**
-- The six permitted sources exclude source-country archives, Getty, and Interpol (S08), biasing coverage away from the motivating cases. — **Stated plainly, and named as the first extension.**
+- The six permitted sources exclude source-country archives, Getty, and Interpol (S08), biasing coverage away from the motivating cases. — **Stated plainly, and now partly built: see [Stolen-art registers](#stolen-art-registers).**
 
 **Noted strength:** An exceptionally candid limitations section (S13) paired with a genuinely correct core argument: sourcing should be enforced structurally, not merely requested of a language model (S12).
 
@@ -114,6 +183,8 @@ The full independent academic peer review of this report is in [PEER-REVIEW.md](
 **The accumulation model is designated canonical.** `src/agent/assessRisk.ts` (starts at 30, adds 18 per authoritative source and 8 per press source, subtracts 12 for undated early history) is the canonical scorer, and any score reported as a result comes from it. The deduction model in `src/web/pipeline.ts` (starts at 100, subtracts named penalties) is marked non-canonical in the source.
 
 The reason accumulation wins: an object with no published history should not score 100. A deduction model that starts every object at a perfect score treats absence of evidence as evidence of clean provenance, which inverts the tool's whole purpose.
+
+**The permitted-source list has been extended, and the limit of that fix is stated.** INTERPOL, the FBI's National Stolen Art File, the Carabinieri TPC archive, the German Lost Art Foundation and the Getty Provenance Index are now on the allowlist and have dedicated register checks. What this does *not* do is close the gap the reviewer identified. None of those registers is machine-queryable, so the agent reads what they publish and hands off a link for the search a human must run; the one register it truly queries, Wikidata, certifies nothing. The remaining and most important gap is unchanged: the national heritage authorities of the fourteen source countries the scorer recognises. The register layer is built so that this shows in the output — unreachable registers are counted and reported rather than quietly omitted — because the failure mode here is a thin check that reads like a thorough one.
 
 The two models still return different numbers for the same object. **Reconciling the web pipeline onto the canonical model is committed future work** — scoring behaviour was deliberately not changed in this revision, so no previously reported number silently moves. The divergence is no longer presented as an interesting property of the system.
 

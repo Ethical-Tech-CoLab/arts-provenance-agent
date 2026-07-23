@@ -13,6 +13,7 @@ import { dirname, join } from "node:path";
 import { config, DEMO_MODE, facilitatorLabel } from "../config.js";
 import { runProvenance } from "./pipeline.js";
 import { getCatalog, getObject, issueObjectPassport } from "./catalog.js";
+import { checkRegistries, getRegistries } from "../tools/registries.js";
 import { verifyCredential, type VerifiableCredential } from "../lib/signing.js";
 import { spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import type { Emit, RunEvent, Intent } from "../lib/schema.js";
@@ -160,11 +161,56 @@ app.get("/api/object/:id", (req, res) => {
   res.json(obj);
 });
 
-/** Issue (sign) a Passport for a catalog object. */
+/**
+ * Issue (sign) a Passport for a catalog object.
+ *
+ * The try/catch is load-bearing: Express 4 does not catch rejections from an
+ * async handler, so an unhandled one becomes an unhandledRejection and takes
+ * the whole server down. Issuing touches the wallet key and now the live
+ * register checks, both of which can fail on a normal day.
+ */
 app.post("/api/object/:id/passport", async (req, res) => {
   const obj = getObject(req.params.id);
   if (!obj) return res.status(404).json({ error: "not found" });
-  res.json(await issueObjectPassport(obj));
+  try {
+    res.json(await issueObjectPassport(obj));
+  } catch (e) {
+    res.status(500).json({ error: (e as Error).message });
+  }
+});
+
+/**
+ * The register directory — which stolen-art / cultural-property registers this
+ * agent consults, and crucially HOW it can reach each one. Exposed as its own
+ * endpoint because the access tier is the most important thing a user can know
+ * about a check, and burying it inside a result hides it.
+ */
+app.get("/api/registries", (_req, res) => {
+  res.json(
+    getRegistries().map((r) => ({
+      id: r.id,
+      name: r.name,
+      issuer: r.issuer,
+      jurisdiction: r.jurisdiction,
+      access: r.access,
+      coverage: r.coverage,
+      referralUrl: r.referralUrl,
+      applyUrl: r.applyUrl,
+    }))
+  );
+});
+
+/** Run the register checks for one tracked object, live. */
+app.get("/api/object/:id/registries", async (req, res) => {
+  const obj = getObject(req.params.id);
+  if (!obj) return res.status(404).json({ error: "not found" });
+  const ip = req.ip ?? req.socket.remoteAddress ?? "unknown";
+  if (rateLimited(ip)) return res.status(429).json({ error: "rate limit" });
+  try {
+    res.json(await checkRegistries(obj.title, obj.artist));
+  } catch (e) {
+    res.status(502).json({ error: (e as Error).message });
+  }
 });
 
 /** Start a run. Returns a runId the client subscribes to over SSE. */

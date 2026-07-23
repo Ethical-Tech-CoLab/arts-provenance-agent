@@ -1,0 +1,68 @@
+{
+  "qid": "Q1323051",
+  "label": "Euphronios krater",
+  "description": "ancient Greek bowl used for mixing wine with water, made around 515 B.C.",
+  "url": "https://www.wikidata.org/wiki/Q1323051",
+  "candidates": [
+    { "qid": "Q1323051", "label": "Euphronios krater", "description": "ancient Greek bowl used for mixing wine with water, made around 515 B.C." },
+    { "qid": "Q15639446", "label": "Euphronios Krater", "description": "red-figure chalice krater by the Attic painter Euphronios" }
+  ],
+  "events": [
+    {
+      "property": "significant event",
+      "value": "archaeological looting",
+      "date": "1971-12-01T00:00:00Z",
+      "reference": null,
+      "riskRelevant": true
+    },
+    {
+      "property": "significant event",
+      "value": "restitution",
+      "date": "2006-01-01T00:00:00Z",
+      "reference": "https://www.ifar.org/case_summary.php?docid=1184619726",
+      "riskRelevant": true
+    },
+    {
+      "property": "significant event",
+      "value": "claim for restitution of an artwork",
+      "date": null,
+      "reference": "https://www.ifar.org/case_summary.php?docid=1184619726",
+      "riskRelevant": true
+    },
+    {
+      "property": "significant event",
+      "value": "erroneous provenance (artwork)",
+      "date": null,
+      "reference": null,
+      "riskRelevant": false
+    },
+    {
+      "property": "collection",
+      "value": "Metropolitan Museum of Art",
+      "date": null,
+      "reference": null,
+      "riskRelevant": false
+    },
+    {
+      "property": "collection",
+      "value": "Museo Nazionale Etrusco di Villa Giulia",
+      "date": null,
+      "reference": null,
+      "riskRelevant": false
+    },
+    {
+      "property": "location",
+      "value": "Cerveteri",
+      "date": null,
+      "reference": null,
+      "riskRelevant": false
+    },
+    {
+      "property": "inception",
+      "value": "-0515-01-01T00:00:00Z",
+      "date": null,
+      "reference": null,
+      "riskRelevant": false
+    }
+  ]
+}

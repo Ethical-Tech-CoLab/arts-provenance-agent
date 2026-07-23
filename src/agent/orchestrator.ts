@@ -11,6 +11,7 @@
  */
 import { parseIntent, type ArtworkIntent } from "./parseIntent.js";
 import { buildProvenanceTimeline } from "./timeline.js";
+import { checkRegistries, type RegistrySummary } from "../tools/registries.js";
 import { assessRisk } from "./assessRisk.js";
 import { payForCheck } from "./payForCheck.js";
 import { traceTransaction } from "./traceTransaction.js";
@@ -21,6 +22,7 @@ import { facilitatorLabel, DEMO_MODE } from "../config.js";
 export type StepEvent =
   | { step: "intent"; title: string; data: ArtworkIntent }
   | { step: "grounding"; title: string; data: any }
+  | { step: "registry"; title: string; data: RegistrySummary }
   | { step: "risk"; title: string; data: any }
   | { step: "payment"; title: string; data: any }
   | { step: "trace"; title: string; data: any }
@@ -53,8 +55,21 @@ export async function runAgent(
     data: { timeline: ground.timeline, sources: ground.sources, dropped: ground.dropped },
   });
 
+  // 2b. Stolen-art register checks (INTERPOL, FBI NSAF, TPC, Lost Art, …).
+  // Fault-tolerant: a registry layer that throws must not take the run with it,
+  // but the absence of checks is then visible rather than silently benign.
+  let registry: RegistrySummary | null = null;
+  try {
+    registry = await checkRegistries(intent.title, intent.artist ?? undefined);
+    push({
+      step: "registry",
+      title: `Registers: ${registry.possibleMatches} possible match(es), ${registry.notQueryable}/${registry.checks.length} not machine-queryable`,
+      data: registry,
+    });
+  } catch { /* recorded by its absence from checksRun */ }
+
   // 3. Initial risk
-  let risk = assessRisk({ timeline: ground.timeline, valuation: opts.valuation ?? null });
+  let risk = assessRisk({ timeline: ground.timeline, valuation: opts.valuation ?? null, registry });
   push({ step: "risk", title: `Initial confidence ${risk.confidenceScore}/100`, data: risk });
 
   // 4/5. Agentic commerce: decide + pay (x402) for the premium check
@@ -82,6 +97,7 @@ export async function runAgent(
     premiumResult: pay.result,
     cryptoFlag: trace.flag,
     valuation: opts.valuation ?? null,
+    registry,
   });
 
   // Mint + verify the Passport
@@ -101,6 +117,17 @@ export async function runAgent(
         reasoning: pay.reasoning,
       },
     ],
+    registryChecks: (registry?.checks ?? []).map((c) => ({
+      registry: c.registry,
+      assertedBy: c.issuer,
+      access: c.access,
+      verdict: c.verdict,
+      method: c.method,
+      caveat: c.caveat,
+      hits: c.hits.map((h) => ({ claim: h.claim, source: h.sourceUrl, riskRelevant: h.riskRelevant })),
+      officialSearch: c.referralUrl,
+      checkedAt: c.checkedAt,
+    })),
   });
   const verify = await verifyPassport(passport);
   push({ step: "passport", title: `Passport signed & verified: ${verify.ok ? "VALID ✅" : "INVALID ❌"}`, data: { passport, verify } });

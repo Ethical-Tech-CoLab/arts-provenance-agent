@@ -4,6 +4,9 @@
  * state into it, and the passport is assembled from that accumulated state
  * (not re-derived from the LLM) so the signed record is always faithful.
  */
+import type { RegistrySummary } from "../tools/registries.js";
+
+export type { RegistryCheck, RegistrySummary, RegistryVerdict, RegistryAccess } from "../tools/registries.js";
 
 /** What the user enters on the website. "Intent is the interface." */
 export interface Intent {
@@ -70,6 +73,7 @@ export type Phase =
   | "intent"
   | "reasoning"
   | "grounding"
+  | "registry"
   | "risk"
   | "x402:offer"
   | "x402:decision"
@@ -92,6 +96,8 @@ export interface RunContext {
   runId: string;
   intent: Intent;
   facts: GroundedFact[];
+  /** Stolen-art / cultural-property register checks (src/tools/registries.ts). */
+  registry?: RegistrySummary;
   risk?: RiskAssessment;
   premiumChecks: PremiumCheckResult[];
   emit: Emit;

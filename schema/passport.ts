@@ -36,6 +36,8 @@ export const RiskFlagType = z.enum([
   "repatriationPrecedent",
   "valuationAnomaly",
   "provenanceGap",
+  "registrySignal", // a stolen-art register names this object (lead, not finding)
+  "registryCoverageGap", // registers that could not be searched — recorded, never scored
   "cryptoTransactionFlag", // the x402 settlement tx itself (recorded for audit; AML screening not implemented)
 ]);
 export type RiskFlagType = z.infer<typeof RiskFlagType>;
@@ -60,6 +62,27 @@ export const PremiumCheck = z.object({
 });
 export type PremiumCheck = z.infer<typeof PremiumCheck>;
 
+/**
+ * One stolen-art / cultural-property register check, recorded in the signed
+ * credential. `access` and `verdict` are carried together deliberately: a
+ * verdict is only readable if you know how the register was reached, and most
+ * of them cannot be reached programmatically at all. `caveat` states in words
+ * what the verdict does and does not license — it is signed alongside the
+ * result so it cannot be stripped off downstream.
+ */
+export const RegistryCheckRecord = z.object({
+  registry: z.string(),
+  assertedBy: z.string(),
+  access: z.enum(["structured-api", "grounded-search", "referral-only", "paid-x402"]),
+  verdict: z.enum(["possible-match", "no-evidence-found", "not-queryable", "not-run"]),
+  method: z.string(),
+  caveat: z.string(),
+  hits: z.array(z.object({ claim: z.string(), source: z.string(), riskRelevant: z.boolean() })),
+  officialSearch: z.string(),
+  checkedAt: z.string(),
+});
+export type RegistryCheckRecord = z.infer<typeof RegistryCheckRecord>;
+
 export const Passport = z.object({
   "@context": z.any(),
   type: z.literal("DigitalProvenancePassport"),
@@ -76,6 +99,7 @@ export const Passport = z.object({
     flags: z.array(RiskFlag),
   }),
   premiumChecks: z.array(PremiumCheck),
+  registryChecks: z.array(RegistryCheckRecord),
   issuer: z.object({
     name: z.string(),
     wallet: z.string(), // 0x address — the PKI identity

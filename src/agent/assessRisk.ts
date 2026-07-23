@@ -8,6 +8,7 @@
  * The agent NEVER asserts a legal conclusion — it flags signals + cites evidence.
  */
 import type { TimelineEvent, RiskFlag } from "../../schema/passport.js";
+import type { RegistrySummary } from "../tools/registries.js";
 
 export interface RiskInput {
   timeline: TimelineEvent[];
@@ -17,6 +18,8 @@ export interface RiskInput {
   cryptoFlag?: RiskFlag | null;
   /** Optional: declared/observed sale price vs comparable median (USD). */
   valuation?: { price: number; comparableMedian: number } | null;
+  /** Optional: stolen-art register checks (src/tools/registries.ts). */
+  registry?: RegistrySummary | null;
 }
 
 export interface RiskResult {
@@ -69,6 +72,34 @@ export function assessRisk(input: RiskInput): RiskResult {
       evidence: `Pre-acquisition history is incomplete (${undated} undated event(s); no documented chain before earliest record).`,
       source: earliest?.source ?? timeline[0]?.source ?? "n/a",
     });
+  }
+
+  // --- Stolen-art register checks -------------------------------------------
+  //
+  // Asymmetric on purpose. A register hit costs confidence; a register that
+  // came back empty earns none. Under the accumulation model this is not just a
+  // policy choice but the only coherent one: confidence here is credit for
+  // positive evidence, and "nothing found" is not evidence. It is doubly true
+  // for stolen-property registers, which can only contain objects somebody was
+  // in a position to report missing.
+  if (input.registry) {
+    for (const hit of input.registry.riskRelevantHits.slice(0, 3)) {
+      confidence -= 20;
+      flags.push({
+        type: "registrySignal",
+        severity: "high",
+        evidence: `Register source describes this object in theft/looting/restitution terms: "${hit.claim}". Verify against the register itself before relying on it.`,
+        source: hit.sourceUrl,
+      });
+    }
+    if (input.registry.notQueryable > 0) {
+      flags.push({
+        type: "registryCoverageGap",
+        severity: "low",
+        evidence: `${input.registry.notQueryable} of ${input.registry.checks.length} registers have no public API and were not searched (INTERPOL SWOA, FBI NSAF, Carabinieri TPC among them). Their silence here means nothing — the official searches must be run by hand.`,
+        source: input.registry.checks.find((c) => c.verdict === "not-queryable")?.referralUrl ?? "n/a",
+      });
+    }
   }
 
   // --- Premium ALR result folds in (after payment) --------------------------

@@ -26,6 +26,8 @@ export interface MintInput {
   timeline: TimelineEvent[];
   riskAssessment: { confidenceScore: number; flags: RiskFlag[] };
   premiumChecks: Passport["premiumChecks"];
+  /** Stolen-art register checks — including the ones that could not run. */
+  registryChecks?: Passport["registryChecks"];
   issuerName?: string;
 }
 
@@ -45,6 +47,7 @@ export async function mintPassport(input: MintInput): Promise<Passport> {
     provenanceTimeline: input.timeline,
     riskAssessment: input.riskAssessment,
     premiumChecks: input.premiumChecks,
+    registryChecks: input.registryChecks ?? [],
     issuer: {
       name: input.issuerName ?? "Digital Provenance Passport Agent",
       wallet: account.address,

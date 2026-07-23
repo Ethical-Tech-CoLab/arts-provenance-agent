@@ -30,18 +30,35 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  *
  * Extending this list is the first substantive piece of future work, not an
  * optional one — every other improvement operates on evidence the tool was able
- * to find, and this list decides what it can find at all. The named gaps are
- * the Getty Provenance Index, the German Lost Art Foundation, Interpol's stolen
- * works of art database, and the national heritage authorities of the fourteen
- * source countries the scorer already recognises.
+ * to find, and this list decides what it can find at all.
+ *
+ * PARTIALLY ADDRESSED. Four of the named gaps are now on the list: INTERPOL's
+ * stolen works of art database, the FBI's National Stolen Art File, the German
+ * Lost Art Foundation, and the Getty Provenance Index — plus the Carabinieri
+ * TPC archive, the single most important source for Italian antiquities. See
+ * `src/tools/registries.ts` for what including a domain here does and does not
+ * buy: it lets grounding read what a register PUBLISHES, which is not the same
+ * as searching the register itself. The remaining gap is the one that matters
+ * most and is least tractable — the national heritage authorities of the
+ * fourteen source countries the scorer already recognises.
  */
 export const AUTHORITATIVE_DOMAINS = [
+  // Museums and cultural bodies
   "metmuseum.org",
   "unesco.org",
   "whc.unesco.org",
-  "artloss.com",
   "icom.museum",
+  "getty.edu",
   "culturalheritage.gov",
+  // Stolen-property and spoliation registers
+  "interpol.int",
+  "fbi.gov",
+  "carabinieri.it",
+  "beniculturali.it",
+  "lostart.de",
+  "kulturgutverluste.de",
+  "proveana.de",
+  "artloss.com",
 ];
 
 /** A raw grounded fact with full attribution. */
@@ -81,6 +98,14 @@ function hostAuthority(url: string): string {
     if (h.includes("unesco")) return "UNESCO";
     if (h.includes("artloss")) return "Art Loss Register";
     if (h.includes("icom")) return "ICOM";
+    if (h.includes("interpol")) return "INTERPOL — Cultural Heritage Crime Unit";
+    if (h.includes("fbi.gov")) return "FBI Art Crime Team";
+    if (h.includes("carabinieri")) return "Carabinieri TPC (Italy)";
+    if (h.includes("beniculturali")) return "Ministero della Cultura (Italy)";
+    if (h.includes("lostart") || h.includes("kulturgutverluste") || h.includes("proveana")) {
+      return "German Lost Art Foundation";
+    }
+    if (h.includes("getty")) return "Getty Research Institute";
     if (h.includes(".gov")) return "Government cultural authority";
   } catch { /* noop */ }
   return "web source";
@@ -92,9 +117,29 @@ function hostAuthority(url: string): string {
  */
 export async function tavilySearch(
   queryText: string,
-  opts: { restrictToAuthoritative?: boolean } = { restrictToAuthoritative: true }
+  opts: {
+    restrictToAuthoritative?: boolean;
+    /**
+     * Scope the search to these domains instead of the full allowlist. Used by
+     * the registry layer to search one register's site at a time, so a hit can
+     * be attributed to that register rather than to "the allowlist".
+     */
+    domains?: string[];
+    /**
+     * Force a real search even under DEMO_MODE=mock. Exists for the static
+     * Pages snapshot builder, which needs genuine register data baked in while
+     * the wallet stays on a throwaway mock key. Not for request paths.
+     */
+    live?: boolean;
+  } = { restrictToAuthoritative: true }
 ): Promise<GroundedFact[]> {
-  if (MOCK_TAVILY || !config.tavilyApiKey) return loadFixture(queryText);
+  if ((MOCK_TAVILY && !opts.live) || !config.tavilyApiKey) return loadFixture(queryText);
+
+  const includeDomains = opts.domains?.length
+    ? opts.domains
+    : opts.restrictToAuthoritative
+      ? AUTHORITATIVE_DOMAINS
+      : undefined;
 
   try {
     const client = tavily({ apiKey: config.tavilyApiKey });
@@ -102,7 +147,7 @@ export async function tavilySearch(
       searchDepth: "advanced",
       includeAnswer: false,
       maxResults: 6,
-      includeDomains: opts.restrictToAuthoritative ? AUTHORITATIVE_DOMAINS : undefined,
+      includeDomains,
     });
     const facts = (res.results ?? []).map((r: any) => {
       const who = hostAuthority(r.url);
@@ -142,10 +187,20 @@ export async function tavilyExtract(urls: string[]): Promise<Record<string, stri
   }
 }
 
+/**
+ * True when a live search can actually run. The registry layer needs this:
+ * without it, a fixture-backed search returns nothing on a scoped domain and
+ * the check would record "no evidence found" — a fabricated negative, which is
+ * the single most dangerous output this system can produce.
+ */
+export function groundingAvailable(live = false): boolean {
+  return (!MOCK_TAVILY || live) && Boolean(config.tavilyApiKey);
+}
+
 /** Back-compat shim for the existing smoke test (src/smoke-tavily.ts). */
 export async function searchProvenance(
   queryText: string,
-  opts: { restrictToAuthoritative?: boolean } = {}
+  opts: { restrictToAuthoritative?: boolean; domains?: string[] } = {}
 ): Promise<GroundedFact[]> {
   return tavilySearch(queryText, opts);
 }
