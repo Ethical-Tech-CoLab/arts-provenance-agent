@@ -77,7 +77,23 @@ export function signingKey(): Hex {
   throw new Error("WALLET_PRIVATE_KEY missing. Run `npm run wallet -- --new` or set DEMO_MODE=mock.");
 }
 
-/** Deterministic provenance risk assessment from grounded facts + the intent. */
+/**
+ * Deterministic provenance risk assessment from grounded facts + the intent.
+ *
+ * !! NON-CANONICAL SCORING MODEL (deduction). Kept for the web pipeline only.
+ *
+ * This starts at 100 and subtracts named penalties. The canonical model is the
+ * accumulation model in `src/agent/assessRisk.ts`, which starts at 30 and adds
+ * credit for authoritative and press sources. Accumulation is canonical because
+ * an object with no published history should not score 100 -- absence of
+ * evidence is not evidence of clean provenance, which is exactly what a
+ * deduction model implies when it starts every object at a perfect score.
+ *
+ * The two models will not agree on the same object. Any score reported as a
+ * result should be produced by, and attributed to, the canonical model.
+ * Reconciling the web pipeline onto the canonical model is committed future
+ * work; it is not presented as an interesting property of the system.
+ */
 function assessRisk(ctx: RunContext): RiskAssessment {
   const flags: RedFlag[] = [];
   let score = 100;
