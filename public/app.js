@@ -38,6 +38,19 @@ fetch("/api/config").then((r) => r.json()).then((c) => {
   $("#mode").textContent = `mode: ${c.demoMode} · x402: ${c.facilitator} · check: $${c.vendorPriceUSD}`;
 });
 
+// Say what this build is, up front, when it is the published capture. The
+// "mode: mock" chip in the header is true but reads as jargon; someone landing
+// here deserves a sentence they can actually act on.
+if (window.__STATIC_DEMO__) {
+  const el = $("#demoNotice");
+  el.innerHTML = `<b>Static demo.</b> Register checks and traces below were captured
+    ahead of time and are replayed here — GitHub Pages cannot run the agent. Passports are
+    signed with a throwaway key, so they verify against themselves and prove nothing about
+    any real object. The register findings were queried for real when this snapshot was
+    built; everything else is a recording.`;
+  el.classList.remove("hidden");
+}
+
 function showGallery() { detail.classList.add("hidden"); gallery.classList.remove("hidden"); }
 $("#home").addEventListener("click", showGallery);
 
@@ -319,11 +332,24 @@ $("#searchForm").addEventListener("submit", (e) => {
 });
 
 function runSearch(title, artist) {
+  // On the published static capture the backend is a recording, and it replays
+  // the SAME object no matter what was asked for. Show the recorded object's
+  // name and say so, rather than printing the query above someone else's
+  // provenance — a heading that misattributes findings is worse than no demo.
+  const stat = window.__STATIC_DEMO__;
+  const heading = stat ? stat.recordedObject : title;
+  const subtitle = stat
+    ? "Recorded trace — grounding, registers, risk, x402 payment, passport"
+    : `${artist ? esc(artist) + " · " : ""}Live agent trace — grounding, registers, risk, x402 payment, passport`;
+
   detail.innerHTML = `
     <span class="back" id="back">← all tracked objects</span>
+    ${stat ? `<div class="replay-note"><b>Recorded demonstration.</b> ${esc(stat.note)}
+       You asked for “${esc(title)}”; what follows is the stored run for
+       <b>${esc(stat.recordedObject)}</b>. Run the project locally for a real search.</div>` : ""}
     <div class="dash-head">
       <div class="hero" style="background:linear-gradient(135deg,#5b9dff40,#5b9dff10)">🔎</div>
-      <div><h1>${esc(title)}</h1><div class="sub">${artist ? esc(artist) + " · " : ""}Live agent trace — grounding, registers, risk, x402 payment, passport</div></div>
+      <div><h1>${esc(heading)}</h1><div class="sub">${subtitle}</div></div>
     </div>
     <div class="cols">
       <div class="panel"><h3>Live trace</h3><ol class="steps" id="steps"></ol></div>
