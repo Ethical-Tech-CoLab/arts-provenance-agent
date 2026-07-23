@@ -44,6 +44,25 @@ main { max-width: 1180px; margin: 0 auto; padding: 22px; }
 .open-hint { font-size: 11px; color: var(--accent); margin-top: 8px; opacity: 0; transition: opacity .12s; }
 .card:hover .open-hint, .card:focus-visible .open-hint { opacity: 1; }
 
+/* Static-capture notices. Amber rather than red: this is a disclosure about the
+   build, not a warning about an object. */
+.demo-notice, .replay-note { background: #191512; border: 1px solid #4a3a22; border-left-width: 3px;
+  border-radius: 10px; padding: 11px 14px; font-size: 12.5px; color: var(--muted);
+  line-height: 1.55; margin-bottom: 18px; }
+.demo-notice b, .replay-note b { color: var(--ink); }
+
+/* Footer — the limits, on the page rather than only in the paper. */
+.site-footer { max-width: 1180px; margin: 40px auto 0; padding: 26px 22px 40px;
+  border-top: 1px solid var(--line); }
+.site-footer h3 { margin: 0 0 16px; font-size: 15px; }
+.foot-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+.foot-cols h4 { margin: 0 0 6px; font-size: 13px; color: var(--accent); }
+.foot-cols p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+.foot-cols b { color: var(--ink); }
+.foot-links { display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+  margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; }
+.foot-note { color: var(--muted); margin-left: auto; }
+
 /* Stolen-art watchlist.
    Plainer than the cards above by design — these are generated leads, and if
    they looked like the researched case files the distinction would be lost. */

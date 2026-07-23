@@ -19,6 +19,10 @@
   </header>
 
   <main>
+    <!-- Populated by app.js only on the published static capture. A live local
+         run leaves it empty, because there the caveat would be false. -->
+    <div id="demoNotice" class="demo-notice hidden"></div>
+
     <section id="galleryView">
       <div class="section-head">
         <h2>Tracked objects</h2>
@@ -64,6 +68,45 @@
 
     <section id="detailView" class="hidden"></section>
   </main>
+
+  <!-- The limits belong on the page, not only in the paper. Someone who reads
+       a confidence score here and nothing else should still leave knowing what
+       the number cannot tell them. -->
+  <footer class="site-footer">
+    <h3>What this tool can and cannot establish</h3>
+    <div class="foot-cols">
+      <div>
+        <h4>No check here can say “clear”</h4>
+        <p>The strongest result any register check returns is <b>no evidence found</b>.
+        Objects looted from an archaeological site or taken under colonial rule were never
+        inventoried and never reported stolen, so they cannot appear in a stolen-property
+        register at all. For exactly the objects this project exists to worry about,
+        silence is the expected condition — not a reassuring one.</p>
+      </div>
+      <div>
+        <h4>Only one register is actually queried</h4>
+        <p>INTERPOL, the FBI's National Stolen Art File, the Carabinieri TPC archive and the
+        Lost Art Database have <b>no public API</b>. This tool reads what they publish and
+        links you to the official search; it does not search the registers themselves.
+        Wikidata is the one source genuinely queried, and it certifies nothing.</p>
+      </div>
+      <div>
+        <h4>The biggest gap is unfixed</h4>
+        <p>The national heritage authorities of the fourteen source countries the scorer
+        recognises are <b>not</b> covered. That is where the evidence for the motivating
+        cases lives. A low score for a Cambodian sculpture and a low score for a Dutch
+        painting do not mean the same thing.</p>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/Ethical-Tech-CoLab/arts-provenance-agent" target="_blank" rel="noopener noreferrer">Source code</a>
+      <a href="https://github.com/Ethical-Tech-CoLab/arts-provenance-agent/blob/main/DPP-Paper.md" target="_blank" rel="noopener noreferrer">Research report</a>
+      <a href="https://github.com/Ethical-Tech-CoLab/arts-provenance-agent/blob/main/PEER-REVIEW.md" target="_blank" rel="noopener noreferrer">Peer review</a>
+      <a href="https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database" target="_blank" rel="noopener noreferrer">INTERPOL SWOA</a>
+      <a href="https://artcrimes.fbi.gov/" target="_blank" rel="noopener noreferrer">FBI NSAF</a>
+      <span class="foot-note">Ethical Tech CoLab · research prototype, not a due-diligence service</span>
+    </div>
+  </footer>
 
   <script src="/app.js"></script>
 </body>

@@ -12,6 +12,22 @@
  * published site could not be rebuilt from the repo.
  */
 (function () {
+  /**
+   * Tell the app it is running on the recorded snapshot.
+   *
+   * This matters for one specific reason. The "Trace" box replays a stored run
+   * for ANY query, so without this flag the page would render the title you
+   * typed above results belonging to a different object entirely — type
+   * "Mona Lisa", read the Euphronios Krater's looting history under that
+   * heading. A provenance tool that attaches one object's findings to another
+   * object's name is doing the exact thing this project exists to prevent, and
+   * it would be doing it on the page most people will ever see.
+   */
+  window.__STATIC_DEMO__ = {
+    recordedObject: "Euphronios Krater",
+    note: "This published demo is a static capture: the trace below is a stored recording of one object, replayed. It is not a live search of whatever was typed.",
+  };
+
   // ./api relative to this document, so it works under the /arts-provenance-agent/ Pages subpath.
   const API = new URL("api/", document.baseURI).href;
   const realFetch = window.fetch.bind(window);
