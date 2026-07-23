@@ -6,8 +6,8 @@
     "VerifiableCredential",
     "DigitalProvenancePassport"
   ],
-  "issuer": "did:pkh:eip155:84532:0xC8750FEf6f3bda370689e26BD8cD1e7F74b95763",
-  "validFrom": "2026-07-23T17:03:20.214Z",
+  "issuer": "did:pkh:eip155:84532:0x96Dd721f4BDEAf6FE0e40179888cD8114Ea96F93",
+  "validFrom": "2026-07-23T17:14:30.956Z",
   "credentialSubject": {
     "id": "urn:artwork:euphronios-krater",
     "title": "Euphronios Krater",
@@ -119,7 +119,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-        "checkedAt": "2026-07-23T17:03:19.956Z"
+        "checkedAt": "2026-07-23T17:14:30.326Z"
       },
       {
         "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -130,7 +130,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-        "checkedAt": "2026-07-23T17:03:19.814Z"
+        "checkedAt": "2026-07-23T17:14:30.218Z"
       },
       {
         "registry": "FBI National Stolen Art File",
@@ -141,7 +141,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://artcrimes.fbi.gov/",
-        "checkedAt": "2026-07-23T17:03:19.955Z"
+        "checkedAt": "2026-07-23T17:14:30.325Z"
       },
       {
         "registry": "Carabinieri TPC — Leonardo database",
@@ -152,7 +152,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-        "checkedAt": "2026-07-23T17:03:19.956Z"
+        "checkedAt": "2026-07-23T17:14:30.336Z"
       },
       {
         "registry": "Lost Art Database",
@@ -163,7 +163,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.lostart.de/en/search",
-        "checkedAt": "2026-07-23T17:03:19.956Z"
+        "checkedAt": "2026-07-23T17:14:30.326Z"
       },
       {
         "registry": "Getty Provenance Index",
@@ -174,7 +174,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-        "checkedAt": "2026-07-23T17:03:19.956Z"
+        "checkedAt": "2026-07-23T17:14:30.325Z"
       },
       {
         "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -191,7 +191,7 @@
           }
         ],
         "officialSearch": "https://icom.museum/en/resources/red-lists/",
-        "checkedAt": "2026-07-23T17:03:19.957Z"
+        "checkedAt": "2026-07-23T17:14:30.326Z"
       },
       {
         "registry": "Wikidata (structured provenance events)",
@@ -258,7 +258,7 @@
           }
         ],
         "officialSearch": "https://www.wikidata.org/wiki/Q1323051",
-        "checkedAt": "2026-07-23T17:03:20.192Z"
+        "checkedAt": "2026-07-23T17:14:30.926Z"
       },
       {
         "registry": "Art Loss Register",
@@ -269,7 +269,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.artloss.com/",
-        "checkedAt": "2026-07-23T17:03:19.819Z"
+        "checkedAt": "2026-07-23T17:14:30.224Z"
       }
     ],
     "checksRun": [
@@ -285,13 +285,13 @@
       "registry:wikidata#structured-api",
       "registry:art-loss-register#paid-x402"
     ],
-    "assessedAt": "2026-07-23T17:03:20.214Z"
+    "assessedAt": "2026-07-23T17:14:30.956Z"
   },
   "proof": {
     "type": "EcdsaSecp256k1RecoverySignature2020",
-    "created": "2026-07-23T17:03:20.214Z",
-    "verificationMethod": "did:pkh:eip155:84532:0xC8750FEf6f3bda370689e26BD8cD1e7F74b95763#blockchainAccountId",
+    "created": "2026-07-23T17:14:30.956Z",
+    "verificationMethod": "did:pkh:eip155:84532:0x96Dd721f4BDEAf6FE0e40179888cD8114Ea96F93#blockchainAccountId",
     "proofPurpose": "assertionMethod",
-    "proofValue": "0x37c0814fcfceb43cb1f42962c9c7025d9100048b9cc1c2a4ae84aa4d63dfe65f2b543b637d8211a50813475357b2c49d06bca35db30328022f08104c2dc3edc81b"
+    "proofValue": "0x17c9cb2ea8f92aa1019b814bf151f651873065fa0cfff2a347f0d7a747ab61020c32d4343c58e71d224810b13aee042b0670e3102d18d95dd2f61821ce7143391c"
   }
 }

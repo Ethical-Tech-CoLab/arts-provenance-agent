@@ -9,12 +9,12 @@
       "askingPriceUSD": 1200000,
       "estimatedMarketValueUSD": 250000
     },
-    "at": "2026-07-23T17:03:24.452Z"
+    "at": "2026-07-23T17:14:35.881Z"
   },
   {
     "phase": "reasoning",
     "message": "Searching authoritative sources (Met, UNESCO, Art Loss Register)…",
-    "at": "2026-07-23T17:03:24.452Z"
+    "at": "2026-07-23T17:14:35.881Z"
   },
   {
     "phase": "grounding",
@@ -42,12 +42,12 @@
         "issuer": "Art Loss Register (public page)"
       }
     ],
-    "at": "2026-07-23T17:03:24.452Z"
+    "at": "2026-07-23T17:14:35.881Z"
   },
   {
     "phase": "reasoning",
     "message": "Checking stolen-art and cultural-property registers…",
-    "at": "2026-07-23T17:03:24.452Z"
+    "at": "2026-07-23T17:14:35.881Z"
   },
   {
     "phase": "registry",
@@ -67,7 +67,7 @@
           "applyUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database/Application-form-to-access-INTERPOL-s-Works-of-Art-Database",
           "coverage": "The only global database of certified police information on stolen and missing cultural objects (~52,000 items). Entries come from member-country police forces, so an object only appears if a theft was reported to and recorded by a national force. Unreported and never-inventoried material — most looted archaeological and colonial-era objects — is structurally absent.",
           "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-          "checkedAt": "2026-07-23T17:03:24.490Z"
+          "checkedAt": "2026-07-23T17:14:35.922Z"
         },
         {
           "registryId": "interpol-id-art",
@@ -81,7 +81,7 @@
           "referralUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
           "coverage": "The same Stolen Works of Art database, searchable by image or description from a phone with no login required. This is the fastest authoritative check a human can run on an object in front of them — and it cannot be automated, which is why it appears here as a referral rather than a result.",
           "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
-          "checkedAt": "2026-07-23T17:03:24.452Z"
+          "checkedAt": "2026-07-23T17:14:35.881Z"
         },
         {
           "registryId": "fbi-nsaf",
@@ -95,7 +95,7 @@
           "referralUrl": "https://artcrimes.fbi.gov/",
           "coverage": "Stolen art and cultural property submitted by US and foreign law-enforcement agencies. Entry requires a police report and a value threshold, so it is a record of reported thefts from documented collections, not of looting at source.",
           "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-          "checkedAt": "2026-07-23T17:03:24.517Z"
+          "checkedAt": "2026-07-23T17:14:35.919Z"
         },
         {
           "registryId": "carabinieri-tpc",
@@ -109,7 +109,7 @@
           "referralUrl": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
           "coverage": "Over 1.1 million stolen or illicitly exported cultural objects — the largest such archive in the world, and the most important single source for Italian antiquities. Public search is a web form; the full archive is law-enforcement access.",
           "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-          "checkedAt": "2026-07-23T17:03:24.498Z"
+          "checkedAt": "2026-07-23T17:14:35.922Z"
         },
         {
           "registryId": "lostart-de",
@@ -123,7 +123,7 @@
           "referralUrl": "https://www.lostart.de/en/search",
           "coverage": "Cultural property lost, moved or seized as a result of Nazi persecution 1933–1945, plus wartime relocations. Carries both 'found' and 'search' reports. The reference register for Nazi-era provenance gaps — and irrelevant to colonial-era and archaeological looting.",
           "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-          "checkedAt": "2026-07-23T17:03:24.522Z"
+          "checkedAt": "2026-07-23T17:14:35.930Z"
         },
         {
           "registryId": "getty-provenance-index",
@@ -137,7 +137,7 @@
           "referralUrl": "https://www.getty.edu/research/tools/provenance/search.html",
           "coverage": "Transcribed auction catalogues, dealer stock books and collection inventories — the primary evidence base for reconstructing an ownership chain rather than for flagging a theft. Strongest on the European and American art market; thin outside it.",
           "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-          "checkedAt": "2026-07-23T17:03:24.498Z"
+          "checkedAt": "2026-07-23T17:14:35.924Z"
         },
         {
           "registryId": "icom-red-lists",
@@ -159,7 +159,7 @@
           "referralUrl": "https://icom.museum/en/resources/red-lists/",
           "coverage": "Object CATEGORIES at risk of illicit trafficking by region — not individual objects. A Red List hit never identifies a specific piece; it says an object of this type from this region should not move without documentation. That is a due-diligence trigger, not an identification.",
           "caveat": "A source on this registry's domain names this object. This is a lead requiring human verification against the register itself, not a confirmed register entry.",
-          "checkedAt": "2026-07-23T17:03:24.496Z"
+          "checkedAt": "2026-07-23T17:14:35.927Z"
         },
         {
           "registryId": "wikidata",
@@ -251,7 +251,7 @@
           "referralUrl": "https://www.wikidata.org/wiki/Q1323051",
           "coverage": "The only openly machine-queryable source here. Its 'significant event' statements carry dated values such as archaeological looting, art theft, restitution and claim for restitution, usually with a reference URL. Coverage is uneven and edits are unreviewed, so this generates leads to verify — never findings.",
           "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
-          "checkedAt": "2026-07-23T17:03:24.681Z"
+          "checkedAt": "2026-07-23T17:14:36.080Z"
         },
         {
           "registryId": "art-loss-register",
@@ -265,7 +265,7 @@
           "referralUrl": "https://www.artloss.com/",
           "coverage": "The largest private database of stolen and looted art. Registration and search are commercial services — which is exactly why this one is the agent's paid x402 check rather than a free lookup.",
           "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
-          "checkedAt": "2026-07-23T17:03:24.453Z"
+          "checkedAt": "2026-07-23T17:14:35.881Z"
         }
       ],
       "possibleMatches": 2,
@@ -308,7 +308,7 @@
         }
       ]
     },
-    "at": "2026-07-23T17:03:24.681Z"
+    "at": "2026-07-23T17:14:36.080Z"
   },
   {
     "phase": "risk",
@@ -423,7 +423,7 @@
         "comparability": "This score is comparable only to other well covered objects. Comparison against a structurally uncovered object will understate how little was checked there."
       }
     },
-    "at": "2026-07-23T17:03:24.698Z"
+    "at": "2026-07-23T17:14:36.100Z"
   },
   {
     "phase": "x402:offer",
@@ -433,7 +433,7 @@
       "vendor": "http://localhost:4021",
       "network": "base-sepolia"
     },
-    "at": "2026-07-23T17:03:24.698Z"
+    "at": "2026-07-23T17:14:36.100Z"
   },
   {
     "phase": "x402:decision",
@@ -441,7 +441,7 @@
     "data": {
       "pay": true
     },
-    "at": "2026-07-23T17:03:24.698Z"
+    "at": "2026-07-23T17:14:36.100Z"
   },
   {
     "phase": "x402:paid",
@@ -459,12 +459,12 @@
         "txHash": "0xMOCK_no_settlement_in_demo_mode",
         "payer": "did:demo:agent",
         "payee": "0x824C9275c55Bb810f7a69d650A1d329B377fC784",
-        "settledAt": "2026-07-23T17:03:24.699Z"
+        "settledAt": "2026-07-23T17:14:36.100Z"
       },
       "match": true,
       "outcome": "MATCH: object family appears in repatriation/stolen records (MOCK fixture)."
     },
-    "at": "2026-07-23T17:03:24.699Z"
+    "at": "2026-07-23T17:14:36.100Z"
   },
   {
     "phase": "risk",
@@ -579,7 +579,7 @@
         "comparability": "This score is comparable only to other well covered objects. Comparison against a structurally uncovered object will understate how little was checked there."
       }
     },
-    "at": "2026-07-23T17:03:24.699Z"
+    "at": "2026-07-23T17:14:36.100Z"
   },
   {
     "phase": "passport",
@@ -592,8 +592,8 @@
         "VerifiableCredential",
         "DigitalProvenancePassport"
       ],
-      "issuer": "did:pkh:eip155:84532:0xC8750FEf6f3bda370689e26BD8cD1e7F74b95763",
-      "validFrom": "2026-07-23T17:03:24.699Z",
+      "issuer": "did:pkh:eip155:84532:0x96Dd721f4BDEAf6FE0e40179888cD8114Ea96F93",
+      "validFrom": "2026-07-23T17:14:36.100Z",
       "credentialSubject": {
         "id": "urn:artwork:euphronios-krater",
         "title": "Euphronios Krater",
@@ -677,7 +677,7 @@
             "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
             "hits": [],
             "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-            "checkedAt": "2026-07-23T17:03:24.490Z"
+            "checkedAt": "2026-07-23T17:14:35.922Z"
           },
           {
             "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -688,7 +688,7 @@
             "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
             "hits": [],
             "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-            "checkedAt": "2026-07-23T17:03:24.452Z"
+            "checkedAt": "2026-07-23T17:14:35.881Z"
           },
           {
             "registry": "FBI National Stolen Art File",
@@ -699,7 +699,7 @@
             "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
             "hits": [],
             "officialSearch": "https://artcrimes.fbi.gov/",
-            "checkedAt": "2026-07-23T17:03:24.517Z"
+            "checkedAt": "2026-07-23T17:14:35.919Z"
           },
           {
             "registry": "Carabinieri TPC — Leonardo database",
@@ -710,7 +710,7 @@
             "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
             "hits": [],
             "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-            "checkedAt": "2026-07-23T17:03:24.498Z"
+            "checkedAt": "2026-07-23T17:14:35.922Z"
           },
           {
             "registry": "Lost Art Database",
@@ -721,7 +721,7 @@
             "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
             "hits": [],
             "officialSearch": "https://www.lostart.de/en/search",
-            "checkedAt": "2026-07-23T17:03:24.522Z"
+            "checkedAt": "2026-07-23T17:14:35.930Z"
           },
           {
             "registry": "Getty Provenance Index",
@@ -732,7 +732,7 @@
             "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
             "hits": [],
             "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-            "checkedAt": "2026-07-23T17:03:24.498Z"
+            "checkedAt": "2026-07-23T17:14:35.924Z"
           },
           {
             "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -749,7 +749,7 @@
               }
             ],
             "officialSearch": "https://icom.museum/en/resources/red-lists/",
-            "checkedAt": "2026-07-23T17:03:24.496Z"
+            "checkedAt": "2026-07-23T17:14:35.927Z"
           },
           {
             "registry": "Wikidata (structured provenance events)",
@@ -816,7 +816,7 @@
               }
             ],
             "officialSearch": "https://www.wikidata.org/wiki/Q1323051",
-            "checkedAt": "2026-07-23T17:03:24.681Z"
+            "checkedAt": "2026-07-23T17:14:36.080Z"
           },
           {
             "registry": "Art Loss Register",
@@ -827,7 +827,7 @@
             "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
             "hits": [],
             "officialSearch": "https://www.artloss.com/",
-            "checkedAt": "2026-07-23T17:03:24.453Z"
+            "checkedAt": "2026-07-23T17:14:35.881Z"
           }
         ],
         "premiumChecks": [
@@ -845,7 +845,7 @@
               "txHash": "0xMOCK_no_settlement_in_demo_mode",
               "payer": "did:demo:agent",
               "payee": "0x824C9275c55Bb810f7a69d650A1d329B377fC784",
-              "settledAt": "2026-07-23T17:03:24.699Z"
+              "settledAt": "2026-07-23T17:14:36.100Z"
             }
           }
         ],
@@ -862,21 +862,21 @@
           "registry:art-loss-register#paid-x402",
           "art-loss-register#x402"
         ],
-        "assessedAt": "2026-07-23T17:03:24.699Z"
+        "assessedAt": "2026-07-23T17:14:36.100Z"
       },
       "proof": {
         "type": "EcdsaSecp256k1RecoverySignature2020",
-        "created": "2026-07-23T17:03:24.699Z",
-        "verificationMethod": "did:pkh:eip155:84532:0xC8750FEf6f3bda370689e26BD8cD1e7F74b95763#blockchainAccountId",
+        "created": "2026-07-23T17:14:36.100Z",
+        "verificationMethod": "did:pkh:eip155:84532:0x96Dd721f4BDEAf6FE0e40179888cD8114Ea96F93#blockchainAccountId",
         "proofPurpose": "assertionMethod",
-        "proofValue": "0x8bd803578e3e45828288ee4993502b29176b6fbc98d8ba02121bc3012f2b38a66bb22136cf596b23898262931318a988ab258bc338cced3bc7ec1f11c05041631c"
+        "proofValue": "0xa31bcba958b7d595732c640bd3f41315c1bd9523e5954bb86fc3e0f2ddf6bff2273119adefcab29ef460fdfe83c4fd992da39c02012afa8d24f2856de89d73a41b"
       }
     },
-    "at": "2026-07-23T17:03:24.702Z"
+    "at": "2026-07-23T17:14:36.101Z"
   },
   {
     "phase": "done",
     "message": "Done.",
-    "at": "2026-07-23T17:03:24.702Z"
+    "at": "2026-07-23T17:14:36.101Z"
   }
 ]
