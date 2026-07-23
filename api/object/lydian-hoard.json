@@ -78,5 +78,64 @@
       "url": "https://icom.museum",
       "issuer": "ICOM"
     }
-  ]
+  ],
+  "coverage": {
+    "acquisitionMode": "archaeological",
+    "region": "turkey",
+    "identifyingRegisters": [
+      {
+        "id": "interpol-swoa",
+        "name": "INTERPOL Stolen Works of Art",
+        "requires": "a theft reported to and recorded by a member-country police force"
+      },
+      {
+        "id": "interpol-id-art",
+        "name": "INTERPOL ID-Art",
+        "requires": "the same police report as the Stolen Works of Art database"
+      }
+    ],
+    "weakRegisters": [
+      {
+        "id": "icom-red-lists",
+        "name": "ICOM Red Lists",
+        "why": "Lists object categories at risk, never individual objects — a due-diligence trigger, not an identification."
+      },
+      {
+        "id": "wikidata",
+        "name": "Wikidata",
+        "why": "Coverage follows scholarly and press attention rather than rule, so its silence carries little information."
+      }
+    ],
+    "blindRegisters": [
+      {
+        "id": "fbi-nsaf",
+        "name": "FBI National Stolen Art File",
+        "why": "Holds market-theft losses; requires a law-enforcement submission and a value threshold."
+      },
+      {
+        "id": "carabinieri-tpc",
+        "name": "Carabinieri TPC",
+        "why": "Geographically out of scope for turkey — requires an Italian nexus — the archive is national."
+      },
+      {
+        "id": "lostart-de",
+        "name": "Lost Art Database",
+        "why": "Holds nazi-era losses; requires a loss connected to Nazi persecution, 1933–45."
+      },
+      {
+        "id": "getty-provenance-index",
+        "name": "Getty Provenance Index",
+        "why": "Holds market, market-theft, nazi-era losses; requires passage through the European or American art market."
+      },
+      {
+        "id": "art-loss-register",
+        "name": "Art Loss Register",
+        "why": "Holds market-theft, nazi-era losses; requires a registered loss, usually by an owner or insurer."
+      }
+    ],
+    "coverageClass": "partially-covered",
+    "coverageRatio": 0.22,
+    "note": "Only 2 of 9 registers could systematically name this object. A quiet result is weak evidence, not reassurance.",
+    "comparability": "This score is comparable only to other partially covered objects. Comparison against a well-covered object will overstate how much was actually checked."
+  }
 }

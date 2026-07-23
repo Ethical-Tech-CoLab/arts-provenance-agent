@@ -65,6 +65,34 @@ main { max-width: 1180px; margin: 0 auto; padding: 22px; }
 .open-hint { font-size: 11px; color: var(--accent); margin-top: 8px; opacity: 0; transition: opacity .12s; }
 .card:hover .open-hint, .card:focus-visible .open-hint { opacity: 1; }
 
+/* Evidence coverage.
+   Colour runs the opposite way to risk: "no register covers this" is red not
+   because the object is guilty but because the score beside it is unreliable.
+   Well-covered is neutral grey rather than green — good coverage is not good
+   news about the object, only about the check. */
+.chip.cov { border-style: dashed; }
+.chip.cov-well-covered { color: #b9c4d4; }
+.chip.cov-partially-covered { color: #ffd79a; border-color: #a82; }
+.chip.cov-structurally-uncovered { color: #ffb3a6; border-color: #a55; }
+
+.stat-qual { font-size: 10px; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--muted); margin-top: 3px; }
+
+.cov-panel { border-left: 3px solid var(--line); }
+.cov-panel.cov-partially-covered { border-left-color: var(--warn); }
+.cov-panel.cov-structurally-uncovered { border-left-color: var(--bad); }
+.cov-bar { height: 6px; background: #11141a; border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
+.cov-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--bad), var(--warn), #7fa8d8); }
+.cov-counts { font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+.cov-counts b { color: var(--ink); }
+.cov-note { font-size: 12.5px; color: var(--ink); line-height: 1.55; margin-bottom: 8px; }
+.cov-compare { color: var(--muted); font-style: italic; }
+.cov-list { margin: 8px 0 0; padding-left: 18px; font-size: 12px; color: var(--muted); }
+.cov-list li { margin-bottom: 4px; }
+.cov-list b { color: var(--ink); font-weight: 600; }
+.cov-blind { margin-top: 8px; }
+.cov-blind summary { font-size: 12px; color: var(--muted); cursor: pointer; }
+
 /* Static-capture notices. Amber rather than red: this is a disclosure about the
    build, not a warning about an object. */
 .demo-notice, .replay-note { background: #191512; border: 1px solid #4a3a22; border-left-width: 3px;

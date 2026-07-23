@@ -84,5 +84,63 @@
       "url": "https://www.unesco.org/en/fight-illicit-trafficking",
       "issuer": "UNESCO"
     }
-  ]
+  ],
+  "coverage": {
+    "acquisitionMode": "colonial",
+    "region": "egypt",
+    "identifyingRegisters": [],
+    "weakRegisters": [
+      {
+        "id": "icom-red-lists",
+        "name": "ICOM Red Lists",
+        "why": "Lists object categories at risk, never individual objects — a due-diligence trigger, not an identification."
+      },
+      {
+        "id": "wikidata",
+        "name": "Wikidata",
+        "why": "Coverage follows scholarly and press attention rather than rule, so its silence carries little information."
+      }
+    ],
+    "blindRegisters": [
+      {
+        "id": "interpol-swoa",
+        "name": "INTERPOL Stolen Works of Art",
+        "why": "Holds market-theft, archaeological losses; requires a theft reported to and recorded by a member-country police force."
+      },
+      {
+        "id": "interpol-id-art",
+        "name": "INTERPOL ID-Art",
+        "why": "Holds market-theft, archaeological losses; requires the same police report as the Stolen Works of Art database."
+      },
+      {
+        "id": "fbi-nsaf",
+        "name": "FBI National Stolen Art File",
+        "why": "Holds market-theft losses; requires a law-enforcement submission and a value threshold."
+      },
+      {
+        "id": "carabinieri-tpc",
+        "name": "Carabinieri TPC",
+        "why": "Holds market-theft, archaeological losses; requires an Italian nexus — the archive is national."
+      },
+      {
+        "id": "lostart-de",
+        "name": "Lost Art Database",
+        "why": "Holds nazi-era losses; requires a loss connected to Nazi persecution, 1933–45."
+      },
+      {
+        "id": "getty-provenance-index",
+        "name": "Getty Provenance Index",
+        "why": "Holds market, market-theft, nazi-era losses; requires passage through the European or American art market."
+      },
+      {
+        "id": "art-loss-register",
+        "name": "Art Loss Register",
+        "why": "Holds market-theft, nazi-era losses; requires a registered loss, usually by an owner or insurer."
+      }
+    ],
+    "coverageClass": "structurally-uncovered",
+    "coverageRatio": 0,
+    "note": "No register in this set can systematically name an object of this kind and origin. A quiet result here carries essentially no information about the object — it reflects where the registers look, not what happened. The strongest evidence for material like this is usually physical or archaeological, and this tool cannot see it.",
+    "comparability": "This score is comparable only to other structurally uncovered objects. It must not be read against a well-covered Western-market object: the same number means 'nothing was reachable' here and 'a documented gap was found' there."
+  }
 }

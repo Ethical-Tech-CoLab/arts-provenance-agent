@@ -27,7 +27,8 @@
       "city": "Rome",
       "country": "Italy"
     },
-    "stops": 6
+    "stops": 6,
+    "coverageClass": "well-covered"
   },
   {
     "id": "benin-bronze-plaque",
@@ -55,7 +56,8 @@
       "city": "London",
       "country": "United Kingdom"
     },
-    "stops": 4
+    "stops": 4,
+    "coverageClass": "structurally-uncovered"
   },
   {
     "id": "rosetta-stone",
@@ -83,7 +85,8 @@
       "city": "London",
       "country": "United Kingdom"
     },
-    "stops": 5
+    "stops": 5,
+    "coverageClass": "structurally-uncovered"
   },
   {
     "id": "lydian-hoard",
@@ -112,7 +115,8 @@
       "city": "Uşak",
       "country": "Turkey"
     },
-    "stops": 4
+    "stops": 4,
+    "coverageClass": "partially-covered"
   },
   {
     "id": "madame-x",
@@ -140,7 +144,8 @@
       "city": "New York",
       "country": "United States"
     },
-    "stops": 3
+    "stops": 3,
+    "coverageClass": "partially-covered"
   },
   {
     "id": "adele-bloch-bauer-i",
@@ -170,7 +175,8 @@
       "city": "New York",
       "country": "United States"
     },
-    "stops": 6
+    "stops": 6,
+    "coverageClass": "well-covered"
   },
   {
     "id": "portrait-of-wally",
@@ -200,7 +206,8 @@
       "city": "Vienna",
       "country": "Austria"
     },
-    "stops": 6
+    "stops": 6,
+    "coverageClass": "well-covered"
   },
   {
     "id": "the-concert-vermeer",
@@ -229,7 +236,8 @@
       "city": "—",
       "country": "Unknown"
     },
-    "stops": 5
+    "stops": 5,
+    "coverageClass": "well-covered"
   },
   {
     "id": "poppy-flowers-van-gogh",
@@ -258,7 +266,8 @@
       "city": "—",
       "country": "Unknown"
     },
-    "stops": 7
+    "stops": 7,
+    "coverageClass": "well-covered"
   },
   {
     "id": "cellini-saliera",
@@ -286,7 +295,8 @@
       "city": "Vienna",
       "country": "Austria"
     },
-    "stops": 5
+    "stops": 5,
+    "coverageClass": "well-covered"
   },
   {
     "id": "parthenon-marbles",
@@ -314,7 +324,8 @@
       "city": "London",
       "country": "United Kingdom"
     },
-    "stops": 6
+    "stops": 6,
+    "coverageClass": "structurally-uncovered"
   },
   {
     "id": "nefertiti-bust",
@@ -343,7 +354,8 @@
       "city": "Berlin",
       "country": "Germany"
     },
-    "stops": 5
+    "stops": 5,
+    "coverageClass": "structurally-uncovered"
   },
   {
     "id": "victorious-youth",
@@ -371,7 +383,8 @@
       "city": "Malibu",
       "country": "United States"
     },
-    "stops": 6
+    "stops": 6,
+    "coverageClass": "well-covered"
   },
   {
     "id": "koh-ker-duryodhana",
@@ -393,7 +406,8 @@
       "city": "Phnom Penh",
       "country": "Cambodia"
     },
-    "stops": 6
+    "stops": 6,
+    "coverageClass": "partially-covered"
   },
   {
     "id": "machu-picchu-collection",
@@ -415,6 +429,7 @@
       "city": "Cusco",
       "country": "Peru"
     },
-    "stops": 5
+    "stops": 5,
+    "coverageClass": "structurally-uncovered"
   }
 ]

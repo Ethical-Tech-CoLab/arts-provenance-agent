@@ -54,5 +54,64 @@
       "url": "https://www.metmuseum.org/art/collection",
       "issuer": "The Metropolitan Museum of Art"
     }
-  ]
+  ],
+  "coverage": {
+    "acquisitionMode": "market",
+    "region": "france",
+    "identifyingRegisters": [
+      {
+        "id": "getty-provenance-index",
+        "name": "Getty Provenance Index",
+        "requires": "passage through the European or American art market"
+      }
+    ],
+    "weakRegisters": [
+      {
+        "id": "wikidata",
+        "name": "Wikidata",
+        "why": "Coverage follows scholarly and press attention rather than rule, so its silence carries little information."
+      }
+    ],
+    "blindRegisters": [
+      {
+        "id": "interpol-swoa",
+        "name": "INTERPOL Stolen Works of Art",
+        "why": "Holds market-theft, archaeological losses; requires a theft reported to and recorded by a member-country police force."
+      },
+      {
+        "id": "interpol-id-art",
+        "name": "INTERPOL ID-Art",
+        "why": "Holds market-theft, archaeological losses; requires the same police report as the Stolen Works of Art database."
+      },
+      {
+        "id": "fbi-nsaf",
+        "name": "FBI National Stolen Art File",
+        "why": "Holds market-theft losses; requires a law-enforcement submission and a value threshold."
+      },
+      {
+        "id": "carabinieri-tpc",
+        "name": "Carabinieri TPC",
+        "why": "Holds market-theft, archaeological losses; requires an Italian nexus — the archive is national."
+      },
+      {
+        "id": "lostart-de",
+        "name": "Lost Art Database",
+        "why": "Holds nazi-era losses; requires a loss connected to Nazi persecution, 1933–45."
+      },
+      {
+        "id": "art-loss-register",
+        "name": "Art Loss Register",
+        "why": "Holds market-theft, nazi-era losses; requires a registered loss, usually by an owner or insurer."
+      },
+      {
+        "id": "icom-red-lists",
+        "name": "ICOM Red Lists",
+        "why": "Holds archaeological, colonial losses; requires membership of an at-risk object category from a listed region."
+      }
+    ],
+    "coverageClass": "partially-covered",
+    "coverageRatio": 0.11,
+    "note": "Only 1 of 9 registers could systematically name this object. A quiet result is weak evidence, not reassurance.",
+    "comparability": "This score is comparable only to other partially covered objects. Comparison against a well-covered object will overstate how much was actually checked."
+  }
 }

@@ -105,5 +105,64 @@
       "issuer": "UNESCO"
     }
   ],
-  "estimatedMarketValueUSD": 55000000
+  "estimatedMarketValueUSD": 55000000,
+  "coverage": {
+    "acquisitionMode": "market-theft",
+    "region": "egypt",
+    "identifyingRegisters": [
+      {
+        "id": "interpol-swoa",
+        "name": "INTERPOL Stolen Works of Art",
+        "requires": "a theft reported to and recorded by a member-country police force"
+      },
+      {
+        "id": "interpol-id-art",
+        "name": "INTERPOL ID-Art",
+        "requires": "the same police report as the Stolen Works of Art database"
+      },
+      {
+        "id": "fbi-nsaf",
+        "name": "FBI National Stolen Art File",
+        "requires": "a law-enforcement submission and a value threshold"
+      },
+      {
+        "id": "art-loss-register",
+        "name": "Art Loss Register",
+        "requires": "a registered loss, usually by an owner or insurer"
+      }
+    ],
+    "weakRegisters": [
+      {
+        "id": "wikidata",
+        "name": "Wikidata",
+        "why": "Coverage follows scholarly and press attention rather than rule, so its silence carries little information."
+      }
+    ],
+    "blindRegisters": [
+      {
+        "id": "carabinieri-tpc",
+        "name": "Carabinieri TPC",
+        "why": "Geographically out of scope for egypt — requires an Italian nexus — the archive is national."
+      },
+      {
+        "id": "lostart-de",
+        "name": "Lost Art Database",
+        "why": "Holds nazi-era losses; requires a loss connected to Nazi persecution, 1933–45."
+      },
+      {
+        "id": "getty-provenance-index",
+        "name": "Getty Provenance Index",
+        "why": "Geographically out of scope for egypt — requires passage through the European or American art market."
+      },
+      {
+        "id": "icom-red-lists",
+        "name": "ICOM Red Lists",
+        "why": "Holds archaeological, colonial losses; requires membership of an at-risk object category from a listed region."
+      }
+    ],
+    "coverageClass": "well-covered",
+    "coverageRatio": 0.44,
+    "note": "4 of 9 registers could systematically name this object. Silence here is comparatively informative: records would be expected to exist.",
+    "comparability": "This score is comparable only to other well covered objects. Comparison against a structurally uncovered object will understate how little was checked there."
+  }
 }
