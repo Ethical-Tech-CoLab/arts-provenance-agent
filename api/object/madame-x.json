@@ -6,6 +6,13 @@
   "period": "1883–84",
   "icon": "🖼️",
   "accent": "#3f6f8a",
+  "image": {
+    "file": "objects/madame-x.jpg",
+    "credit": "John Singer Sargent",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Sargent_MadameX.jpeg"
+  },
   "currentLocation": {
     "institution": "The Metropolitan Museum of Art",
     "city": "New York",

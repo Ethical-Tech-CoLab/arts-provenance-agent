@@ -6,6 +6,13 @@
   "period": "c. 1345 BCE",
   "icon": "👑",
   "accent": "#3f7f8a",
+  "image": {
+    "file": "objects/nefertiti-bust.jpg",
+    "credit": "Philip Pikart",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Nofretete_Neues_Museum.jpg"
+  },
   "currentLocation": {
     "institution": "Neues Museum",
     "city": "Berlin",

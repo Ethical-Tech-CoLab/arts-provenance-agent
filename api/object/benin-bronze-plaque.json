@@ -5,6 +5,13 @@
   "period": "16th–17th c.",
   "icon": "🛡️",
   "accent": "#9a7b3f",
+  "image": {
+    "file": "objects/benin-bronze-plaque.jpg",
+    "credit": "en:User:Warofdreams",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Benin_Bronzes.jpg"
+  },
   "currentLocation": {
     "institution": "British Museum",
     "city": "London",

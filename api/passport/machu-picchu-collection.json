@@ -6,8 +6,8 @@
     "VerifiableCredential",
     "DigitalProvenancePassport"
   ],
-  "issuer": "did:pkh:eip155:84532:0x5AFC062B486514E57a70EdE5d1C0AA7cE717e1C2",
-  "validFrom": "2026-07-23T16:42:18.795Z",
+  "issuer": "did:pkh:eip155:84532:0x23aBAE294eA91d5da76c5089a0B4651B01C9515f",
+  "validFrom": "2026-07-23T16:58:45.115Z",
   "credentialSubject": {
     "id": "urn:artwork:machu-picchu-collection",
     "title": "Machu Picchu excavation collection (Bingham material)",
@@ -96,7 +96,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database",
-        "checkedAt": "2026-07-23T16:42:18.588Z"
+        "checkedAt": "2026-07-23T16:58:44.964Z"
       },
       {
         "registry": "INTERPOL ID-Art (mobile lookup)",
@@ -107,7 +107,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
-        "checkedAt": "2026-07-23T16:42:18.547Z"
+        "checkedAt": "2026-07-23T16:58:44.912Z"
       },
       {
         "registry": "FBI National Stolen Art File",
@@ -118,7 +118,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://artcrimes.fbi.gov/",
-        "checkedAt": "2026-07-23T16:42:18.587Z"
+        "checkedAt": "2026-07-23T16:58:44.978Z"
       },
       {
         "registry": "Carabinieri TPC — Leonardo database",
@@ -129,7 +129,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
-        "checkedAt": "2026-07-23T16:42:18.590Z"
+        "checkedAt": "2026-07-23T16:58:44.974Z"
       },
       {
         "registry": "Lost Art Database",
@@ -140,7 +140,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.lostart.de/en/search",
-        "checkedAt": "2026-07-23T16:42:18.591Z"
+        "checkedAt": "2026-07-23T16:58:44.957Z"
       },
       {
         "registry": "Getty Provenance Index",
@@ -151,7 +151,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.getty.edu/research/tools/provenance/search.html",
-        "checkedAt": "2026-07-23T16:42:18.588Z"
+        "checkedAt": "2026-07-23T16:58:44.958Z"
       },
       {
         "registry": "ICOM Red Lists of Cultural Objects at Risk",
@@ -162,7 +162,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://icom.museum/en/resources/red-lists/",
-        "checkedAt": "2026-07-23T16:42:18.584Z"
+        "checkedAt": "2026-07-23T16:58:44.977Z"
       },
       {
         "registry": "Wikidata (structured provenance events)",
@@ -173,7 +173,7 @@
         "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
         "hits": [],
         "officialSearch": "https://www.wikidata.org/",
-        "checkedAt": "2026-07-23T16:42:18.794Z"
+        "checkedAt": "2026-07-23T16:58:45.114Z"
       },
       {
         "registry": "Art Loss Register",
@@ -184,7 +184,7 @@
         "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
         "hits": [],
         "officialSearch": "https://www.artloss.com/",
-        "checkedAt": "2026-07-23T16:42:18.548Z"
+        "checkedAt": "2026-07-23T16:58:44.913Z"
       }
     ],
     "checksRun": [
@@ -200,13 +200,13 @@
       "registry:wikidata#structured-api",
       "registry:art-loss-register#paid-x402"
     ],
-    "assessedAt": "2026-07-23T16:42:18.795Z"
+    "assessedAt": "2026-07-23T16:58:45.115Z"
   },
   "proof": {
     "type": "EcdsaSecp256k1RecoverySignature2020",
-    "created": "2026-07-23T16:42:18.795Z",
-    "verificationMethod": "did:pkh:eip155:84532:0x5AFC062B486514E57a70EdE5d1C0AA7cE717e1C2#blockchainAccountId",
+    "created": "2026-07-23T16:58:45.115Z",
+    "verificationMethod": "did:pkh:eip155:84532:0x23aBAE294eA91d5da76c5089a0B4651B01C9515f#blockchainAccountId",
     "proofPurpose": "assertionMethod",
-    "proofValue": "0x51d500c6eb6e66fdc312852949d751266fa2f5f4d67d85445f24c99cb8cd1864276d5e0849efc2d5eef426577a908e583f66aa761a88c410deb60acf15bbae421c"
+    "proofValue": "0x4a0b59dec764ad3407ee3846f638f7a0f0c67171a9197b2e57806e235e82a2f60d3166fea87ed3d2ef62929227cb20f34237e3bda3b5089a8235f9a3d7c889621c"
   }
 }

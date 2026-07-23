@@ -6,6 +6,13 @@
   "period": "1907",
   "icon": "👗",
   "accent": "#c9a227",
+  "image": {
+    "file": "objects/adele-bloch-bauer-i.jpg",
+    "credit": "Gustav Klimt",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Gustav_Klimt,_1907,_Adele_Bloch-Bauer_I,_Neue_Galerie_New_York.jpg"
+  },
   "currentLocation": {
     "institution": "Neue Galerie",
     "city": "New York",

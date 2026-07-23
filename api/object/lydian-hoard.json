@@ -5,6 +5,13 @@
   "period": "c. 7th–6th c. BCE",
   "icon": "💰",
   "accent": "#b08d2e",
+  "image": {
+    "file": "objects/lydian-hoard.jpg",
+    "credit": "Dosseman",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:U%C5%9Fak_Museum_Karun_Treasure_gold_bracelet_2162.jpg"
+  },
   "currentLocation": {
     "institution": "Uşak Museum",
     "city": "Uşak",

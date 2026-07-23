@@ -5,6 +5,13 @@
   "period": "196 BCE",
   "icon": "🪨",
   "accent": "#5a6b7a",
+  "image": {
+    "file": "objects/rosetta-stone.jpg",
+    "credit": "Awikimate",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rosetta_Stone_-_front_face_-_corrected_image.jpg"
+  },
   "currentLocation": {
     "institution": "British Museum",
     "city": "London",

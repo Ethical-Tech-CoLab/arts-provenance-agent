@@ -6,6 +6,13 @@
   "period": "c. 515 BCE",
   "icon": "🏺",
   "accent": "#c0563e",
+  "image": {
+    "file": "objects/euphronios-krater.jpg",
+    "credit": "Sailko",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Eufronio,_cratere_modellato_da_euxitheos_con_morte_di_sarpedone,_520-510_ac_ca.,_dalla_necropoli_di_greppe_sant%27angelo_01.jpg"
+  },
   "currentLocation": {
     "institution": "Museo Nazionale Etrusco",
     "city": "Rome",

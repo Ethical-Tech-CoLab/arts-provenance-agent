@@ -6,6 +6,13 @@
   "period": "1912",
   "icon": "🎭",
   "accent": "#7a4b6b",
+  "image": {
+    "file": "objects/portrait-of-wally.jpg",
+    "credit": "Egon Schiele",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Egon_Schiele_-_Portrait_of_Wally_Neuzil_-_Google_Art_Project.jpg"
+  },
   "currentLocation": {
     "institution": "Leopold Museum",
     "city": "Vienna",

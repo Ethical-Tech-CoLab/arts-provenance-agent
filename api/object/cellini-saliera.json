@@ -6,6 +6,13 @@
   "period": "1540–43",
   "icon": "🧂",
   "accent": "#b8860b",
+  "image": {
+    "file": "objects/cellini-saliera.jpg",
+    "credit": "Benvenuto Cellini",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Saliera.png"
+  },
   "currentLocation": {
     "institution": "Kunsthistorisches Museum",
     "city": "Vienna",

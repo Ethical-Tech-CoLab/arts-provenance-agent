@@ -5,6 +5,13 @@
   "period": "447–432 BCE",
   "icon": "🏛️",
   "accent": "#8a8f7a",
+  "image": {
+    "file": "objects/parthenon-marbles.jpg",
+    "credit": "Joyofmuseums",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Parthenon_Marbles_-_British_Museum_-_Joy_of_Museums.jpg"
+  },
   "currentLocation": {
     "institution": "British Museum",
     "city": "London",

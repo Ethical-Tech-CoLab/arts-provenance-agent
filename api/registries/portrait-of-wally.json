@@ -13,7 +13,7 @@
       "applyUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/Stolen-Works-of-Art-Database/Application-form-to-access-INTERPOL-s-Works-of-Art-Database",
       "coverage": "The only global database of certified police information on stolen and missing cultural objects (~52,000 items). Entries come from member-country police forces, so an object only appears if a theft was reported to and recorded by a national force. Unreported and never-inventoried material — most looted archaeological and colonial-era objects — is structurally absent.",
       "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-      "checkedAt": "2026-07-23T16:42:16.406Z"
+      "checkedAt": "2026-07-23T16:58:42.607Z"
     },
     {
       "registryId": "interpol-id-art",
@@ -27,7 +27,7 @@
       "referralUrl": "https://www.interpol.int/en/Crimes/Cultural-heritage-crime/ID-Art-mobile-app",
       "coverage": "The same Stolen Works of Art database, searchable by image or description from a phone with no login required. This is the fastest authoritative check a human can run on an object in front of them — and it cannot be automated, which is why it appears here as a referral rather than a result.",
       "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
-      "checkedAt": "2026-07-23T16:42:16.369Z"
+      "checkedAt": "2026-07-23T16:58:42.553Z"
     },
     {
       "registryId": "fbi-nsaf",
@@ -41,7 +41,7 @@
       "referralUrl": "https://artcrimes.fbi.gov/",
       "coverage": "Stolen art and cultural property submitted by US and foreign law-enforcement agencies. Entry requires a police report and a value threshold, so it is a record of reported thefts from documented collections, not of looting at source.",
       "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-      "checkedAt": "2026-07-23T16:42:16.427Z"
+      "checkedAt": "2026-07-23T16:58:42.592Z"
     },
     {
       "registryId": "carabinieri-tpc",
@@ -55,7 +55,7 @@
       "referralUrl": "https://tpcweb.carabinieri.it/SitoPubblico/ricerca",
       "coverage": "Over 1.1 million stolen or illicitly exported cultural objects — the largest such archive in the world, and the most important single source for Italian antiquities. Public search is a web form; the full archive is law-enforcement access.",
       "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-      "checkedAt": "2026-07-23T16:42:16.413Z"
+      "checkedAt": "2026-07-23T16:58:42.588Z"
     },
     {
       "registryId": "lostart-de",
@@ -69,7 +69,7 @@
       "referralUrl": "https://www.lostart.de/en/search",
       "coverage": "Cultural property lost, moved or seized as a result of Nazi persecution 1933–1945, plus wartime relocations. Carries both 'found' and 'search' reports. The reference register for Nazi-era provenance gaps — and irrelevant to colonial-era and archaeological looting.",
       "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-      "checkedAt": "2026-07-23T16:42:16.416Z"
+      "checkedAt": "2026-07-23T16:58:42.595Z"
     },
     {
       "registryId": "getty-provenance-index",
@@ -83,7 +83,7 @@
       "referralUrl": "https://www.getty.edu/research/tools/provenance/search.html",
       "coverage": "Transcribed auction catalogues, dealer stock books and collection inventories — the primary evidence base for reconstructing an ownership chain rather than for flagging a theft. Strongest on the European and American art market; thin outside it.",
       "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-      "checkedAt": "2026-07-23T16:42:16.417Z"
+      "checkedAt": "2026-07-23T16:58:42.592Z"
     },
     {
       "registryId": "icom-red-lists",
@@ -97,7 +97,7 @@
       "referralUrl": "https://icom.museum/en/resources/red-lists/",
       "coverage": "Object CATEGORIES at risk of illicit trafficking by region — not individual objects. A Red List hit never identifies a specific piece; it says an object of this type from this region should not move without documentation. That is a due-diligence trigger, not an identification.",
       "caveat": "No evidence surfaced through the access available. This is NOT a statement that the object is absent from this register, and it is NOT a clean bill of health — objects looted at source were never inventoried and cannot appear in a stolen-property register at all.",
-      "checkedAt": "2026-07-23T16:42:16.422Z"
+      "checkedAt": "2026-07-23T16:58:42.597Z"
     },
     {
       "registryId": "wikidata",
@@ -175,7 +175,7 @@
       "referralUrl": "https://www.wikidata.org/wiki/Q1555137",
       "coverage": "The only openly machine-queryable source here. Its 'significant event' statements carry dated values such as archaeological looting, art theft, restitution and claim for restitution, usually with a reference URL. Coverage is uneven and edits are unreviewed, so this generates leads to verify — never findings.",
       "caveat": "Wikidata is community-maintained and certifies nothing. Dated events here are leads to verify against the cited source, not findings.",
-      "checkedAt": "2026-07-23T16:42:16.618Z"
+      "checkedAt": "2026-07-23T16:58:42.857Z"
     },
     {
       "registryId": "art-loss-register",
@@ -189,7 +189,7 @@
       "referralUrl": "https://www.artloss.com/",
       "coverage": "The largest private database of stolen and looted art. Registration and search are commercial services — which is exactly why this one is the agent's paid x402 check rather than a free lookup.",
       "caveat": "This register could not be searched programmatically. Nothing about the object has been established either way — the official search below must be run by a human.",
-      "checkedAt": "2026-07-23T16:42:16.371Z"
+      "checkedAt": "2026-07-23T16:58:42.553Z"
     }
   ],
   "possibleMatches": 1,

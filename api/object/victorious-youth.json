@@ -5,6 +5,13 @@
   "period": "c. 300–100 BCE",
   "icon": "🥉",
   "accent": "#6b7f5e",
+  "image": {
+    "file": "objects/victorious-youth.jpg",
+    "credit": "J. Paul Getty Museum",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Statue_of_a_Victorious_Youth,_front_-_Getty_Museum_(77.AB.30).jpg"
+  },
   "currentLocation": {
     "institution": "Getty Villa",
     "city": "Malibu",

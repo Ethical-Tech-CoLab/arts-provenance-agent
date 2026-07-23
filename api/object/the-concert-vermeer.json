@@ -6,6 +6,13 @@
   "period": "c. 1664",
   "icon": "🎼",
   "accent": "#2f5d50",
+  "image": {
+    "file": "objects/the-concert-vermeer.jpg",
+    "credit": "Johannes Vermeer",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Vermeer_The_Concert.jpg"
+  },
   "currentLocation": {
     "institution": "Unknown — stolen, still at large",
     "city": "—",

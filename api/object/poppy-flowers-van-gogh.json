@@ -6,6 +6,13 @@
   "period": "1887",
   "icon": "🌺",
   "accent": "#c4452f",
+  "image": {
+    "file": "objects/poppy-flowers-van-gogh.jpg",
+    "credit": "Vincent van Gogh",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Vase_mit_Pechnelken.jpeg"
+  },
   "currentLocation": {
     "institution": "Unknown — stolen, still at large",
     "city": "—",
