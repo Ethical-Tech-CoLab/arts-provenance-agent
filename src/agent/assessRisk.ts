@@ -31,6 +31,12 @@ export function assessRisk(input: RiskInput): RiskResult {
   // Base confidence from how well the timeline is attributed.
   const authority = timeline.filter((e) => e.tier === "verifiedByAuthority").length;
   const press = timeline.filter((e) => e.tier === "reportedInPress").length;
+  // CANONICAL SCORING MODEL (accumulation). Starts at 30 and adds credit for
+  // authoritative and press sources, rather than starting at 100 and deducting.
+  // An object with no published history scores low here, which is the intended
+  // behaviour: absence of evidence is not evidence of clean provenance. The
+  // deduction model in src/web/pipeline.ts is a non-canonical alternative and
+  // will not agree with this one; scores reported as results come from here.
   let confidence = Math.min(100, 30 + authority * 18 + press * 8);
 
   // --- Looting / repatriation signals from the cited timeline ---------------
