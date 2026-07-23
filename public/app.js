@@ -118,10 +118,33 @@ function routeFlags(stops, country) {
   return country ? `${flag(country)} now in ${country}` : "";
 }
 
+// A photograph where one exists, the emoji tile where it does not. Two objects
+// have no free image of the object itself, and a stand-in — a different statue
+// from the same temple, the site the material was dug out of — would be the
+// caption error this whole tool argues against. They keep the emoji.
+function tileHTML(o, cls) {
+  if (!o.image) {
+    return `<div class="${cls}" style="background:linear-gradient(135deg, ${o.accent}33, ${o.accent}0a)">${o.icon}</div>`;
+  }
+  return `<div class="${cls} has-img"><img src="${safeUrl(o.image.file)}" alt="${esc(o.title)}"
+     loading="lazy" decoding="async" /></div>`;
+}
+
+// The licence on most of these photographs requires attribution, so the credit
+// is rendered, not just carried in the data.
+function creditHTML(image) {
+  if (!image) return "";
+  const lic = image.licenseUrl
+    ? `<a href="${safeUrl(image.licenseUrl)}" target="_blank" rel="noopener noreferrer">${esc(image.license)}</a>`
+    : esc(image.license);
+  return `<div class="img-credit">Photograph: ${esc(image.credit)} · ${lic} ·
+    <a href="${safeUrl(image.source)}" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></div>`;
+}
+
 function cardHTML(o) {
   return `<div class="card" data-id="${o.id}" role="button" tabindex="0"
        aria-label="Open tracing dashboard for ${esc(o.title)}">
-    <div class="tile" style="background:linear-gradient(135deg, ${o.accent}33, ${o.accent}0a)">${o.icon}</div>
+    ${tileHTML(o, "tile")}
     <div class="body">
       <h3>${esc(o.title)}</h3>
       <div class="sub">${esc(o.culture || o.artist || "")}${o.period ? " · " + esc(o.period) : ""}</div>
@@ -227,11 +250,12 @@ function renderDashboard(o) {
   detail.innerHTML = `
     <span class="back" id="back">← all tracked objects</span>
     <div class="dash-head">
-      <div class="hero" style="background:linear-gradient(135deg, ${o.accent}40, ${o.accent}10)">${o.icon}</div>
+      ${tileHTML(o, "hero")}
       <div>
         <h1>${esc(o.title)}</h1>
         <div class="sub">${esc(o.artist || o.culture || "")}${o.period ? " · " + esc(o.period) : ""}</div>
         <div class="loc">${flag(o.currentLocation.country)} Currently at <b>${esc(o.currentLocation.institution)}</b>, ${esc(o.currentLocation.city)}, ${esc(o.currentLocation.country)}</div>
+        ${creditHTML(o.image)}
       </div>
     </div>
 

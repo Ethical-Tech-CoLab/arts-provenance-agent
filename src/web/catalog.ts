@@ -42,8 +42,30 @@ export interface CatalogObject {
   artist?: string;
   culture?: string;
   period?: string;
-  icon: string; // emoji used as a clean placeholder tile
+  icon: string; // emoji tile, used when there is no photograph
   accent: string; // gradient accent hex
+  /**
+   * A freely licensed photograph OF THIS OBJECT, downloaded into public/objects/
+   * rather than hotlinked, with the attribution its licence requires.
+   *
+   * Optional on purpose, and the gaps are the interesting part. Two objects have
+   * no entry — the Koh Ker Duryodhana and the Bingham Machu Picchu material —
+   * because no freely licensed photograph of either could be found. A picture of
+   * a different statue from the same temple, or of the site the material was dug
+   * out of, would be a caption error of exactly the kind this project exists to
+   * warn about, so those two keep the emoji tile instead.
+   */
+  image?: {
+    /** Path under public/, e.g. "objects/rosetta-stone.jpg". */
+    file: string;
+    /** Photographer or author, as Commons records them. Shown, not stored only. */
+    credit: string;
+    /** e.g. "CC BY-SA 4.0" or "Public domain". */
+    license: string;
+    licenseUrl: string;
+    /** The Commons file page — where the licence can be checked. */
+    source: string;
+  };
   currentLocation: { institution: string; city: string; country: string };
   riskScore: number; // 0–100 (higher = cleaner)
   riskLevel: "low" | "medium" | "high";
@@ -63,6 +85,13 @@ export const CATALOG: CatalogObject[] = [
     period: "c. 515 BCE",
     icon: "🏺",
     accent: "#c0563e",
+    image: {
+      file: "objects/euphronios-krater.jpg",
+      credit: "Sailko",
+      license: "CC BY 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/3.0",
+      source: "https://commons.wikimedia.org/wiki/File:Eufronio,_cratere_modellato_da_euxitheos_con_morte_di_sarpedone,_520-510_ac_ca.,_dalla_necropoli_di_greppe_sant%27angelo_01.jpg",
+    },
     currentLocation: { institution: "Museo Nazionale Etrusco", city: "Rome", country: "Italy" },
     riskScore: 12,
     riskLevel: "high",
@@ -93,6 +122,13 @@ export const CATALOG: CatalogObject[] = [
     period: "16th–17th c.",
     icon: "🛡️",
     accent: "#9a7b3f",
+    image: {
+      file: "objects/benin-bronze-plaque.jpg",
+      credit: "en:User:Warofdreams",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "http://creativecommons.org/licenses/by-sa/3.0/",
+      source: "https://commons.wikimedia.org/wiki/File:Benin_Bronzes.jpg",
+    },
     currentLocation: { institution: "British Museum", city: "London", country: "United Kingdom" },
     riskScore: 18,
     riskLevel: "high",
@@ -119,6 +155,13 @@ export const CATALOG: CatalogObject[] = [
     period: "196 BCE",
     icon: "🪨",
     accent: "#5a6b7a",
+    image: {
+      file: "objects/rosetta-stone.jpg",
+      credit: "Awikimate",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      source: "https://commons.wikimedia.org/wiki/File:Rosetta_Stone_-_front_face_-_corrected_image.jpg",
+    },
     currentLocation: { institution: "British Museum", city: "London", country: "United Kingdom" },
     riskScore: 34,
     riskLevel: "medium",
@@ -146,6 +189,13 @@ export const CATALOG: CatalogObject[] = [
     period: "c. 7th–6th c. BCE",
     icon: "💰",
     accent: "#b08d2e",
+    image: {
+      file: "objects/lydian-hoard.jpg",
+      credit: "Dosseman",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      source: "https://commons.wikimedia.org/wiki/File:U%C5%9Fak_Museum_Karun_Treasure_gold_bracelet_2162.jpg",
+    },
     currentLocation: { institution: "Uşak Museum", city: "Uşak", country: "Turkey" },
     riskScore: 22,
     riskLevel: "high",
@@ -173,6 +223,13 @@ export const CATALOG: CatalogObject[] = [
     period: "1883–84",
     icon: "🖼️",
     accent: "#3f6f8a",
+    image: {
+      file: "objects/madame-x.jpg",
+      credit: "John Singer Sargent",
+      license: "Public domain",
+      licenseUrl: "",
+      source: "https://commons.wikimedia.org/wiki/File:Sargent_MadameX.jpeg",
+    },
     currentLocation: { institution: "The Metropolitan Museum of Art", city: "New York", country: "United States" },
     riskScore: 93,
     riskLevel: "low",
@@ -200,6 +257,13 @@ export const CATALOG: CatalogObject[] = [
     period: "1907",
     icon: "👗",
     accent: "#c9a227",
+    image: {
+      file: "objects/adele-bloch-bauer-i.jpg",
+      credit: "Gustav Klimt",
+      license: "Public domain",
+      licenseUrl: "",
+      source: "https://commons.wikimedia.org/wiki/File:Gustav_Klimt,_1907,_Adele_Bloch-Bauer_I,_Neue_Galerie_New_York.jpg",
+    },
     currentLocation: { institution: "Neue Galerie", city: "New York", country: "United States" },
     riskScore: 74,
     riskLevel: "medium",
@@ -235,6 +299,13 @@ export const CATALOG: CatalogObject[] = [
     period: "1912",
     icon: "🎭",
     accent: "#7a4b6b",
+    image: {
+      file: "objects/portrait-of-wally.jpg",
+      credit: "Egon Schiele",
+      license: "Public domain",
+      licenseUrl: "",
+      source: "https://commons.wikimedia.org/wiki/File:Egon_Schiele_-_Portrait_of_Wally_Neuzil_-_Google_Art_Project.jpg",
+    },
     currentLocation: { institution: "Leopold Museum", city: "Vienna", country: "Austria" },
     riskScore: 62,
     riskLevel: "medium",
@@ -276,6 +347,13 @@ export const CATALOG: CatalogObject[] = [
     period: "c. 1664",
     icon: "🎼",
     accent: "#2f5d50",
+    image: {
+      file: "objects/the-concert-vermeer.jpg",
+      credit: "Johannes Vermeer",
+      license: "Public domain",
+      licenseUrl: "",
+      source: "https://commons.wikimedia.org/wiki/File:Vermeer_The_Concert.jpg",
+    },
     currentLocation: { institution: "Unknown — stolen, still at large", city: "—", country: "Unknown" },
     riskScore: 6,
     riskLevel: "high",
@@ -310,6 +388,13 @@ export const CATALOG: CatalogObject[] = [
     period: "1887",
     icon: "🌺",
     accent: "#c4452f",
+    image: {
+      file: "objects/poppy-flowers-van-gogh.jpg",
+      credit: "Vincent van Gogh",
+      license: "Public domain",
+      licenseUrl: "",
+      source: "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Vase_mit_Pechnelken.jpeg",
+    },
     currentLocation: { institution: "Unknown — stolen, still at large", city: "—", country: "Unknown" },
     riskScore: 8,
     riskLevel: "high",
@@ -346,6 +431,13 @@ export const CATALOG: CatalogObject[] = [
     period: "1540–43",
     icon: "🧂",
     accent: "#b8860b",
+    image: {
+      file: "objects/cellini-saliera.jpg",
+      credit: "Benvenuto Cellini",
+      license: "CC BY 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/3.0",
+      source: "https://commons.wikimedia.org/wiki/File:Saliera.png",
+    },
     currentLocation: { institution: "Kunsthistorisches Museum", city: "Vienna", country: "Austria" },
     riskScore: 71,
     riskLevel: "medium",
@@ -378,6 +470,13 @@ export const CATALOG: CatalogObject[] = [
     period: "447–432 BCE",
     icon: "🏛️",
     accent: "#8a8f7a",
+    image: {
+      file: "objects/parthenon-marbles.jpg",
+      credit: "Joyofmuseums",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      source: "https://commons.wikimedia.org/wiki/File:The_Parthenon_Marbles_-_British_Museum_-_Joy_of_Museums.jpg",
+    },
     currentLocation: { institution: "British Museum", city: "London", country: "United Kingdom" },
     riskScore: 24,
     riskLevel: "high",
@@ -411,6 +510,13 @@ export const CATALOG: CatalogObject[] = [
     period: "c. 1345 BCE",
     icon: "👑",
     accent: "#3f7f8a",
+    image: {
+      file: "objects/nefertiti-bust.jpg",
+      credit: "Philip Pikart",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      source: "https://commons.wikimedia.org/wiki/File:Nofretete_Neues_Museum.jpg",
+    },
     currentLocation: { institution: "Neues Museum", city: "Berlin", country: "Germany" },
     riskScore: 28,
     riskLevel: "high",
@@ -442,6 +548,13 @@ export const CATALOG: CatalogObject[] = [
     period: "c. 300–100 BCE",
     icon: "🥉",
     accent: "#6b7f5e",
+    image: {
+      file: "objects/victorious-youth.jpg",
+      credit: "J. Paul Getty Museum",
+      license: "CC0",
+      licenseUrl: "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      source: "https://commons.wikimedia.org/wiki/File:Statue_of_a_Victorious_Youth,_front_-_Getty_Museum_(77.AB.30).jpg",
+    },
     currentLocation: { institution: "Getty Villa", city: "Malibu", country: "United States" },
     riskScore: 26,
     riskLevel: "high",

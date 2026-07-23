@@ -146,6 +146,7 @@ app.get("/api/catalog", (_req, res) => {
       period: o.period,
       icon: o.icon,
       accent: o.accent,
+      image: o.image,
       riskScore: o.riskScore,
       riskLevel: o.riskLevel,
       repatriation: o.repatriation,

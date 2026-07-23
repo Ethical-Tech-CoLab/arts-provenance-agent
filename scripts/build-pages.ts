@@ -67,13 +67,22 @@ writeFileSync(join(OUT, "index.html"), html);
 copyFileSync(join(ROOT, "public/app.js"), join(OUT, "app.js"));
 copyFileSync(join(ROOT, "public/styles.css"), join(OUT, "styles.css"));
 copyFileSync(join(ROOT, "scripts/pages/static-api.js"), join(OUT, "static-api.js"));
-// Anything else public/ references — favicons today. Copied by discovery rather
-// than by name so adding an asset to the app doesn't silently 404 on Pages.
-for (const asset of readdirSync(join(ROOT, "public"))) {
-  if (/\.(svg|png|ico|jpg|jpeg|webp|woff2?)$/i.test(asset)) {
-    copyFileSync(join(ROOT, "public", asset), join(OUT, asset));
+// Anything else public/ references — favicons and the object photographs.
+// Copied by discovery rather than by name so adding an asset to the app doesn't
+// silently 404 on Pages. Walks subdirectories: the photographs live in
+// public/objects/, and a flat scan silently skipped every one of them.
+function copyAssets(rel: string): void {
+  for (const entry of readdirSync(join(ROOT, "public", rel), { withFileTypes: true })) {
+    const child = rel ? `${rel}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      mkdirSync(join(OUT, child), { recursive: true });
+      copyAssets(child);
+    } else if (/\.(svg|png|ico|jpg|jpeg|webp|woff2?)$/i.test(entry.name)) {
+      copyFileSync(join(ROOT, "public", child), join(OUT, child));
+    }
   }
 }
+copyAssets("");
 writeFileSync(join(OUT, ".nojekyll"), ""); // stop Jekyll eating the api/ folder
 
 // --- /api/config and /api/registries ----------------------------------------
@@ -117,6 +126,7 @@ write(
     period: o.period,
     icon: o.icon,
     accent: o.accent,
+    image: o.image,
     riskScore: o.riskScore,
     riskLevel: o.riskLevel,
     repatriation: o.repatriation,
