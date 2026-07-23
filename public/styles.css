@@ -23,6 +23,14 @@ a { color: var(--blue); text-decoration: none; }
 button[disabled] { opacity: .5; cursor: default; }
 .mode { font-size: 11px; color: var(--muted); font-family: ui-monospace, monospace; white-space: nowrap; }
 
+/* Section tabs */
+.tabs { display: flex; gap: 4px; }
+.tab { background: none; border: 1px solid transparent; border-radius: 999px; color: var(--muted);
+  padding: 6px 13px; font-size: 13px; cursor: pointer; white-space: nowrap; }
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--ink); border-color: var(--line); background: var(--panel2); }
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 main { max-width: 1180px; margin: 0 auto; padding: 22px; }
 .section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
 .section-head h2 { margin: 0; font-size: 18px; }
@@ -191,6 +199,67 @@ ul.sources { margin: 0; padding-left: 18px; } ul.sources li { margin-bottom: 6px
 .reg-hits li.hit-risk { color: #ffb3a6; }
 .reg-caveat { font-size: 11px; color: var(--muted); margin-top: 6px; font-style: italic; line-height: 1.45; }
 .reg-links { font-size: 11px; margin-top: 6px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Methodology.
+   Reading matter, so it gets a measure and a slower rhythm than the dashboard.
+   The two callout styles are load-bearing: .m-warn is for a limitation someone
+   could be misled by, .m-note for a disclosure that is merely worth knowing. */
+.method { max-width: 860px; }
+.m-lede { font-size: 15.5px; line-height: 1.7; color: var(--ink); background: var(--panel);
+  border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 22px; }
+.m-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+.m-toc a { font-size: 12px; color: var(--muted); border: 1px solid var(--line); background: var(--panel);
+  border-radius: 999px; padding: 5px 12px; }
+.m-toc a:hover { color: var(--ink); border-color: var(--accent); }
+
+.m-block { border-top: 1px solid var(--line); padding-top: 24px; margin-bottom: 34px; scroll-margin-top: 72px; }
+.m-block h3 { margin: 0 0 14px; font-size: 17px; color: var(--accent); }
+.m-block h4 { margin: 24px 0 8px; font-size: 13.5px; }
+.m-block p { margin: 0 0 12px; font-size: 14px; line-height: 1.7; color: var(--ink); }
+.m-block b { color: var(--ink); }
+
+.m-steps { margin: 0; padding-left: 20px; }
+.m-steps li { margin-bottom: 13px; font-size: 14px; line-height: 1.65; }
+.m-list { margin: 0; padding-left: 20px; }
+.m-list li { margin-bottom: 9px; font-size: 14px; line-height: 1.65; }
+.m-limits li { margin-bottom: 13px; }
+.m-props { margin: 0; padding: 0; list-style: none; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 5px 18px; }
+.m-props li { font-size: 13px; color: var(--muted); }
+
+.m-code { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; background: #11141a;
+  border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; color: #cfe3d0; }
+
+/* Access tiers. Nothing in here renders green — see the register panel above for
+   why: there is no positive result a register can return. */
+.m-tiers { margin: 0 0 18px; padding: 0; list-style: none; }
+.m-tiers li { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 7px; }
+.m-tier { display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: .05em;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+  margin-right: 8px; white-space: nowrap; }
+.m-tier.t-api { background: #1b2436; color: #9dc6ff; border-color: #3a5580; }
+.m-tier.t-search { background: #432; color: #ffd79a; border-color: #a82; }
+.m-tier.t-referral { background: #222831; color: #9aa; }
+.m-tier.t-paid { background: #2a2418; color: #e7cfa0; border-color: #6b5a34; }
+
+.m-tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 6px; }
+.m-table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 12.5px; }
+.m-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--muted); font-weight: 600; padding: 10px 13px; background: #11141a;
+  border-bottom: 1px solid var(--line); }
+.m-table td { padding: 11px 13px; border-bottom: 1px solid var(--line); vertical-align: top;
+  color: var(--muted); line-height: 1.55; }
+.m-table tr:last-child td { border-bottom: none; }
+.m-table td:first-child { color: var(--ink); font-weight: 600; }
+
+.m-warn, .m-note { border-radius: 10px; padding: 13px 16px; font-size: 13px; line-height: 1.65;
+  color: var(--muted); margin: 16px 0; }
+.m-warn { background: #191512; border: 1px solid #4a3a22; border-left-width: 3px; }
+.m-note { background: #11141a; border: 1px solid var(--line); border-left: 3px solid var(--line); }
+.m-warn b, .m-note b { color: var(--ink); }
+
+.m-further { border-top: 1px solid var(--line); padding-top: 18px; font-size: 13px; color: var(--muted); }
 
 pre { background: #0b0d11; border: 1px solid var(--line); border-radius: 8px; padding: 13px; overflow: auto;
   max-height: 360px; font-size: 12px; font-family: ui-monospace, Menlo, monospace; color: #cfe3d0; }

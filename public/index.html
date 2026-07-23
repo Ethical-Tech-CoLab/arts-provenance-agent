@@ -11,6 +11,10 @@
 <body>
   <header class="topbar">
     <div class="brand" id="home">🏛️ <span>Provenance Tracer</span></div>
+    <nav class="tabs" aria-label="Sections">
+      <button type="button" class="tab active" data-view="objects">Objects</button>
+      <button type="button" class="tab" data-view="methodology">Methodology</button>
+    </nav>
     <form id="searchForm" class="search">
       <input id="searchInput" placeholder="Search an artwork or artifact to trace…" autocomplete="off" />
       <button type="submit">Trace →</button>
@@ -67,6 +71,413 @@
     </section>
 
     <section id="detailView" class="hidden"></section>
+
+    <!-- Methodology. Written out in full rather than linked to the paper: someone
+         reading a confidence score here should be able to find out, without
+         leaving the page, what produced it and what it is worth. Static markup on
+         purpose — it must render identically on the published capture, where
+         there is no backend to ask. -->
+    <section id="methodologyView" class="method hidden">
+      <div class="section-head">
+        <h2>Methodology</h2>
+        <span class="hint">what this tool does, what it reads, how it scores, and where it stops</span>
+      </div>
+
+      <div class="m-lede">
+        This is a research prototype from the Ethical Tech CoLab, not a due-diligence
+        service. It assembles a provenance picture for an object out of open sources,
+        records how it reached each one, and signs the result so the record cannot be
+        edited without the edit becoming visible. Everything below describes the system
+        as built — including the parts that do not work well, which are the parts worth
+        reading first.
+      </div>
+
+      <nav class="m-toc" aria-label="On this page">
+        <a href="#m-run">The run</a>
+        <a href="#m-sources">Sources</a>
+        <a href="#m-metadata">Metadata</a>
+        <a href="#m-scoring">Scoring</a>
+        <a href="#m-watchlist">Watchlist</a>
+        <a href="#m-passport">Passport</a>
+        <a href="#m-payment">Payment</a>
+        <a href="#m-limits">Limits</a>
+      </nav>
+
+      <!-- 1 ------------------------------------------------------------------->
+      <article class="m-block" id="m-run">
+        <h3>1 · The run, step by step</h3>
+        <p>A trace is a fixed sequence. Each phase streams its own event, so the panel
+        on a live run is the actual execution order rather than a summary written
+        afterwards.</p>
+
+        <ol class="m-steps">
+          <li>
+            <b>Intent.</b> A title, and where available an artist, origin, asking price
+            and known history. Nothing is inferred at this stage; an empty field stays
+            empty rather than being guessed.
+          </li>
+          <li>
+            <b>Grounding.</b> A web search scoped to an allowlist of fourteen
+            institutional and register domains. Every fact that comes back carries a
+            source URL and a quoted passage. <b>A claim with no source is never
+            produced</b> — that constraint, not a prompt instruction, is what stops
+            invented provenance entering the record.
+          </li>
+          <li>
+            <b>Register checks.</b> Nine stolen-art and cultural-property registers,
+            each labelled with how it was actually reached. They run concurrently and
+            independently: a register that errors is recorded as
+            <span class="m-code">not-queryable</span>, never dropped, because a check
+            that vanished would read as a check that passed.
+          </li>
+          <li>
+            <b>Risk.</b> A provenance-confidence score from 0 to 100 and a typed list
+            of red flags, each carrying the evidence and source that produced it. The
+            agent never states a legal conclusion — it flags signals and cites them.
+          </li>
+          <li>
+            <b>Payment decision.</b> The one commercial register, the Art Loss Register,
+            sits behind a paid check. The agent reasons out loud about whether the
+            spend is justified, then either pays over x402 or declines and says why.
+          </li>
+          <li>
+            <b>Passport.</b> Everything above is written into a W3C Verifiable
+            Credential and signed. Failed and unrunnable checks are signed in
+            alongside the successful ones.
+          </li>
+        </ol>
+      </article>
+
+      <!-- 2 ------------------------------------------------------------------->
+      <article class="m-block" id="m-sources">
+        <h3>2 · Sources, and how each one is really reached</h3>
+        <p>This is the part most tools leave vague. The registers that actually certify
+        stolen cultural property mostly <b>cannot be queried by machine</b>, and that was
+        checked rather than assumed. INTERPOL's database is reachable through the ID-Art
+        app or a vetted account, with no programmatic endpoint for either. The FBI's
+        public search returns 403 to any non-browser client, and the open
+        <span class="m-code">api.fbi.gov</span> "Wanted" endpoint does not contain
+        stolen-art records at all — its subject filter silently ignores art crime and
+        returns the fugitive list. Carabinieri TPC and lostart.de publish HTML search
+        forms and no documented JSON interface.</p>
+
+        <p>So the tool does not pretend to search them. It does three separate things
+        and labels which one produced each result:</p>
+
+        <ul class="m-tiers">
+          <li><span class="m-tier t-api">queried directly</span> An open, machine-queryable
+            source is genuinely queried. Exactly one source qualifies: Wikidata.</li>
+          <li><span class="m-tier t-search">site searched, not the register</span> A
+            domain-scoped search over what the register publishes openly on its website.
+            This reads the register's <b>site</b>, which is not the same as searching its
+            <b>register</b>.</li>
+          <li><span class="m-tier t-referral">no API — human check required</span> A deep
+            link to the official search a person has to run, plus the credential
+            application URL where one exists.</li>
+        </ul>
+
+        <div class="m-tablewrap">
+          <table class="m-table">
+            <thead>
+              <tr><th>Register</th><th>Issuer</th><th>How it is reached</th><th>What it covers — and cannot</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>INTERPOL Stolen Works of Art</td>
+                <td>INTERPOL Cultural Heritage Crime Unit</td>
+                <td><span class="m-tier t-search">site searched</span></td>
+                <td>~52,000 items of certified police information. An object appears only
+                    if a theft was reported to and recorded by a national force, so
+                    never-inventoried material is structurally absent.</td>
+              </tr>
+              <tr>
+                <td>INTERPOL ID-Art</td>
+                <td>INTERPOL Cultural Heritage Crime Unit</td>
+                <td><span class="m-tier t-referral">referral</span></td>
+                <td>The same database, searchable by image from a phone with no login.
+                    The fastest authoritative check a human can run — and it cannot be
+                    automated, which is why it appears here as a link.</td>
+              </tr>
+              <tr>
+                <td>FBI National Stolen Art File</td>
+                <td>FBI Art Crime Team</td>
+                <td><span class="m-tier t-search">site searched</span></td>
+                <td>Requires a police report and a value threshold, so it records
+                    reported thefts from documented collections, not looting at source.</td>
+              </tr>
+              <tr>
+                <td>Carabinieri TPC — Leonardo</td>
+                <td>Comando Carabinieri TPC (Italy)</td>
+                <td><span class="m-tier t-search">site searched</span></td>
+                <td>Over 1.1 million objects, the largest such archive and the key source
+                    for Italian antiquities. Full archive is law-enforcement access.</td>
+              </tr>
+              <tr>
+                <td>Lost Art Database</td>
+                <td>German Lost Art Foundation</td>
+                <td><span class="m-tier t-search">site searched</span></td>
+                <td>Nazi-era spoliation, 1933–1945, plus wartime relocations. The
+                    reference register for that period — and irrelevant to colonial-era
+                    and archaeological looting.</td>
+              </tr>
+              <tr>
+                <td>Getty Provenance Index</td>
+                <td>Getty Research Institute</td>
+                <td><span class="m-tier t-search">site searched</span></td>
+                <td>Auction catalogues, dealer stock books, inventories — evidence for
+                    reconstructing a chain rather than flagging a theft. Thin outside the
+                    European and American market.</td>
+              </tr>
+              <tr>
+                <td>ICOM Red Lists</td>
+                <td>International Council of Museums</td>
+                <td><span class="m-tier t-search">site searched</span></td>
+                <td>Object <b>categories</b> at risk by region, never individual pieces.
+                    A hit is a due-diligence trigger, not an identification.</td>
+              </tr>
+              <tr>
+                <td>Wikidata</td>
+                <td>Community contributors — not an authority</td>
+                <td><span class="m-tier t-api">queried directly</span></td>
+                <td>The only openly machine-queryable source here. Dated significant-event
+                    statements with reference URLs. Coverage is uneven and edits are
+                    unreviewed, so it generates leads, never findings.</td>
+              </tr>
+              <tr>
+                <td>Art Loss Register</td>
+                <td>The Art Loss Register (commercial)</td>
+                <td><span class="m-tier t-paid">paid check</span></td>
+                <td>The largest private database of stolen and looted art. Commercial,
+                    which is precisely why it is the agent's paid x402 check rather than
+                    a free lookup.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>The grounding allowlist</h4>
+        <p>Free-text grounding is scoped to fourteen domains: metmuseum.org, unesco.org,
+        whc.unesco.org, icom.museum, getty.edu, culturalheritage.gov, interpol.int,
+        fbi.gov, carabinieri.it, beniculturali.it, lostart.de, kulturgutverluste.de,
+        proveana.de and artloss.com.</p>
+        <div class="m-warn">
+          <b>Known coverage bias, and it runs against the tool's own motivation.</b>
+          These are Western institutions and registers. The case for building this rests
+          on objects a stolen-art register cannot catch — material taken from an
+          archaeological site or under colonial rule, never inventoried, never reported
+          stolen. The allowlist searches best where objects are already well documented
+          and worst exactly where the motivating harm lives. The national heritage
+          authorities of the fourteen source countries the scorer recognises are not on
+          it. A low score for a Cambodian sculpture and a low score for a Dutch painting
+          do not mean the same thing.
+        </div>
+
+        <h4>The relevance gate</h4>
+        <p>A hit only attaches to an object if it plausibly names it: the artist's
+        surname, a distinctive non-generic word from the title, or two or more title
+        words together. The bar is higher than "shares a word" because a single generic
+        term once attached a UNESCO page about the Sarpedon Krater to Van Gogh's
+        <i>Poppy Flowers (Vase with Viscaria)</i> — they share the word "vase". A
+        mismatched hit is the worst output this layer can produce: a looting signal
+        pointing at the wrong object while wearing a real, authoritative source URL.</p>
+      </article>
+
+      <!-- 3 ------------------------------------------------------------------->
+      <article class="m-block" id="m-metadata">
+        <h3>3 · The metadata it reads and writes</h3>
+
+        <h4>Queried from Wikidata</h4>
+        <p>Entity resolution runs a label search, then SPARQL over eight properties.
+        Every candidate the label search returned is reported alongside the one chosen,
+        so the match can be audited rather than trusted — "we searched Q1323051, here is
+        what that is."</p>
+        <ul class="m-props">
+          <li><span class="m-code">P793</span> significant event — looting, art theft, restitution, restitution claim</li>
+          <li><span class="m-code">P170</span> creator — the disambiguator when a title is ambiguous</li>
+          <li><span class="m-code">P195</span> collection — who has held it</li>
+          <li><span class="m-code">P495</span> country of origin</li>
+          <li><span class="m-code">P189</span> location of discovery</li>
+          <li><span class="m-code">P1071</span> location of creation</li>
+          <li><span class="m-code">P276</span> current location</li>
+          <li><span class="m-code">P571</span> inception</li>
+          <li><span class="m-code">P585</span> point in time — the qualifier that dates an event</li>
+          <li><span class="m-code">P854</span> reference URL — where the underlying source lives</li>
+        </ul>
+
+        <h4>Recorded on every claim</h4>
+        <p>Each fact carries a verification tier, and the tier is the anti-hallucination
+        spine: <span class="m-code">verifiedByAuthority</span> for a museum, UNESCO or
+        government record, <span class="m-code">reportedInPress</span> for a news outlet,
+        <span class="m-code">inferred</span> for model inference from cited context, which
+        is the lowest trust available. Wikidata results are capped at
+        <span class="m-code">reportedInPress</span> and can never be tiered as
+        authoritative.</p>
+
+        <h4>Recorded on every object</h4>
+        <p>A journey stop is typed as origin, excavation, looting, sale, museum,
+        repatriation or contested. A repatriation outcome is one of repatriated,
+        contested, settled or clear. <span class="m-code">settled</span> is not
+        decoration: a case where the parties reached terms and title moved by agreement
+        — <i>Portrait of Wally</i>, the Sevso Treasure — is neither contested (it is
+        over) nor repatriated (the object often stayed put) nor clear (there was a
+        seizure in the chain).</p>
+      </article>
+
+      <!-- 4 ------------------------------------------------------------------->
+      <article class="m-block" id="m-scoring">
+        <h3>4 · How the score is produced</h3>
+        <p>The number is <b>provenance confidence</b>, 0 to 100, where higher means
+        better-documented. It is not a probability that an object is stolen, and it is
+        not a legal assessment.</p>
+
+        <div class="m-warn">
+          <b>Two scoring models exist in this codebase and they do not agree.</b>
+          The canonical one accumulates: it starts at 30 and adds credit for
+          authoritative and press sources, so an object with no published history scores
+          low. That is the intended behaviour — absence of evidence is not evidence of
+          clean provenance. The web pipeline still uses an older deduction model that
+          starts at 100 and subtracts named penalties, which implies every undocumented
+          object is perfect until proven otherwise. Reconciling the two is committed
+          future work, not an interesting property of the system. Any score presented as
+          a result should come from the accumulation model.
+        </div>
+
+        <h4>What moves the score</h4>
+        <ul class="m-list">
+          <li><b>Authoritative and press sources add credit</b> (accumulation model:
+              +18 and +8 each).</li>
+          <li><b>A register hit costs 20 points</b> and raises a high-severity flag,
+              capped at three hits.</li>
+          <li><b>An incomplete pre-acquisition history costs 12 points.</b></li>
+          <li><b>A sale price three times the comparable median</b> raises a
+              wash-trade flag.</li>
+          <li><b>A confirmed Art Loss Register match costs 40 points</b> in the web
+              pipeline and re-opens the assessment.</li>
+        </ul>
+
+        <h4>What deliberately does not move it</h4>
+        <p>A register that came back empty earns nothing, and a register that could not
+        be searched at all earns nothing. The asymmetry is the point: rewarding a silent
+        register would reintroduce exactly the error the scoring was written to avoid.
+        Coverage gaps are recorded as a visible low-severity flag instead, so a reader
+        can see the check was thin.</p>
+
+        <div class="m-note">
+          <b>The catalogue scores are researched, not computed.</b> The fifteen objects
+          in the gallery carry confidence scores assigned by hand from the documented
+          case history, and the passport for a catalogue object signs that authored
+          number. Only a live search runs the scorer. This is a deliberate choice — the
+          seed cases are meant to be correct, not to demonstrate the model — but it does
+          mean the two numbers on this site have different provenance of their own.
+        </div>
+      </article>
+
+      <!-- 5 ------------------------------------------------------------------->
+      <article class="m-block" id="m-watchlist">
+        <h3>5 · The stolen-art watchlist</h3>
+        <p>Generated from a single Wikidata SPARQL query: works whose
+        <span class="m-code">P793</span> significant event resolves under
+        <span class="m-code">Q1756454</span> (art theft), which subsumes Nazi plunder.
+        The current build holds 408 rows, 156 of them still outstanding. An entry is
+        marked resolved when its events mention restitution, recovery, discovery or
+        return; everything else stays outstanding.</p>
+
+        <p>Two query details are load-bearing and both were bugs first. The query is
+        constrained to works of art (<span class="m-code">Q838948</span>) because the
+        unconstrained form also returns people and companies — Nazi-era records attach
+        theft events to the dispossessed as well as to objects, and a watchlist of
+        artworks silently containing victims' names would be both wrong and grotesque.
+        And the event path allows an instance step, not only subclasses, because named
+        heists like the Isabella Stewart Gardner Museum theft are <i>instances</i> of art
+        theft; walking the subclass tree alone silently dropped every object taken in a
+        named robbery, Vermeer's <i>The Concert</i> among them.</p>
+
+        <div class="m-warn">
+          <b>These are leads, not register entries.</b> Nothing here is certified police
+          information, and absence from the list means nothing at all — it is uneven
+          community data, and the objects this project cares about most are the ones
+          least likely to appear in it.
+        </div>
+      </article>
+
+      <!-- 6 ------------------------------------------------------------------->
+      <article class="m-block" id="m-passport">
+        <h3>6 · The Passport, and what a signature proves</h3>
+        <p>The output is a W3C Verifiable Credential of type
+        <span class="m-code">DigitalProvenancePassport</span>. It carries the object
+        identity, the grounded timeline with a source and quote per claim, the confidence
+        score, the typed red flags, every register check with its access tier, verdict,
+        method and caveat, any paid check with its payment receipt, and the list of
+        checks actually run.</p>
+
+        <p>Signing is deliberately plain. The credential is canonicalised by recursively
+        sorting keys and serialising to JSON, hashed, and signed with the same
+        secp256k1 wallet key that pays the x402 invoice — a wallet used as public-key
+        infrastructure for an object's identity rather than for a payment. The issuer is
+        a <span class="m-code">did:pkh</span>, an Ethereum address expressed as a DID, so
+        anyone can recover the signer from the signature and confirm it matches the
+        issuer. No key distribution, no registry of issuers, fully tamper-evident.</p>
+
+        <div class="m-note">
+          <b>What that does not establish.</b> A valid signature proves the record has
+          not been altered since it was signed and that a particular key signed it. It
+          says nothing about whether the findings are correct, and nothing about the
+          object. On this published demo the key is a throwaway generated per process,
+          so the passports verify against themselves and prove nothing about any real
+          object or any real issuer.
+        </div>
+      </article>
+
+      <!-- 7 ------------------------------------------------------------------->
+      <article class="m-block" id="m-payment">
+        <h3>7 · Paying for the one commercial check</h3>
+        <p>The Art Loss Register is a paid service, so the agent treats it as one. It
+        first reasons about whether the spend is worth it — a run already at 85 or above
+        with no red flags does not buy a check — then pays over x402 in USDC on Base
+        Sepolia. The default price is $0.05 per check against a $0.25 lifetime cap, and
+        the cap is a lifetime one on purpose: a loop of runs must not be able to drain
+        the wallet one micropayment at a time. An invoice that would exceed the remaining
+        budget is refused at preflight, before anything is signed.</p>
+        <p>The decision, the price, the settlement receipt and the outcome are all
+        written into the Passport, including when the answer was "not worth paying".</p>
+      </article>
+
+      <!-- 8 ------------------------------------------------------------------->
+      <article class="m-block" id="m-limits">
+        <h3>8 · Limits</h3>
+        <ul class="m-list m-limits">
+          <li><b>No check here can say "clear."</b> The strongest available result is
+            <i>no evidence found</i>, meaning nothing surfaced through the access we had.
+            For objects looted at source — never inventoried, never reported stolen —
+            silence is the expected condition, not a reassuring one. A tool that rendered
+            that absence as a clean bill of health would be actively dangerous.</li>
+          <li><b>One register is genuinely queried.</b> Wikidata, which certifies nothing.
+            Everything else is either a search of a website or a link for a human to
+            follow.</li>
+          <li><b>The biggest coverage gap is unfixed.</b> Source-country heritage
+            authorities are absent from the allowlist, and that is where the evidence for
+            the motivating cases lives. Extending it is the first substantive piece of
+            future work — every other improvement operates on evidence the tool was able
+            to find, and the allowlist decides what it can find at all.</li>
+          <li><b>Two scoring models disagree</b>, as described above.</li>
+          <li><b>Entity resolution can land on the wrong object.</b> A label search is a
+            label search. The QID and every rejected candidate are shown so the choice can
+            be checked, rather than folded silently into a score.</li>
+          <li><b>Nothing here is a legal conclusion.</b> The tool flags signals and cites
+            evidence. Whether an object was unlawfully taken, and what follows from that,
+            is not a question it answers.</li>
+        </ul>
+      </article>
+
+      <div class="m-further">
+        <b>Read further:</b>
+        <a href="https://github.com/Ethical-Tech-CoLab/arts-provenance-agent/blob/main/DPP-Paper.md" target="_blank" rel="noopener noreferrer">the research report</a>,
+        <a href="https://github.com/Ethical-Tech-CoLab/arts-provenance-agent/blob/main/PEER-REVIEW.md" target="_blank" rel="noopener noreferrer">the peer review</a>, or
+        <a href="https://github.com/Ethical-Tech-CoLab/arts-provenance-agent" target="_blank" rel="noopener noreferrer">the source</a> —
+        the register logic lives in <span class="m-code">src/tools/registries.ts</span> and
+        the scoring in <span class="m-code">src/agent/assessRisk.ts</span>.
+      </div>
+    </section>
   </main>
 
   <!-- The limits belong on the page, not only in the paper. Someone who reads

@@ -51,8 +51,53 @@ if (window.__STATIC_DEMO__) {
   el.classList.remove("hidden");
 }
 
-function showGallery() { detail.classList.add("hidden"); gallery.classList.remove("hidden"); }
-$("#home").addEventListener("click", showGallery);
+// ---- top-level views -------------------------------------------------------
+// The methodology is a route rather than a section of the gallery: someone who
+// wants to cite how the score works needs a URL that lands on it, and the
+// in-page anchors (#m-scoring and friends) have to survive a reload.
+const method = $("#methodologyView");
+const tabs = [...document.querySelectorAll(".tab")];
+const setTab = (name) => tabs.forEach((t) => t.classList.toggle("active", t.dataset.view === name));
+
+function showGallery() {
+  detail.classList.add("hidden");
+  method.classList.add("hidden");
+  gallery.classList.remove("hidden");
+  setTab("objects");
+}
+
+function showMethodology() {
+  gallery.classList.add("hidden");
+  detail.classList.add("hidden");
+  method.classList.remove("hidden");
+  setTab("methodology");
+}
+
+$("#home").addEventListener("click", () => {
+  history.replaceState(null, "", location.pathname + location.search);
+  showGallery();
+});
+
+tabs.forEach((t) =>
+  t.addEventListener("click", () => {
+    if (t.dataset.view === "methodology") {
+      location.hash = "methodology";
+      showMethodology();
+    } else {
+      history.replaceState(null, "", location.pathname + location.search);
+      showGallery();
+      window.scrollTo(0, 0);
+    }
+  })
+);
+
+// `m-*` covers the table-of-contents anchors, so a link straight to one section
+// opens the methodology rather than the gallery with an unreachable anchor.
+function routeFromHash() {
+  const h = location.hash.replace(/^#/, "");
+  if (h === "methodology" || h.startsWith("m-")) showMethodology();
+}
+window.addEventListener("hashchange", routeFromHash);
 
 async function loadGallery() {
   const items = await (await fetch("/api/catalog")).json();
@@ -405,3 +450,4 @@ function addStep(e) {
 loadGallery();
 wireWatchlistControls();
 loadWatchlist();
+routeFromHash();
