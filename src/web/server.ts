@@ -14,6 +14,7 @@ import { config, DEMO_MODE, facilitatorLabel } from "../config.js";
 import { runProvenance } from "./pipeline.js";
 import { getCatalog, getObject, issueObjectPassport } from "./catalog.js";
 import { checkRegistries, getRegistries } from "../tools/registries.js";
+import { queryWatchlist } from "./watchlist.js";
 import { verifyCredential, type VerifiableCredential } from "../lib/signing.js";
 import { spentUsd, remainingBudgetUsd } from "../lib/spend.js";
 import type { Emit, RunEvent, Intent } from "../lib/schema.js";
@@ -197,6 +198,25 @@ app.get("/api/registries", (_req, res) => {
       referralUrl: r.referralUrl,
       applyUrl: r.applyUrl,
     }))
+  );
+});
+
+/**
+ * The stolen-art watchlist — generated from Wikidata, kept separate from the
+ * curated catalog because it is a different kind of evidence. The caveat ships
+ * inside the response rather than only in the UI, so a consumer hitting the
+ * JSON directly cannot get the rows without the warning attached.
+ */
+app.get("/api/watchlist", (req, res) => {
+  const status = req.query.status === "outstanding" || req.query.status === "resolved"
+    ? req.query.status
+    : undefined;
+  res.json(
+    queryWatchlist({
+      q: typeof req.query.q === "string" ? req.query.q.slice(0, 120) : undefined,
+      status,
+      limit: Number(req.query.limit) || undefined,
+    })
   );
 });
 

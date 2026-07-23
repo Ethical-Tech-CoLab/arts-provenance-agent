@@ -27,12 +27,13 @@
 // statements, so assigning process.env in this file would land after the config
 // module had already read it.
 import "dotenv/config";
-import { mkdirSync, writeFileSync, copyFileSync, readFileSync, rmSync } from "node:fs";
+import { mkdirSync, writeFileSync, copyFileSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { getCatalog, getObject, issueObjectPassport } from "../src/web/catalog.js";
 import { runProvenance } from "../src/web/pipeline.js";
 import { checkRegistries, getRegistries } from "../src/tools/registries.js";
+import { getWatchlist } from "../src/web/watchlist.js";
 import { verifyCredential } from "../src/lib/signing.js";
 import { config, DEMO_MODE, facilitatorLabel } from "../src/config.js";
 import type { RunEvent, Intent } from "../src/lib/schema.js";
@@ -66,8 +67,13 @@ writeFileSync(join(OUT, "index.html"), html);
 copyFileSync(join(ROOT, "public/app.js"), join(OUT, "app.js"));
 copyFileSync(join(ROOT, "public/styles.css"), join(OUT, "styles.css"));
 copyFileSync(join(ROOT, "scripts/pages/static-api.js"), join(OUT, "static-api.js"));
-copyFileSync(join(ROOT, "public/etc-icon.svg"), join(OUT, "etc-icon.svg"));
-copyFileSync(join(ROOT, "public/etc-icon.png"), join(OUT, "etc-icon.png"));
+// Anything else public/ references — favicons today. Copied by discovery rather
+// than by name so adding an asset to the app doesn't silently 404 on Pages.
+for (const asset of readdirSync(join(ROOT, "public"))) {
+  if (/\.(svg|png|ico|jpg|jpeg|webp|woff2?)$/i.test(asset)) {
+    copyFileSync(join(ROOT, "public", asset), join(OUT, asset));
+  }
+}
 writeFileSync(join(OUT, ".nojekyll"), ""); // stop Jekyll eating the api/ folder
 
 // --- /api/config and /api/registries ----------------------------------------
@@ -92,6 +98,12 @@ write(
     applyUrl: r.applyUrl,
   }))
 );
+
+// --- /api/watchlist ----------------------------------------------------------
+// Shipped whole; static-api.js applies the filters in the browser. The caveat
+// travels inside the file so it cannot be separated from the rows.
+const watchlist = getWatchlist();
+write("api/watchlist.json", watchlist);
 
 // --- /api/catalog and the per-object routes ----------------------------------
 const catalog = getCatalog();

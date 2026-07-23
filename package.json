@@ -11,6 +11,7 @@
     "smoke-registries": "tsx src/smoke-registries.ts",
     "web": "tsx src/web/server.ts",
     "demo": "tsx scripts/demo.ts",
+    "build:watchlist": "tsx scripts/build-watchlist.ts",
     "build:pages": "DEMO_MODE=mock tsx scripts/build-pages.ts",
     "deploy:pages": "bash scripts/deploy-pages.sh"
   },
