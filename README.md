@@ -256,4 +256,8 @@ The two models still return different numbers for the same object. **Reconciling
 
 **Extending the list is named as the first substantive piece of future work**, not an optional one, since every other improvement operates on evidence the tool was able to find. The named gaps are the Getty Provenance Index, the German Lost Art Foundation, Interpol's stolen works of art database, and the national heritage authorities of the fourteen source countries. The list itself is deliberately unchanged in this revision: adding domains changes what every future run returns, and that belongs in a change that can be validated against known cases rather than bundled into a documentation pass.
 
-> **Note:** the report text (S01–S13) is maintained outside this repository, on the Ethical Tech CoLab site at `/publications/digital-provenance-passport`. The Objective 2 wording, the canonical-scorer designation, and the coverage-bias paragraph have all been applied there.
+> **Note:** the canonical report text is [DPP-Paper.md](DPP-Paper.md) in this repository. A copy is published on the Ethical Tech CoLab site at `/publications/digital-provenance-passport` and is synced by hand; the 2026-10-12 revisions (catalogue count, hand-authored scores, tier rename, UNESCO count, card label) are listed in [BACKLOG.md](BACKLOG.md) for that sync.
+
+**The catalogue scores are authored, not computed.** None of the fifteen catalogue scores was produced by running the pipeline; each was assigned by hand from the case history, and the report says so at §7.8. Running the canonical scorer on the catalogue against live sources is paid work (Tavily) and has not been done.
+
+**The top evidence tier is now `institutionalRecord`** (formerly `verifiedByAuthority`), so the word "verified" is reserved for what the seal proves (§10).

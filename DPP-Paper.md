@@ -46,20 +46,24 @@ looting, restitution claims, documentation gaps, and suspicious pricing, and
 then issues a sealed digital record of everything it found and everything it
 did.
 
-1.2 The system is deliberately built so that it cannot state a fact about an
+1.2 The system is deliberately built so that it cannot record a fact about an
 object unless it can point to the source that asserted it. Any claim that
 arrives without a source address attached is discarded before it reaches the
 record. This is the prototype's central safeguard against the well-documented
 tendency of language models to produce fluent, confident, and entirely
-fictional history.
+fictional history. The limit of that safeguard should be read with it: it
+makes an unsourced claim impossible to record, not a false one. A false claim
+that carries a real source address is not prevented, and Section 13.8 sets
+out why that is the most serious caveat in this report.
 
 1.3 The prototype scores each object on a provenance confidence scale running
 from 0 to 100, where a high number means the ownership history appears
 well-documented and a low number means it does not. The score begins at a
-starting value and is reduced by named, itemised deductions, each of which is
-displayed alongside the evidence that triggered it. There is no hidden
-statistical model. The rules are a short, readable list, and Section 6 of this
-report sets out every one of them.
+deliberately low starting value, earns credit for each sourced event, and is
+reduced by named, itemised deductions, each of which is displayed alongside
+the evidence that triggered it. There is no hidden statistical model. The
+rules are a short, readable list, and Section 6 of this report sets out every
+one of them.
 
 1.4 The system is built as an agent, meaning that it carries out a sequence of
 steps on its own initiative rather than waiting for a person to click through
@@ -181,8 +185,12 @@ The prototype is designed to:
 4.1 Reduce the time required to produce a first-pass provenance summary for a
 named object, from days of archival work to a single automated run.
 
-4.2 Make hallucinated history structurally impossible to record, by refusing to
-enter any claim that does not carry the address of the source that made it.
+4.2 Make unsourced history structurally impossible to record, by refusing to
+enter any claim that does not carry the address of the source that made it, so
+that every claim can be traced to and checked against its origin. This is a
+guarantee about sourcing, not about truth: a false claim that carries a real
+source address is not caught by this rule. Section 13.8 explains the
+consequence.
 
 4.3 Express the reliability of a provenance record as a single explicit number,
 accompanied by the itemised reasons that number is not higher.
@@ -223,6 +231,10 @@ states what they want to know in ordinary terms and the system works out the
 research steps from there. The inputs are trimmed and normalised into a
 structured request, and a search phrase is built from them by appending the
 terms "provenance ownership history repatriation" to whatever the user typed.
+That appended phrase is not neutral. It steers every search toward pages that
+use restitution language, so part of what the looting and repatriation flags
+respond to is the shape of the query rather than the history of the object.
+Section 13.2 returns to this.
 
 ### 5.2 Stage two: grounding
 
@@ -320,19 +332,24 @@ described in 6.5. Supplying neither disables it.
 Every fact recorded carries one of three tiers, which describe how strongly it
 is backed rather than how important it is:
 
-- verified by authority, meaning a museum record, a UNESCO document, a
+- institutional record, meaning a museum record, a UNESCO document, a
   registry entry, or a government record;
 - reported in press, meaning a news outlet or secondary coverage;
 - inferred, meaning drawn by the software from cited context, and the least
   trustworthy of the three.
 
 These tiers are assigned mechanically from the address of the source. A page on
-the Metropolitan Museum's domain is treated as verified by authority; anything
-outside the recognised institutions falls to reported in press.
+the Metropolitan Museum's domain is treated as an institutional record;
+anything outside the recognised institutions falls to reported in press. An
+earlier version of the prototype called the top tier "verified by authority".
+It was renamed because the word verified was doing two conflicting jobs: here
+it described where a claim was found, and in Section 10 it describes what the
+seal proves, which is something narrower still. The tier says that an
+institution published the claim. It does not say the claim is true.
 
 Each tier carries a numeric weight used when a single fact's reliability needs
-to be expressed as a number: 0.92 for verified by authority, 0.60 for reported
-in press, and 0.30 for inferred. The gap between the first two is deliberate
+to be expressed as a number: 0.92 for an institutional record, 0.60 for
+reported in press, and 0.30 for inferred. The gap between the first two is deliberate
 and large. It encodes the judgment that an institution's own record of an
 object it holds is a materially different kind of evidence from a newspaper
 account of the same object, and the drop to 0.30 for inference marks the point
@@ -345,34 +362,40 @@ provenance appears, not how valuable or how important the object is. A high
 score means a clean, traceable record. A low score means gaps, warning signals,
 or both. The score is a measure of the evidence, not a verdict on the object.
 
-The repository contains two implementations of this score, reflecting the fact
-that the project was built by more than one hand under time pressure. Both are
-simple arithmetic. Both are worth setting out, because the difference between
-them is instructive.
+The canonical scorer is an accumulation model, implemented in the
+command-line agent (`src/agent/assessRisk.ts`). It starts at 30, a
+deliberately low base representing an object about which nothing has yet been
+established, and adds 18 points for every event carried by an institutional
+record and 8 points for every event reported in the press, capped at 100. It
+then subtracts 12 if the early history is undated or incomplete, 20 for each
+register source that describes the object in theft or restitution terms (at
+most three), and folds in the result of the paid check described at 6.5. Any
+score the prototype reports as a result of a run comes from this model.
 
-The web interface uses a deduction model. The score starts at 100, on the
-presumption that an object is well documented until something suggests
-otherwise, and named deductions are subtracted for each warning condition
-found. The final figure is held within the range 0 to 100.
+The repository also contains an older deduction model in the web pipeline
+(`src/web/pipeline.ts`). It starts at 100, on the presumption that an object
+is well documented until something suggests otherwise, and subtracts named
+penalties for each warning condition found. It is kept because the web
+interface still calls it, and it is marked in the source as non-canonical. It
+is a discarded alternative, not a second opinion. The reason it lost is
+stated in the code and repeated here: an object with no published history
+should not score 100. A model that starts every object at a perfect score
+treats absence of evidence as evidence of clean provenance, which inverts the
+purpose of the tool. Moving the web pipeline onto the canonical model is
+committed future work, deliberately left out of the revision that designated
+it, so that no previously published number moved without a validation run.
 
-The command-line agent uses an accumulation model, which runs in the opposite
-direction. It starts at 30, a deliberately low base representing an object
-about which nothing has yet been established, and adds 18 points for every
-event confirmed by an authoritative institution and 8 points for every event
-reported in the press, capped at 100. It then subtracts 12 if the early history
-is undated or incomplete.
-
-The two models express the same intuition from opposite ends. The deduction
-model asks what is wrong with this record. The accumulation model asks how much
-of this record has actually been established. The second is the more
-conservative of the two, since an object with no published history at all
-scores 30 rather than 100. Neither has been validated against expert judgment,
-and the divergence between them is one of the prototype's clearer unfinished
-edges.
+Neither model has been validated against expert judgment. The fifteen
+catalogue scores shown in Section 7 were produced by neither: they were
+assigned by hand from the documented case history, as 7.7 states.
 
 ### 6.4 The red flags, and what each deduction represents
 
-The deductions used by the web pipeline are as follows.
+The deductions below are those of the web pipeline's deduction model. They
+are set out because the web interface still displays them and because each
+one encodes a judgment about what counts as a warning sign; the point values
+belong to the non-canonical model and are not the figures behind any
+reported score. The canonical model's own movements are listed at 6.3.
 
 Provenance gap, minus 25 points, severity high. Triggered when the gathered
 text contains language indicating an undocumented period, including the words
@@ -418,7 +441,7 @@ is the largest single movement in the system, and rightly so: it is the only
 deduction triggered by a direct hit in a dedicated register rather than by
 language found in general sources.
 
-The command-line implementation adds two further categories: a repatriation
+The canonical scorer adds two further categories: a repatriation
 precedent flag when the timeline itself cites a return or restitution event,
 and a transaction flag recording the system's own payment for audit. That flag
 states explicitly that the payment has not been AML-screened: no sanctions,
@@ -537,14 +560,14 @@ repatriated, contested, or clear, its current holding institution, and the
 number of stops on its journey. Clicking a card opens that object's full
 dashboard.
 
-7.2 A caution about the label on those cards. The interface prints the
-confidence figure with the word "risk" in front of it, so the Euphronios Krater
-appears as "risk 12/100." The underlying number is a cleanliness score, and 12
-out of 100 means a badly compromised record, not a low level of risk. A reader
-who has not been told this will read the card exactly backwards. The colour
-coding and the accompanying risk level of high or low are correct; only the
-wording is misleading. It is a small defect with real potential to confuse, and
-it is recorded here because a plain-language review should say so.
+7.2 A note on the label on those cards. An earlier version of the interface
+printed the confidence figure with the word "risk" in front of it, so the
+Euphronios Krater appeared as "risk 12/100." The number is a confidence score,
+and 12 out of 100 means a badly compromised record, not a low level of risk,
+so a reader who had not been told this read the card exactly backwards. The
+label now reads "confidence 12/100". The defect is recorded here because it
+was a software error, not a documentation caveat, and it was fixed in the
+interface rather than annotated.
 
 7.3 The journey. The central display for each object is the sequence of places
 it has physically been, each stop carrying a year, a place, a country, a
@@ -568,18 +591,40 @@ names. The stages appear one by one as they complete, including the payment
 reasoning, so the user sees the sequence of decisions rather than only the
 conclusion.
 
-7.7 The seeded objects. The prototype ships with five real and well-documented
-cases, chosen to span the range of outcomes: the Euphronios Krater, looted from
-an Etruscan tomb near Cerveteri in 1971, bought by the Metropolitan Museum of
-Art in 1972 and returned to Italy in 2008; a Benin Bronze plaque taken during
-the British punitive expedition of 1897 and still held in London against an
-active Nigerian claim; the Rosetta Stone, ceded to Britain under the
-Capitulation of Alexandria in 1801 and the subject of repeated Egyptian
-requests; the Lydian Hoard, looted from burial mounds in western Turkey in the
-1960s and returned by the Metropolitan Museum in 1993; and John Singer
-Sargent's Madame X, purchased from the artist in 1916 with an unbroken
-documented history. The last of these is the control case. It is the example of
-what a clean record looks like, and it scores 93 out of 100.
+7.7 The seeded objects. The prototype ships with a catalogue of fifteen real
+and well-documented cases, each researched by hand from published accounts.
+The first five were chosen to span the range of outcomes: the Euphronios
+Krater, looted from an Etruscan tomb near Cerveteri in 1971, bought by the
+Metropolitan Museum of Art in 1972 and returned to Italy in 2008; a Benin
+Bronze plaque taken during the British punitive expedition of 1897 and still
+held in London against an active Nigerian claim; the Rosetta Stone, ceded to
+Britain under the Capitulation of Alexandria in 1801 and the subject of
+repeated Egyptian requests; the Lydian Hoard, looted from burial mounds in
+western Turkey in the 1960s and returned by the Metropolitan Museum in 1993;
+and John Singer Sargent's Madame X, purchased from the artist in 1916 with an
+unbroken documented history. Ten more were added so that the catalogue covers
+the distinct shapes a provenance problem takes: Nazi-era spoliation (Klimt's
+Portrait of Adele Bloch-Bauer I, Schiele's Portrait of Wally), theft still
+unsolved (Vermeer's The Concert, Van Gogh's Poppy Flowers), theft since
+recovered (Cellini's Saliera), colonial acquisition (the Parthenon Marbles,
+the Bust of Nefertiti), contested export (the Getty Bronze, the Victorious
+Youth, cited at 6.7.6), archaeological looting (the Koh Ker Duryodhana) and a
+completed return (the Machu Picchu excavation material). Wherever this report
+counts the catalogue, fifteen is the number, and every object it cites by name
+is one of the fifteen.
+
+7.8 Which scores were computed and which were authored. None of the fifteen
+catalogue scores was produced by running the pipeline. Each was assigned by
+hand from the documented case history, and the Passport issued for a catalogue
+object signs that authored number. Madame X, the control case, is given 93 out
+of 100 as the example of what a clean record looks like; the Euphronios Krater
+is given 12. These figures illustrate the scale, not the scorer. Only a live
+search runs the canonical model described at 6.3, and the prototype has not
+been run on the catalogue objects against the live sources, because every such
+run is a paid search. A reader should therefore treat Section 7 as a
+demonstration of the scale's intended meaning and Section 6 as the description
+of the arithmetic, and should not take the catalogue as evidence that the
+arithmetic lands where the hand-set figures do.
 
 ---
 
@@ -620,6 +665,24 @@ An object well documented in a French or Turkish archive and absent from these
 six domains will return little, and the tool will report a thin record rather
 than an absent one. The two are not the same thing, and the prototype does not
 currently distinguish them.
+
+The bias should be stated plainly. The original list is five Western
+institutions and one commercial theft register. The tool therefore searches
+best where objects are already well documented, which is to say in the
+published holdings of major Western museums, and searches worst exactly where
+the harm that motivates it lives: source-country archives, colonial-era
+removals, and archaeological material that was never inventoried. Section 2
+builds the case for the tool on the objects a stolen-art register cannot catch,
+and the source list reaches those objects least. The observation at 13.9 that
+the tool cannot tell thin evidence from absent evidence is the symptom; the
+source list is the cause. A low score for a Cambodian sculpture and a low score
+for a Dutch painting do not mean the same thing, and 6.7 exists because of
+that. Extending the list to the Getty Provenance Index, the German Lost Art
+Foundation, Interpol and the heritage authorities of the fourteen source
+countries is the first substantive extension this prototype needs, not an
+optional one, because every other improvement operates on evidence the tool
+was able to find. The next subsection records how far that extension has
+gone.
 
 ### 8.5 The register layer, and why it is not a set of lookups
 
@@ -726,10 +789,15 @@ smoothed over, which is the most that can be claimed for it.
 ## 9. The Payment Layer, and Why It Is There
 
 9.1 A reader may reasonably ask what an automated payment system is doing in a
-cultural-heritage research tool. The answer is partly historical: the prototype
-was built for a hackathon on autonomous software commerce, and the payment
-capability was a condition of entry. But the underlying argument is a real one
-and worth stating on its merits.
+cultural-heritage research tool. The argument is one of access. The most
+useful sources on stolen art are closed and sold per search, and the obstacle
+to using them is rarely the price. It is the account, the key, and the invoice
+that stand between a one-off question and its answer. A research assistant
+that can settle a small charge on its own, under a limit, can reach those
+sources at the moment it discovers it needs them. That is the case on the
+merits, set out below. The prototype also has a historical reason for the
+feature: it was built for a hackathon on autonomous software commerce, and the
+payment capability was a condition of entry.
 
 9.2 The most authoritative sources on stolen art are commercial and closed. The
 Art Loss Register does not publish its database; access is sold per search.
@@ -836,7 +904,9 @@ cultural-property law.
 
 The Convention on the Means of Prohibiting and Preventing the Illicit Import,
 Export and Transfer of Ownership of Cultural Property was adopted by UNESCO in
-1970 and entered into force in 1972. It has been ratified by 149 states. It
+1970 and entered into force in 1972. UNESCO's own page on the Convention
+states that it has been ratified by 150 states (unesco.org, "About 1970
+Convention", last updated 5 October 2026). It
 requires states parties to establish national services for heritage protection
 and to legislate accordingly, to operate a system of export certificates, to
 prohibit the import of objects stolen from museums, religious institutions, and
@@ -905,8 +975,8 @@ development.
 
 12.1 Why the scoring is arithmetic rather than learned. The prototype could
 have asked a language model to assign a provenance score directly. It does not.
-Every deduction is a written rule with a fixed value, applied to evidence that
-has already been gathered and cited. The reason is auditability. A number
+Every credit and every deduction is a written rule with a fixed value, applied
+to evidence that has already been gathered and cited. The reason is auditability. A number
 produced by a rule can be disputed by disputing the rule. A number produced by
 a model cannot be disputed at all, only accepted or rejected, and in a field
 where the output may inform a restitution claim that is not an acceptable
@@ -988,8 +1058,11 @@ stating that an object has no gaps in its record contains the word gap and
 will trigger the flag. A page discussing the successful repatriation of a
 different object will trigger the looting flag. These rules find the right
 signal often enough to be useful as a prompt for human attention, and they will
-produce false positives regularly. They should be read as a list of things to
-check, never as findings.
+produce false positives regularly. The query itself adds to the problem: the
+search phrase appends "provenance ownership history repatriation" to the
+user's terms (5.1), so the pages returned are already selected for restitution
+language before the keyword rules read them. They should be read as a list of
+things to check, never as findings.
 
 13.3 The source-country list is hand-written and incomplete. Fourteen countries
 are named. Many states with active restitution claims are not among them, and
@@ -1004,20 +1077,26 @@ judgment, plausibly calibrated and entirely unvalidated. This is a normal
 starting position for a prototype and it should not be mistaken for anything
 more.
 
-13.5 There are two different scoring systems in the repository. As set out in
-6.3, the web interface and the command-line agent compute confidence in
-materially different ways and will not agree on the same object. Anyone
-building on this work should reconcile them before doing anything else.
+13.5 The web interface still runs a non-canonical scorer. As set out in 6.3,
+the accumulation model is canonical and the deduction model in the web
+pipeline is a discarded alternative that has not yet been removed. Until the
+web pipeline is moved onto the canonical model, a live search in the web
+interface will show a number the canonical scorer would not have produced.
+Anyone building on this work should make that move before doing anything
+else.
 
-13.6 The interface mislabels its own headline number. See 7.2. A card reading
-"risk 12/100" describes a severely compromised object, which is the opposite of
-what the phrasing suggests.
+13.6 The interface once mislabelled its own headline number. See 7.2. A card
+reading "risk 12/100" described a severely compromised object, which is the
+opposite of what the phrasing suggested. The label now reads "confidence",
+and the record of the error is kept here because labels of this kind are easy
+to get wrong again.
 
 13.7 Most of what is impressive is simulated. In the default configuration
 there is no search, no payment, and no database query. The commercial
 stolen-art check is a stand-in with stored answers. The transaction screening
-returns a fixed clean verdict. The catalogue of five objects is written by hand
-from published cases rather than produced by the system. A reader evaluating a
+returns a fixed clean verdict. The catalogue of fifteen objects, and every
+score shown for it, is written by hand from published cases rather than
+produced by the system (7.8). A reader evaluating a
 demonstration should establish which mode it is running in before drawing
 conclusions about capability.
 
@@ -1113,15 +1192,15 @@ paid, and why it thought the purchase worthwhile.
 16.2 The prototype is also, in its present state, mostly a demonstration. Its
 commercial database check is a stand-in, its default mode replays stored
 examples, its permitted-source list omits most of the field's principal
-resources, its keyword rules will misfire, its two scoring systems disagree
-with each other, and its interface labels its central number in a way that
-invites the opposite reading. None of this is concealed in the repository, and
+resources, its keyword rules will misfire, its web interface still runs a
+scorer that has been superseded, and its catalogue scores are authored rather
+than computed. None of this is concealed in the repository, and
 none of it should be concealed in a report about it.
 
 16.3 What is durable here is the argument rather than the software. It is the
 proposition that when automated tools are pointed at questions where the stakes
 include the return of stolen property and the resolution of historical
-injustice, the design should make fabrication structurally impossible rather
+injustice, the design should make unsourced assertion structurally impossible rather
 than merely discouraged, should make every judgment traceable to a rule and
 every rule open to challenge, and should produce a record that cannot be edited
 without the edit becoming visible. Those are the right commitments. This
