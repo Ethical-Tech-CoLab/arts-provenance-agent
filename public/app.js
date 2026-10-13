@@ -153,7 +153,7 @@ function cardHTML(o) {
       <h3>${esc(o.title)}</h3>
       <div class="sub">${esc(o.culture || o.artist || "")}${o.period ? " · " + esc(o.period) : ""}</div>
       <div class="meta">
-        <span class="badge risk-${o.riskLevel}">risk ${o.riskScore}/100</span>
+        <span class="badge risk-${o.riskLevel}">confidence ${o.riskScore}/100</span>
         <span class="chip ${o.repatriation.status}">${o.repatriation.status}</span>
         ${coverageChip(o.coverageClass)}
       </div>

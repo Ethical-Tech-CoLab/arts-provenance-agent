@@ -12,7 +12,7 @@ export const PASSPORT_CONTEXT = {
 
 /** How strongly a claim is backed — the anti-hallucination spine. */
 export const VerificationTier = z.enum([
-  "verifiedByAuthority", // Met / UNESCO / ALR / govt record
+  "institutionalRecord", // Met / UNESCO / ALR / govt record
   "reportedInPress",     // news outlet
   "inferred",            // model inference from cited context (lowest trust)
 ]);

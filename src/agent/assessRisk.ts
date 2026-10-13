@@ -32,7 +32,7 @@ export function assessRisk(input: RiskInput): RiskResult {
   const { timeline } = input;
 
   // Base confidence from how well the timeline is attributed.
-  const authority = timeline.filter((e) => e.tier === "verifiedByAuthority").length;
+  const authority = timeline.filter((e) => e.tier === "institutionalRecord").length;
   const press = timeline.filter((e) => e.tier === "reportedInPress").length;
   // CANONICAL SCORING MODEL (accumulation). Starts at 30 and adds credit for
   // authoritative and press sources, rather than starting at 100 and deducting.

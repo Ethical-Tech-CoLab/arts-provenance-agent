@@ -12,7 +12,7 @@
  * openly queryable source in this space offers one.
  *
  * Every fact returned here is therefore tiered `reportedInPress` at best —
- * never `verifiedByAuthority` — and carries whatever reference URL Wikidata
+ * never `institutionalRecord` — and carries whatever reference URL Wikidata
  * holds so a human can go to the underlying source. A Wikidata hit is a
  * pointer to check, not a finding.
  */

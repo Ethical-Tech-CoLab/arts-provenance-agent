@@ -9,7 +9,7 @@ import { tavilySearch, tavilyExtract, type GroundedFact } from "../tools/tavily.
 import { intentToQuery, type ArtworkIntent } from "./parseIntent.js";
 
 const TIER_CONFIDENCE: Record<GroundedFact["tier"], number> = {
-  verifiedByAuthority: 0.92,
+  institutionalRecord: 0.92,
   reportedInPress: 0.6,
   inferred: 0.3,
 };

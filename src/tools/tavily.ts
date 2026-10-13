@@ -69,7 +69,7 @@ export interface GroundedFact {
   sourceQuote: string;
   sourceType: string;
   verifiedBy: string;
-  tier: "verifiedByAuthority" | "reportedInPress" | "inferred";
+  tier: "institutionalRecord" | "reportedInPress" | "inferred";
   date: string | null;
   location: string | null;
 }
@@ -158,7 +158,7 @@ export async function tavilySearch(
         sourceQuote: (r.content ?? "").slice(0, 320),
         sourceType: "web",
         verifiedBy: who,
-        tier: who === "web source" ? "reportedInPress" : "verifiedByAuthority",
+        tier: who === "web source" ? "reportedInPress" : "institutionalRecord",
         date: null,
         location: null,
       } as GroundedFact;
